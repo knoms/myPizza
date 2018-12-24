@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<title>MyPizza</title>
+
+	<link href="styleSchrift.css" type="text/css" rel="stylesheet">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<script type="text/javascript"></script>
+
+	<style>
+		.mySlides {display:none;}
+	</style>
+
+</head>
+
+<body>
+
+<!-- NAVIGATIONS BEREICH -->
+<header class="w3-container w3-padding-32">
+	<div class="w3-bar w3-light-grey">
+	  <span class="w3-bar-item w3-light-green">My Pizza</span>
+	  <a href="startseite.html" class="w3-bar-item w3-button">Home</a>
+	  <a href="speisekarte.html" class="w3-bar-item w3-button">Speisekarte</a>
+	  <a href="überUns.html" class="w3-bar-item w3-button">Über uns</a>
+	  <a href="login.html" class="w3-bar-item w3-button w3-right">Login</a>
+	</div>
+</header>
+
+	<!-- Bilder Galerie -->
+	<div class="w3-content w3-display-container">
+		<img class="mySlides" src="Images/holzofen.jpg" style="width: 100%; height: auto;" >
+		<img class="mySlides" src="Images/pizza-paprika.jpg" style="width: 100%; height: auto;">
+		<img class="mySlides" src="Images/pizza-ruccola.jpg" style="width: 100%; height: auto;">
+		<img class="mySlides" src="Images/teig-vorbereitung.jpg" style="width: 100%; height: auto;">
+	</div>
+
+	<script>
+	var myIndex = 0;
+	carousel();
+
+	function carousel() {
+	  var i;
+	  var x = document.getElementsByClassName("mySlides");
+	  for (i = 0; i < x.length; i++) {
+	    x[i].style.display = "none";  
+	  }
+	  myIndex++;
+	  if (myIndex > x.length) {myIndex = 1}    
+	  x[myIndex-1].style.display = "block";  
+	  setTimeout(carousel, 2000); // Change image every 2 seconds
+	}
+	</script>
+
+
+
+<footer class="w3-container w3-dark-gry w3-padding-32 w3-margin-top">
+	<!-- Fußleiste -->
+	<div class="w3-bar w3-light-green" style="">
+	  <a href="impressum.html" class="w3-bar-item w3-button">Impressum</a>
+	  <a href="kontaktformular.html" class="w3-bar-item w3-button">Kontaktformular</a>
+	  <a href="#" class="w3-bar-item w3-button w3-right">Counter einbauen</a>
+	</div>
+</footer>
+
+</div>
+
+</body>
+
+</html>
