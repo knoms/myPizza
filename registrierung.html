@@ -48,43 +48,43 @@
 		<div class="w3-row w3-section">
   			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
     		<div class="w3-rest">
-      			<input class="w3-input w3-border" name="first" type="text" placeholder="Vorname">
+      			<input class="w3-input w3-border" name="first" type="text" placeholder="Vorname" required>
       			<br>
-      			<input class="w3-input w3-border" name="last" type="text" placeholder="Nachname">
+      			<input class="w3-input w3-border" name="last" type="text" placeholder="Nachname" required>
     		</div>
 		</div>
 
 		<div class="w3-row w3-section">
   			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-home"></i></div>
    			<div class="w3-rest">
-      			<input class="w3-input w3-border" name="street" type="text" placeholder="Staße + Nr.">
+      			<input class="w3-input w3-border" name="street" type="text" placeholder="Staße + Nr." required>
       			<br>
-      			<input class="w3-input w3-border" name="plz" type="text" placeholder="PLZ">
+      			<input pattern="[0-9]{5}" class="w3-input w3-border" name="plz" placeholder="PLZ" required>
       			<br>
-      			<input class="w3-input w3-border" name="town" type="text" placeholder="Stadt">
+      			<input class="w3-input w3-border" name="town" type="text" placeholder="Stadt" required>
     		</div>
 		</div>
 		<hr>
 		<div class="w3-row w3-section">
   			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
     		<div class="w3-rest">
-      			<input class="w3-input w3-border" name="phone" type="text" placeholder="Telefonnummer">
+      			<input class="w3-input w3-border" name="phone" type="number" placeholder="Telefonnummer" required>
     		</div>
 		</div>
 
 		<div class="w3-row w3-section">
   			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
     		<div class="w3-rest">
-      			<input class="w3-input w3-border" name="email" type="text" placeholder="Email">
+      			<input class="w3-input w3-border" name="email" type="email" placeholder="Email" required>
     		</div>
 		</div>
 		<hr>
 		<div class="w3-row w3-section">
   			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-key"></i></div>
     		<div class="w3-rest">
-      			<input class="w3-input w3-border" name="password" type="text" placeholder="Passwort">
+      			<input class="w3-input w3-border" name="password" type="text" placeholder="Passwort" required>
       			<br>
-      			<input class="w3-input w3-border" name="password2" type="text" placeholder="Passwort wiederholen">
+      			<input class="w3-input w3-border" name="password2" type="text" placeholder="Passwort wiederholen" required>
     		</div>
 		</div>
 
