@@ -1,49 +1,22 @@
-<?php
-
-include("dbconnect.php");
-
-$pdo = new PDO('mysql:host=localhost;dbname= myPizza', root, '');
-
+<?php 
 session_start();
-
-$gefunden = false;
-
-$User_email = $_POST["email"];
-$User_password = $_POST["password"];
-
-$db_users = "SELECT * FROM mp_users";
-
-foreach ($pdo->query($db_users) as $row) {
-	   	
-		if($User_name==$row['email']){
-			if ($User_password==$row['password']) {
-				$gefunden=true;
-
-				$_SESSION["login"]=1;
-				$_SESSION["email"]=$row['email'];
-				break;
-				# code...
-			}
-		}
-
-
-	}
-
-	if($gefunden){
-		header("Location: index.php");
-	}
-	else{
-		header("Location: login.html");
-		wrongPw();
-	}
-
-	function wrongPw(){
-		alert("Benutzerkennung oder Passwort nicht korrekt");
-	}
-
-
-
-
-
-
-?>
+$pdo = new PDO('mysql:host=localhost;dbname=myPizza', 'root', '');
+ 
+if(isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+    $result = $statement->execute(array('email' => $email));
+    $user = $statement->fetch();
+        
+    //Überprüfung des Passworts
+    if ($user !== false && password_verify($password, $user['password'])) {
+        $_SESSION['userid'] = $user['id'];
+        die('Login erfolgreich. Weiter zu <a href="willkommen.html">Konto</a>');
+    } else {
+        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+        header("Location: ../login.html");
+    }
+    
+}
