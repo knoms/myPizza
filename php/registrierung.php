@@ -25,10 +25,59 @@
 			{
 				$password = $password1; //noch SHA einfügen
 				$sql = "INSERT INTO mp_users (Name, Vorname, Strasse, PLZ, Stadt, Email, Pw) VALUES ('$last', '$first', '$street', '$plz', '$town', '$email', '$password1')";
-				mysqli_query($db, $sql);	
+				mysqli_query($db, $sql);
+
+
+/*				$empfaenger = $_POST['email'];
+				$betreff = "Registrierungsbestätigung myPizza";
+				$from = "From: Lena Schumacher <leena.schumacher@web.de>\r\n";
+				$from .= "Reply-To: leena.schumacher@web.de\r\n";
+				$from .= "Content-Type: text/html\r\n";
+				$text = "Vielen Dank für Ihre Registrierung bei myPizza! <br> 
+				Sie können sich nun mit der E-Mail-Adresse $email und Ihrem gewählten Passwort bei myPizza anmelden.";
+				 
+				mail($empfaenger, $betreff, $text, $from);
+*/
+
+
+/*				$to = $email;
+				$subject = "HTML email";
+
+				$message = "
+				<html>
+				<head>
+				<title>HTML email</title>
+				</head>
+				<body>
+				<p>This email contains HTML Tags!</p>
+				<table>
+				<tr>
+				<th>Firstname</th>
+				<th>Lastname</th>
+				</tr>
+				<tr>
+				<td>John</td>
+				<td>Doe</td>
+				</tr>
+				</table>
+				</body>
+				</html>
+				";
+
+				// Always set content-type when sending HTML email
+				$headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+				// More headers
+				$headers .= 'From: <leena.schumacher@web.de>' . "\r\n";
+				$headers .= 'Cc: leena.schumacher@gmail.com' . "\r\n";
+
+				mail($to,$subject,$message,$headers);
+
+
 				header("Location: http://localhost/myPizza/registrierung2.html");				
 			}	
-		
+*/		
 
 		
 /* 			function mySha512($str, $salt, $iterations) {
