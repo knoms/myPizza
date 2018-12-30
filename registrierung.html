@@ -22,14 +22,17 @@
 	<script language="JavaScript" type="text/javascript"> 
 		<!-- 
 		function pwpruefen() { 
-		var pass1=document.Registrierung.password.value; 
-		var pass2=document.Registrierung.password2.value; 
-		if (document.Registrierung.password.value != document.Registrierung.password2.value) { 
-		// document.write ("passwörter=" + pass1 + "Pass2=" + pass2); 
-		alert ("Fehler. Bitte überprüfen Sie ihre Passwortangaben"); 
-		document.Formular.password.focus(); 
-		return false; 
-		}} 
+			var pass1=document.registrierung.password1.value; 
+			var pass2=document.registrierung.password2.value; 
+			if (document.registrierung.password1.value != document.registrierung.password2.value) 
+			{ 
+				// document.write ("passwörter=" + pass1 + "Pass2=" + pass2); 
+				alert ("Fehler. Bitte überprüfen Sie ihre Passwortangaben"); 
+				document.Formular.password1.focus(); 
+				return false; 
+			}
+			else{return true;}
+		} 
 
 		//--> 
 	</script> 
@@ -48,15 +51,8 @@
 	</div>
 </header>
 
-	<!-- Bilder Galerie -->
-	<div class="w3-content w3-display-container">
-		<img class="mySlides" src="Images/holzofen.jpg" style="width: 100%; height: auto;" >
-		<img class="mySlides" src="Images/pizza-paprika.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/pizza-ruccola.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/teig-vorbereitung.jpg" style="width: 100%; height: auto;">
-	</div>
 
-	<form onsubmit="alert(pwpruefen());" name="registrierung" method="post" action="php/registrierung.php" class="w3-container w3-animate-left w3-card-4 w3-light-grey w3-text-light-green w3-margin">
+	<form onsubmit= "javascript: return pwpruefen();" name="registrierung" method="post" action="php/registrierung.php" class="w3-container w3-animate-left w3-card-4 w3-light-grey w3-text-light-green w3-margin">
 		<h2>Registrierung</h2>
 	 
 		<div class="w3-row w3-section">
@@ -90,13 +86,13 @@
 		<div class="w3-row w3-section">
   			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-key"></i></div>
     		<div class="w3-rest">
-      			<input class="w3-input w3-border" name="password" type="password" placeholder="Passwort" required>
+      			<input class="w3-input w3-border" name="password1" type="password" placeholder="Passwort" required>
       			<br>
       			<input class="w3-input w3-border" name="password2" type="password" placeholder="Passwort wiederholen" required>
     		</div>
 		</div>
 
-		<button type="submit" name="register" class="w3-button w3 medium w3-section w3-light-green w3-ripple w3-padding" onclick="pwpruefen();">Registrieren</button>
+		<button type="submit" name="register" class="w3-button w3 medium w3-section w3-light-green w3-ripple w3-padding">Registrieren</button>
 	</form>
 
 
