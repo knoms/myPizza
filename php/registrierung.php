@@ -19,7 +19,7 @@
 			$statement = mysqli_query($db, "SELECT * FROM mp_users WHERE Email = '$email'");
 			if(mysqli_num_rows($statement)==1) 
 			{	
-				header("Location: http://localhost/myPizza/registrierung3.html");
+				header("Location: ../registrierung3.html");
 			}
 			else
 			{
@@ -81,7 +81,7 @@
 
 			
 
-				header("Location: http://localhost/myPizza/registrierung2.html");				
+				header("Location: ../registrierung2.html");				
 			}	
 		
 
