@@ -11,7 +11,7 @@
 		$plz = $_POST['plz'];
 		$town = $_POST['town'];
 		$email = $_POST['email'];
-		$password1 = $_POST['password'];
+		$password1 = $_POST['password1'];
 		$password2 = $_POST['password2'];
 
 		// Überprüfen, ob die E-Mail-Adresse noch nicht registriert ist und schreiben in DB
