@@ -1,6 +1,6 @@
 <?php
 	// connect to the database
-	$db = mysqli_connect('localhost', 'root', '', 'mypizza');
+	$db = mysqli_connect('localhost', 'root', '', 'myPizza');
 
 	//if the register button is clicked
 	if (isset($_POST['register']))
