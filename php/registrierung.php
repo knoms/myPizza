@@ -39,8 +39,8 @@
 				mail($empfaenger, $betreff, $text, $from);
 */
 
-
-/*				$to = $email;
+/*
+				$to = $email;
 				$subject = "HTML email";
 
 				$message = "
@@ -73,11 +73,17 @@
 				$headers .= 'Cc: leena.schumacher@gmail.com' . "\r\n";
 
 				mail($to,$subject,$message,$headers);
+*/
 
+
+
+
+
+			
 
 				header("Location: http://localhost/myPizza/registrierung2.html");				
 			}	
-*/		
+		
 
 		
 /* 			function mySha512($str, $salt, $iterations) {
