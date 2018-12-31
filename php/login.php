@@ -1,14 +1,12 @@
 <?php 
 session_start();
 include("dbconnect.php");
-$db = mysqli_connect('localhost', 'root', '', 'mypizza');
-
  
 if(isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     
-    $statement = mysqli_query($db, "SELECT Pw FROM mp_users WHERE Email = '$email'");
+    $statement = mysqli_query("SELECT Pw FROM mp_users WHERE Email = '$email'");
    
         
     //Emailadresse bekannt?
