@@ -26,9 +26,10 @@
 			var pass2=document.registrierung.password2.value; 
 			if (document.registrierung.password1.value != document.registrierung.password2.value) 
 			{ 
-				// document.write ("passwörter=" + pass1 + "Pass2=" + pass2); 
+				document.registrierung.onsubmit ="";
 				alert ("Fehler. Bitte überprüfen Sie ihre Passwortangaben"); 
-				document.Formular.password1.focus(); 
+				document.registrierung.password1.focus();
+
 				return false; 
 			}
 			else{return true;}
@@ -94,8 +95,6 @@
 
 		<button type="submit" name="register" class="w3-button w3 medium w3-section w3-light-green w3-ripple w3-padding">Registrieren</button>
 	</form>
-
-
 
 <footer class="w3-container w3-dark-gry w3-padding-32 w3-margin-top">
 	<!-- Fußleiste -->
