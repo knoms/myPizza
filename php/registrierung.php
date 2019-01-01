@@ -28,18 +28,20 @@
 				mysqli_query($db, $sql);
 
 
-/*				$empfaenger = $_POST['email'];
+				$empfaenger = $_POST['email'];
 				$betreff = "Registrierungsbestätigung myPizza";
-				$from = "From: Lena Schumacher <leena.schumacher@web.de>\r\n";
-				$from .= "Reply-To: leena.schumacher@web.de\r\n";
+				$from = "From: SupportService-To: mypizza.service@web.de\r\n";
 				$from .= "Content-Type: text/html\r\n";
 				$text = "Vielen Dank für Ihre Registrierung bei myPizza! <br> 
 				Sie können sich nun mit der E-Mail-Adresse $email und Ihrem gewählten Passwort bei myPizza anmelden.";
 				 
-				mail($empfaenger, $betreff, $text, $from);
-*/
+				if(mail($empfaenger, $betreff, $text, $from))
+				{
+					echo "Mail wurde erfldfnj verschiuckt";
+				}
+				
 
-/*
+
 				$to = $email;
 				$subject = "HTML email";
 
@@ -69,17 +71,27 @@
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 				// More headers
-				$headers .= 'From: <leena.schumacher@web.de>' . "\r\n";
-				$headers .= 'Cc: leena.schumacher@gmail.com' . "\r\n";
+				$headers .= 'From: <leena.schumacher@gmail.com>' . "\r\n";
 
-				mail($to,$subject,$message,$headers);
-*/
-
-
-
+				if(mail($to,$subject,$message,$headers))
+				{
+					echo "Mail wurde erfldfnj verschiuckt";
+				}
 
 
-			
+
+				$subject = "erste Mail";
+				$to = "leena.schumacher@gmail.com";
+				$body = "baldsjnfdoikf";
+
+				if( mail($to, $subject, $body))
+				{
+					echo "mail tut";
+				}
+				else{echo "tut nicht";}
+
+
+
 
 				header("Location: ../registrierung2.html");				
 			}	
