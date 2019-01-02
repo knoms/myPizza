@@ -26,8 +26,8 @@
 			var pass2=document.registrierung.password2.value; 
 			if (document.registrierung.password1.value != document.registrierung.password2.value) 
 			{ 
-				document.registrierung.onsubmit ="";
-				alert ("Fehler. Bitte überprüfen Sie ihre Passwortangaben"); 
+				alert ("Fehler. Bitte überprüfen Sie ihre Passwortangaben");
+				document.registrierung.onsubmit ="pwpruefen()";
 				document.registrierung.password1.focus();
 				document.registrierung.password1.value = "";
 				document.registrierung.password2.value = "";
