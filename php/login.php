@@ -24,11 +24,13 @@ if(isset($_POST['login'])) {
 
     //Emailadresse bekannt?
     if (mysqli_num_rows($sql) == 1) {
-    		
+        
+    		//Anmeldung erfolgreich
             header("Location: ../welcome.html");
     }
     else 
-    {
+    {   
+            //Email oder Passwort falsch
     	   header("Location: ../login2.html");
     }
     
