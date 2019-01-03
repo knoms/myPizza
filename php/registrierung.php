@@ -1,6 +1,7 @@
 <?php
 	// connect to the database
 	$db = mysqli_connect('localhost', 'root', '', 'myPizza');
+	require 'mail.php';
 
 	//if the register button is clicked
 	if (isset($_POST['register']))
@@ -27,7 +28,42 @@
 				$sql = "INSERT INTO mp_users (Name, Vorname, Strasse, PLZ, Stadt, Email, Pw) VALUES ('$last', '$first', '$street', '$plz', '$town', '$email', '$password')";
 				mysqli_query($db, $sql);
 
+				$mail = new PHPMailer;
 
+				$mail->SMTPDebug = 0;                               // Enable verbose debug output
+				$mail->isSMTP();                                      // Set mailer to use SMTPAuth
+				$mail->Host = 'smtp.web.de ;smtp.web.de ';  // Specify main and backup SMTP servers
+				$mail->SMTPAuth = true;                               // Enable SMTP authentication
+				$mail->Username = 'mypizza.service@web.de';                 // SMTP username
+				$mail->Password = 'mypizza123';                           // SMTP password
+				$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+				$mail->Port = 587;                                    // TCP port to connect to
+
+				$mail->From = 'mypizza.service@web.de';
+				$mail->FromName = 'MyPizza Service';
+				$mail->addAddress('$email'); 
+
+
+				$body1 = '<p><strong>Hallo $first </strong>, vielen Dank für deine Registrierung bei MyPizza</p>';
+				$subject1 ='Deine Registrierung bei MyPizza';
+
+
+				$mail->Subject = $subject1;
+				$mail->Body    = $body1;
+				$mail->AltBody = strip_tags($body);
+
+
+				//Bestätigungsmail versenden
+
+
+				if(!$mail->send()) {
+   					 	echo 'Message could not be sent.';
+    					echo 'Mailer Error: ' . $mail->ErrorInfo;
+					} else {
+    					echo 'Message has been sent';
+					}
+
+				/*
 				$empfaenger = $_POST['email'];
 				$betreff = "Registrierungsbestätigung myPizza";
 				$from = "From: SupportService-To: mypizza.service@web.de\r\n";
@@ -40,11 +76,11 @@
 					echo "Mail wurde erfldfnj verschiuckt";
 				}
 				
-
+				
 
 				$to = $email;
 				$subject = "HTML email";
-
+				/*
 				$message = "
 				<html>
 				<head>
@@ -92,7 +128,7 @@
 
 
 
-
+*/
 				header("Location: ../registrierung2.html");				
 			}	
 		
