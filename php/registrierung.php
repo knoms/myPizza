@@ -1,7 +1,7 @@
 <?php
 	// connect to the database
 	$db = mysqli_connect('localhost', 'root', '', 'myPizza');
-	include once('mail.php');
+	require '../phpmailer/PHPMailerAutoload.php';
 
 	//if the register button is clicked
 	if (isset($_POST['register']))
@@ -28,96 +28,54 @@
 				$sql = "INSERT INTO mp_users (Name, Vorname, Strasse, PLZ, Stadt, Email, Pw) VALUES ('$last', '$first', '$street', '$plz', '$town', '$email', '$password')";
 				mysqli_query($db, $sql);
 			
-				//Bestätigungsmail versenden
-				bestaetigungsMail($email,$first);
-				
+			//Bestätigungsmail versenden
+							
+			
+
+			$mail = new PHPMailer;
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'smtp.web.de';  							// Specify SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = 'mypizza.service@web.de';                 // SMTP username
+			$mail->Password = 'mypizza123';                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;                                    
+
+			$mail->From = 'mypizza.service@web.de';
+			$mail->FromName = 'MyPizza Service';
+
+			$mail->addAddress("$email");               
+			$mail->addReplyTo('mypizza.service@web.de', 'Information');
 
 
-				
+			$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+			//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+			$mail->isHTML(true);                                  // Set email format to HTML
 
-				/*
-				$empfaenger = $_POST['email'];
-				$betreff = "Registrierungsbestätigung myPizza";
-				$from = "From: SupportService-To: mypizza.service@web.de\r\n";
-				$from .= "Content-Type: text/html\r\n";
-				$text = "Vielen Dank für Ihre Registrierung bei myPizza! <br> 
-				Sie können sich nun mit der E-Mail-Adresse $email und Ihrem gewählten Passwort bei myPizza anmelden.";
-				 
-				if(mail($empfaenger, $betreff, $text, $from))
-				{
-					echo "Mail wurde erfldfnj verschiuckt";
-				}
-				
-				
+			$name= $first;
+			$body =	"<p>Hallo <strong>$name</strong>, vielen Dank f&uumlr deine Registrierung bei MyPizza<p>"; // Hier kann per HTML später eine tolle Nachricht rein
 
-				$to = $email;
-				$subject = "HTML email";
-				/*
-				$message = "
-				<html>
-				<head>
-				<title>HTML email</title>
-				</head>
-				<body>
-				<p>This email contains HTML Tags!</p>
-				<table>
-				<tr>
-				<th>Firstname</th>
-				<th>Lastname</th>
-				</tr>
-				<tr>
-				<td>John</td>
-				<td>Doe</td>
-				</tr>
-				</table>
-				</body>
-				</html>
-				";
+			$mail->Subject = 'Willkommen bei MyPizza';
+			$mail->Body    = $body;
+			$mail->AltBody = strip_tags($body);
 
-				// Always set content-type when sending HTML email
-				$headers = "MIME-Version: 1.0" . "\r\n";
-				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			if(!$mail->send()) {
+			    echo 'Message could not be sent.';
+			    echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+			    echo 'Message has been sent';
+			}
 
-				// More headers
-				$headers .= 'From: <leena.schumacher@gmail.com>' . "\r\n";
-
-				if(mail($to,$subject,$message,$headers))
-				{
-					echo "Mail wurde erfldfnj verschiuckt";
-				}
+			// Ende Mail-Versand
 
 
-
-				$subject = "erste Mail";
-				$to = "leena.schumacher@gmail.com";
-				$body = "baldsjnfdoikf";
-
-				if( mail($to, $subject, $body))
-				{
-					echo "mail tut";
-				}
-				else{echo "tut nicht";}
-
-
-
-*/
 				header("Location: ../registrierung2.html");				
 			}	
 		
 
 		
-/* 			function mySha512($str, $salt, $iterations) {
-        		for ($x=0; $x<$iterations; $x++) {
-            	$str = hash('sha512', $str . $salt);
-        		}
-        		return $str;
-    		}
- 
-    		$str = $password1;
-    		$salt = 'bQ423hbHM8Sbdb9pjquUQU1IWxcxnybBSjqnyBJ23HjqnI3WbkxUQsxnPw813jkq';
- 
-    		var_dump(mySha512($str, $salt, 10000));
-*/		
+
+	
 		$db->close();
 
 
