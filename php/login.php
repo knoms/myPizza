@@ -13,7 +13,7 @@ if ($db->connect_errno) {
  //Submitbutton gedrückt -->
 if(isset($_POST['login'])) {
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = hash('sha256', $_POST['password']);
     
     $sql = mysqli_query($db,"SELECT * from mp_users WHERE Email LIKE '$email' AND Pw LIKE '$password' LIMIT 1");
    

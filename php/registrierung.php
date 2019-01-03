@@ -23,8 +23,8 @@
 			}
 			else
 			{
-				$password = $password1; //noch SHA einfügen
-				$sql = "INSERT INTO mp_users (Name, Vorname, Strasse, PLZ, Stadt, Email, Pw) VALUES ('$last', '$first', '$street', '$plz', '$town', '$email', '$password1')";
+				$password = hash('sha256', $password1); //noch SHA einfügen
+				$sql = "INSERT INTO mp_users (Name, Vorname, Strasse, PLZ, Stadt, Email, Pw) VALUES ('$last', '$first', '$street', '$plz', '$town', '$email', '$password')";
 				mysqli_query($db, $sql);
 
 
