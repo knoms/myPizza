@@ -24,9 +24,12 @@ if(isset($_POST['login'])) {
 
     //Emailadresse bekannt?
     if (mysqli_num_rows($sql) == 1) {
+
+            $_SESSION["email"] = $email;
+            $_SESSION["login"] = "1";
         
     		//Anmeldung erfolgreich
-            header("Location: ../welcome.html");
+            header("Location: welcome.php");
     }
     else 
     {   
