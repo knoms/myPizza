@@ -1,5 +1,5 @@
 <?php
-require '../PHPMailer-master/PHPMailerAutoload.php';
+require '../phpmailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
 
@@ -26,6 +26,35 @@ $mail->FromName = 'MyPizza Service';
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
 $mail->isHTML(true);                                  // Set email format to HTML
+
+
+function bestaetigungsMail($email,$name){
+	$body = '<p><strong>Hallo </strong>, vielen Dank für deine Registrierung bei MyPizza</p>';
+
+	$subject ='Deine Registrierung bei MyPizza';
+	$mail->Subject = $subject;
+	$mail->Body    = $body;
+	$mail->AltBody = strip_tags($body);
+
+	$mail->addAddress('$email'); 
+
+	if(!$mail->send()) {
+   					 	echo 'Message could not be sent.';
+    					echo 'Mailer Error: ' . $mail->ErrorInfo;
+					} else {
+    					echo 'Message has been sent';
+					}
+
+
+}
+
+
+
+
+
+
+
+
 
 
 ?>

@@ -1,18 +1,10 @@
 
 <?PHP
-			$sender = 'leena.schumacher@web.de';
-			$recipient = 'leena.schumacher@web.de';
+			include('php/mail.php');
 
-			$subject = "php mail test";
-			$message = "php test message";
-			$headers = 'From:' . $sender;
 
-			if (mail($recipient, $subject, $message, $headers))
-			{
-			    echo "Message accepted";
-			}
-			else
-			{
-			    echo "Error: Message not accepted";
-			}
+			$email='noah@mautner.de';
+			$name='name';
+
+			sendMail('$email','$name');
 ?>
