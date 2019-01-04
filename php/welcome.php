@@ -30,6 +30,8 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 	<script type="text/javascript"></script>
 
@@ -48,13 +50,13 @@
 	  <a href="index.html" class="w3-bar-item w3-button">Home</a>
 	  <a href="speisekarte.html" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="ueberUns.html" class="w3-bar-item w3-button">Über uns</a>
-	  <a href="login.html" class="w3-bar-item w3-button w3-right">Login</a>
+	  <a href="warenkorb.html" class="w3-bar-item w3-button w3-right"><i class="w3-large fa fa-shopping-cart"></i></a>
+	  <a href="logout.html" class="w3-bar-item w3-button w3-right">Logout</a>
 	</div>
 </header>
 
 	<div>
 		<h1>Wilkommen</h1>
-
 
 	</div>
 
