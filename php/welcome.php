@@ -43,11 +43,11 @@
 <header class="w3-container w3-padding-32">
 	<div class="w3-bar w3-light-grey">
 	  <span class="w3-bar-item w3-light-green">My Pizza</span>
-	  <a href="index.html" class="w3-bar-item w3-button">Home</a>
-	  <a href="speisekarte.html" class="w3-bar-item w3-button">Speisekarte</a>
-	  <a href="ueberUns.html" class="w3-bar-item w3-button">Über uns</a>
-	  <a href="warenkorb.html" class="w3-bar-item w3-button w3-right"><i class="w3-large fa fa-shopping-cart"></i></a>
-	  <a href="logout.html" class="w3-bar-item w3-button w3-right">Logout</a>
+	  <a href="../index.html" class="w3-bar-item w3-button">Home</a>
+	  <a href="../speisekarte.html" class="w3-bar-item w3-button">Speisekarte</a>
+	  <a href="../ueberUns.html" class="w3-bar-item w3-button">Über uns</a>
+	  <a href="../warenkorb.html" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
+	  <a href="../logout.html" class="w3-bar-item w3-button w3-right">Logout</a>
 	</div>
 </header>
 
@@ -66,6 +66,25 @@
 	  <a href="kontaktformular.html" class="w3-bar-item w3-button">Kontaktformular</a>
 
 	  <!-- USER ONLINE ANZEIGE, MUSS BEI WELCOME PAGE EINGEBAUT WERDEN -->
+	 <!-- <script>
+		function showHint(str) {
+		    if (str.length == 0) { 
+		        document.getElementById("txtHint").innerHTML = "";
+		        return;
+		    } else {
+		        var xmlhttp = new XMLHttpRequest();
+		        xmlhttp.onreadystatechange = function() {
+		            if (this.readyState == 4 && this.status == 200) {
+		                document.getElementById("").innerHTML = this.responseText;
+		            }
+		        };
+		        xmlhttp.open("GET", "login.php?q=" +, true);
+		        xmlhttp.send();
+    }
+}
+</script>
+-->
+
 	  <span class="w3-bar-item w3-right">User online: <span class="w3-tag">0</span> <p></span>
 
 </footer>
