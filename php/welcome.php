@@ -35,10 +35,6 @@
 
 	<script type="text/javascript"></script>
 
-	<style>
-		.mySlides {display:none;}
-	</style>
-
 </head>
 
 <body>
@@ -55,18 +51,17 @@
 	</div>
 </header>
 
-	<div>
-		<h1>Wilkommen</h1>
-
+	<div class="w3-container">
+  		<h2>Wilkommen bei MyPizza</h2>
 	</div>
 
 	
 
 
 
-<footer class="w3-container w3-dark-gry w3-padding-32 w3-margin-top">
+<footer class="w3-container w3-padding-32 w3-margin-top">
 	<!-- Fußleiste -->
-	<div class="w3-bar w3-light-green" style="">
+	<div class="w3-bar w3-light-green">
 	  <a href="impressum.html" class="w3-bar-item w3-button">Impressum</a>
 	  <a href="kontaktformular.html" class="w3-bar-item w3-button">Kontaktformular</a>
 
