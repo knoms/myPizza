@@ -101,11 +101,11 @@
 
 	  <ul class="w3-ul w3-card-4">
 	    <li class="w3-bar">
-	      <button onclick="insertMargeritha()" id="margeritha" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
-	      <div class="w3-bar-item">
-	        <span class="w3-large">Pizza Mageritha</span><br>
-	        <span>Mit Tomate, Mozarella und Edamer</span>
-	      </div> 
+		      <button onclick="insertMargeritha()" name="margeritha" id="margeritha" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
+		      <div class="w3-bar-item">
+		        <span class="w3-large">Pizza Mageritha</span><br>
+		        <span>Mit Tomate, Mozarella und Edamer</span>
+		      </div> 
 	    </li>
 
 	    <li class="w3-bar">
@@ -156,14 +156,19 @@
 
 function insertMargeritha(){
 	$db = mysqli_connect('localhost', 'root', '', 'myPizza');
-	// $userId = "SELECT UserID FROM myPizza WHERE Email='$_SESSION['email']'";
-	$userId = "SELECT UserID FROM myPizza WHERE Email='leena.schumacher@web.de'";
 
-   	$sql = "INSERT INTO mp_orders (UserID, Artikelanzahl) VALUES ('$userId', '1')";
-	mysqli_query($db, $sql);
+	// Kommentarstriche Entfernen wenn Session aktiv und Zeile darunter löschen!!
+	// $userId = "SELECT UserID FROM mp_users WHERE Email='$_SESSION['email']'";
 
-	// $orderId = "SELECT OrderID FROM mp_orders WHERE Time=GETDATE()";
-	// $sql2 ="INSERT INTO mp_ordered_dishes (MenuID, OrderID) VALUES ('1', '$orderId')";
+	// $userId = "(SELECT UserID FROM mp_users WHERE Email='leena.schumacher@web.de')";
+	// $price = "(SELECT Preis FROM mp_menu WHERE Size='s' AND Name = 'Pizza Margherita')";
+	$anzahl = "1";
+	$menuId = "1";
+
+	$sql1 = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES 
+			((SELECT UserID FROM mp_users WHERE Email='leena.schumacher@web.de'), CURRENT_TIMESTAMP, '1', 
+			(SELECT Preis FROM mp_menu WHERE Size='s' AND Name='Pizza Margherita'), (SELECT Preis FROM mp_menu WHERE Size='s' AND Name='Pizza Margherita')*2)";
+	mysqli_query($db, $sql1);
 }
 
 ?>
