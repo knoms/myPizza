@@ -1,5 +1,9 @@
 <?php
  session_start();
+ include 'dbconnect.php';
+
+
+
 
  $eingeloggt=false;
 
@@ -10,7 +14,7 @@
  if($eingeloggt=false){
  	header("Location: ../login.html");
  }
-
+$sql = mysqli_query($db,"SELECT Vorname from mp_users WHERE Email LIKE '$_SESSION["email"]');
 
 
 ?>
@@ -47,7 +51,7 @@
 	  <a href="../speisekarte.html" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="../ueberUns.html" class="w3-bar-item w3-button">Über uns</a>
 	  <a href="../warenkorb.html" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
-	  <a href="../logout.html" class="w3-bar-item w3-button w3-right">Logout</a>
+	  <a href="php/logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
 	</div>
 </header>
 
