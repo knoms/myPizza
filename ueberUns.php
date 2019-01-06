@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>My Pizza, Über uns</title>
+
+	<link href="styleSchrift.css" type="text/css" rel="stylesheet">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+
+<body>
+
+	<!-- NAVIGATIONS BEREICH -->
+	<header class="w3-container w3-padding-32">
+		<div class="w3-bar w3-light-grey">
+		  <span class="w3-bar-item w3-light-green">My Pizza</span>
+		  <a href="index.php" class="w3-bar-item w3-button">Home</a>
+		  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
+		  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
+		  <a href="login.php" class="w3-bar-item w3-button w3-right">Login</a>
+		</div>
+
+
+  	</header>
+
+
+  	<div class="w3-panel w3-container w3-animate-left">
+
+  	<div class="w3-container w3-center w3-margin-bottom">
+		<div class="w3-panel w3-border-top w3-border-bottom">
+  			<h2>Über uns</h2>
+		</div>
+	</div> 
+
+	<div class="w3-container w3-center">
+	  <div class="w3-card-4" style="width:65%">
+	    <img src="Images/koeche.jpeg" alt="Norway" style="width:100%">
+	    <div class="w3-container w3-center">
+	      <p>We want to change the way people eat Pizza.
+	      	 Try the new way of taste.</p>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="w3-container">
+	  <br>
+	  <div class="w3-card-4" style="width:65%">
+	    <img src="Images/teig-vorbereitung.jpg" alt="Norway" style="width:100%">
+	    <div class="w3-container">
+	      <h3><strong>Qualität & Frische</strong></h3>
+	      <p>Wissen Sie eigentlich, dass die Pizzas bei MyPizza immer frisch und sorgfältig zubereitet werden? <br> 
+	      Wir geben unseren Pizzas ausreichend Zeit, damit sich der Teig optimal entwickeln kann. Wenn er den perfekten Zustand erreicht hat formen wir ihn in Handabreit, bis er die richtige Größe, Dicke und Form hat. - Pizza ist unsere Leidenschaft! - </p>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="w3-container">
+		  <br>
+		  <div class="w3-card-4" style="width:65%">
+		    <img src="Images/zutaten.jpg" alt="Norway" style="width:100%">
+		    <div class="w3-container">
+		      <h3><strong>Regionale Produkte</strong></h3>
+		      <p> Wir garantieren Ihnen, dass nur die frischesten Zutaten direkt auf Ihre Pizza kommen. Dafür sorgen ausgewählte, regionale Lieferanten und stregnge Qualitätskontrollen. <br><br>
+		      Mit großer Sorgfalt suchen unsere Einkäufer jede Zutat persönlich für Sie aus, denn wir wissen: Der Geschmack ist mindestens genauso wichtig wie die Herkunft und frische unserer Lebensmittel.</p>
+		    </div>
+		  </div>
+		</div>
+
+	  	
+	</div>
+
+	<footer class="w3-container w3-dark-gry w3-padding-32 w3-margin-top">
+	<!-- Fußleiste -->
+		<div class="w3-bar w3-light-green" style="">
+		  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
+		  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
+		</div>
+</footer>
+
+</body>
+
+</html>

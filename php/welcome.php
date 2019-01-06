@@ -47,10 +47,10 @@
 <header class="w3-container w3-padding-32">
 	<div class="w3-bar w3-light-grey">
 	  <span class="w3-bar-item w3-light-green">My Pizza</span>
-	  <a href="../index.html" class="w3-bar-item w3-button">Home</a>
-	  <a href="../speisekarte.html" class="w3-bar-item w3-button">Speisekarte</a>
-	  <a href="../ueberUns.html" class="w3-bar-item w3-button">Über uns</a>
-	  <a href="../warenkorb.html" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
+	  <a href="../index.php" class="w3-bar-item w3-button">Home</a>
+	  <a href="../speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
+	  <a href="../ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
+	  <a href="../warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	  <a href="logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
 	</div>
 </header>
@@ -66,8 +66,8 @@
 <footer class="w3-container w3-padding-32 w3-margin-top">
 	<!-- Fußleiste -->
 	<div class="w3-bar w3-light-green">
-	  <a href="impressum.html" class="w3-bar-item w3-button">Impressum</a>
-	  <a href="kontaktformular.html" class="w3-bar-item w3-button">Kontaktformular</a>
+	  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
+	  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
 
 	  <!-- USER ONLINE ANZEIGE, MUSS BEI WELCOME PAGE EINGEBAUT WERDEN -->
 	 <!-- <script>
