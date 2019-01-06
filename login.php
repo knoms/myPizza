@@ -78,7 +78,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 	<hr>
 
-	<form action="registrierung.html">
+	<form action="registrierung.php">
 		<button class="w3-button w3-small">Sie haben noch keinen Benutzeraccount? Dann schnell hier registrieren!</button>		
 	</form>
 	
