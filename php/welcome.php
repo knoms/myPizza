@@ -102,19 +102,19 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	<!-- Inhalt der Webseite -->
 	<div class="w3-row-padding">
 	<a href="../konto.php" style="text-decoration: none;">
-	<div class="w3-panel w3-margin w3-card-4 w3-center w3-hover-opacity" style="width: 98%">
+	<div class="w3-panel w3-margin w3-card-4 w3-center w3-hover-light-green" style="width: 98%">
 	  <p><b>Kontobereich</b></p>
 	</div>
 	</a> 
 
 	<a href="../warenkorb.php" style="text-decoration: none;">
-	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-opacity" style="width: 98%">
+	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
 	  <p><b>Warenkorb</b></p>
 	</div>
 	</a>
 
 	<a href="#" style="text-decoration: none;">
-	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-opacity" style="width: 98%">
+	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
 	  <p><b>Deine letzten Bestellungen</b></p>
 	</div>
 	</div>
