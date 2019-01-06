@@ -55,12 +55,14 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	  <a href="../index.php" class="w3-bar-item w3-button">Home</a>
 	  <a href="../speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="../ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
-	  <a href="../warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	  <a href="logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
+	   <a href="../warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 </header>
 
-	<div class="w3-container">
+
+	<div class="w3-container w3-center">
+		<div class="w3-panel w3-border-top w3-border-bottom">
 
   		<?php
   			$row = 1;
@@ -95,8 +97,28 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
   		?>
 
 	</div>
+	</div> 
 
-	
+	<!-- Inhalt der Webseite -->
+	<div class="w3-row-padding">
+	<a href="../konto.php" style="text-decoration: none;">
+	<div class="w3-panel w3-margin w3-card-4 w3-center w3-hover-light-green" style="width: 98%">
+	  <p><b>Kontobereich</b></p>
+	</div>
+	</a> 
+
+	<a href="../warenkorb.php" style="text-decoration: none;">
+	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
+	  <p><b>Warenkorb</b></p>
+	</div>
+	</a>
+
+	<a href="#" style="text-decoration: none;">
+	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
+	  <p><b>Deine letzten Bestellungen</b></p>
+	</div>
+	</div>
+	</a>
 
 
 

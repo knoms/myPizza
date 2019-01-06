@@ -28,6 +28,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -40,7 +41,19 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 		  <a href="index.php" class="w3-bar-item w3-button">Home</a>
 		  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 		  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
-		  <a href="login.php" class="w3-bar-item w3-button w3-right">Login</a>
+		  <?php 
+
+	 				if ($eingeloggt==true){ ?>
+		  				<a href='php/logout.php' class='w3-bar-item w3-button w3-right'>Logout</a>
+		  				<a href='konto.php' class='w3-bar-item w3-button w3-right'>Konto</a>
+		  				<a href='warenkorb.php' class='w3-bar-item w3-button w3-right'><i class='w3-large fa fa-shopping-cart'></i></a>
+		  				<?php
+	  				}
+
+	  				else { ?>
+	  					<a href='login.php' class='w3-bar-item w3-button w3-right'>Login</a>
+	  	 				<?php }  
+	  	 				?>
 		</div>
 	</header>
 
