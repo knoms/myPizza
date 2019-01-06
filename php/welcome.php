@@ -1,6 +1,6 @@
 <?php
  session_start();
- include ("php/dbconnect.php");
+ include ("dbconnect.php");
 
 echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
@@ -9,6 +9,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
  if (isset($_SESSION['login'])) {
  	if($_SESSION["login"]==1){
  	$eingeloggt=true;
+ 	$login_email=$_SESSION['email'];
 		}
  }
 
@@ -60,7 +61,39 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 </header>
 
 	<div class="w3-container">
-  		<h2>Wilkommen bei MyPizza</h2>
+
+  		<?php
+  			$row = 1;
+  			 $sql = mysqli_query($db,"SELECT Vorname from mp_users WHERE Email LIKE '$login_email'");
+  			
+  			 $result = mysqli_fetch_assoc($sql);
+  			 $name= $result["Vorname"];
+
+
+			if(date("G") < 10) {
+
+			      $begruessung= "Guten Morgen";
+
+			}
+
+			if(date("G") <= 18 && date("G") >= 10) {
+
+			      $begruessung= "Guten Tag";
+
+			}
+
+			if(date("G") >= 19) {
+
+			      $begruessung= "Guten Abend";
+
+			}
+
+			 echo "<h2>$begruessung $name :)";
+
+
+
+  		?>
+
 	</div>
 
 	
