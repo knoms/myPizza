@@ -37,9 +37,9 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	<header class="w3-container w3-padding-32">
 		<div class="w3-bar w3-light-grey">
 		  <span class="w3-bar-item w3-light-green">My Pizza</span>
-		  <a href="index.html" class="w3-bar-item w3-button">Home</a>
-		  <a href="speisekarte.html" class="w3-bar-item w3-button">Speisekarte</a>
-		  <a href="ueberUns.html" class="w3-bar-item w3-button">Über uns</a>
+		  <a href="index.php" class="w3-bar-item w3-button">Home</a>
+		  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
+		  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 		  <a href="login.php" class="w3-bar-item w3-button w3-right">Login</a>
 		</div>
   		
@@ -81,8 +81,8 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	<!-- NAVIGATION FUßLEISTE -->
 	<footer class="w3-container w3-dark-gry w3-padding-32 w3-margin-top">
 		<div class="w3-bar w3-light-green" style="">
-		  <a href="impressum.html" class="w3-bar-item w3-button">Impressum</a>
-		  <a href="kontaktformular.html" class="w3-bar-item w3-button">Kontaktformular</a>
+		  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
+		  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
 		</div>
 </footer>
 
