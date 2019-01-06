@@ -56,6 +56,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	</div>
 
 	<div class="w3-container"><p><b>Ihre Artikel:</b></p> <br>
+		<button class="w3-button w3-light-green w3-small" onClick="history.go(-1);return true;">Zurück zur Speisekarte und weitere Pizzen bestellen</button>
 		<button class="w3-button w3-light-green w3-small">Bestellen</button>
 	</div>
 
