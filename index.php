@@ -1,3 +1,20 @@
+<?php
+ session_start();
+ include ("php/dbconnect.php");
+
+echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
+
+ $eingeloggt=false;
+ if (isset($_SESSION['login'])) {
+ 	if($_SESSION["login"]==1){
+ 	$eingeloggt=true;
+		}
+ }
+
+
+ echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+
+ ?>
  <!DOCTYPE html>
 
 <html>

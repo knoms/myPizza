@@ -1,22 +1,20 @@
 <?php
  session_start();
- include 'dbconnect.php';
+ include ("php/dbconnect.php");
 
-//über $_SESSION['email'] kannst du auf den benutzer zugreifen falls du das brauchst
-
+echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
  $eingeloggt=false;
-
- if($_SESSION["login"]==1){
+ if (isset($_SESSION['login'])) {
+ 	if($_SESSION["login"]==1){
  	$eingeloggt=true;
-
+		}
  }
- 
+
+
+ echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
  ?>
-
-
-
 
 <!DOCTYPE html>
 

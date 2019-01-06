@@ -1,20 +1,24 @@
 <?php
  session_start();
- include 'dbconnect.php';
+ include ("php/dbconnect.php");
 
-
-
+echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
  $eingeloggt=false;
-
- if($_SESSION["login"]==1){
+ 
+ if (isset($_SESSION['login'])) {
+ 	if($_SESSION["login"]==1){
  	$eingeloggt=true;
+		}
+ }
 
- }
+
+ echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+
+ 
  if($eingeloggt=false){
- 	header("Location: ../login.html");
+ 	header("Location: ../login.php");
  }
-//$sql = mysqli_query($db,"SELECT Vorname from mp_users WHERE Email LIKE '$_SESSION["email"]");
 
 
 ?>
