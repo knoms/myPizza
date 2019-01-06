@@ -1,6 +1,6 @@
 <?php
  session_start();
- include ("php/dbconnect.php");
+ include ("dbconnect.php");
 
 echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
