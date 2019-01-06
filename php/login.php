@@ -29,7 +29,7 @@ if(isset($_POST['login'])) {
     if (mysqli_num_rows($sql) == 1) {
 
             $_SESSION["email"] = $email;
-            $_SESSION["login"] = "1";
+            $_SESSION["login"] = 1;
         
     		//Anmeldung erfolgreich
             header("Location: welcome.php");
