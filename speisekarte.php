@@ -1,6 +1,6 @@
 <?php
  session_start();
- include 'dbconnect.php';
+ include '../dbconnect.php';
 
 //über $_SESSION['email'] kannst du auf den benutzer zugreifen falls du das brauchst
 
