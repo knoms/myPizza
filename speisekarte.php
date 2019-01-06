@@ -99,11 +99,13 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 	  <ul class="w3-ul w3-card-4">
 	    <li class="w3-bar">
-		      <button onclick="insertMargeritha()" name="margeritha" id="margeritha" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
-		      <div class="w3-bar-item">
-		        <span class="w3-large">Pizza Mageritha</span><br>
-		        <span>Mit Tomate, Mozarella und Edamer</span>
-		      </div> 
+	    	<form method="post" action="speisekarte_test.php"> 
+			      <button type="submit" id="Pizza Margerita" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
+			      <div class="w3-bar-item">
+			        <span class="w3-large">Pizza Mageritha</span><br>
+			        <span>Mit Tomate, Mozarella und Edamer</span>
+			      </div> 
+		    </form>
 	    </li>
 
 	    <li class="w3-bar">
@@ -142,7 +144,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	      <button id="ruccola" class="w3-btn w3-light-green w3-border w3-round-large w3-right ">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
 	      <div class="w3-bar-item">
 	        <span class="w3-large">Pizza Ruccola</span><br>
-	        <span>Mit Tomatensoße, Morzzarella und Ruccola</span>
+	        <span>Mit Tomatensoße, Mozzarella und Ruccola</span>
 	      </div>
 	    </li>
 
@@ -152,27 +154,23 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 <?php
 
-function insertMargeritha(){
-	$db = mysqli_connect('localhost', 'root', '', 'myPizza');
+	 if(isset($_POST['submit'])){
+		$db = mysqli_connect('localhost', 'root', '', 'myPizza');
 
-	// Kommentarstriche Entfernen wenn Session aktiv und Zeile darunter löschen!!
-	// $userId = "SELECT UserID FROM mp_users WHERE Email='$_SESSION['email']'";
+		$size = $_POST['name'];
+		$email = $_SESSION['email'];
+		$anzahl = "1";
 
-	// $userId = "(SELECT UserID FROM mp_users WHERE Email='leena.schumacher@web.de')";
-	// $price = "(SELECT Preis FROM mp_menu WHERE Size='s' AND Name = 'Pizza Margherita')";
-	$anzahl = "1";
-	$menuId = "1";
-
-	$sql1 = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES 
-			((SELECT UserID FROM mp_users WHERE Email='leena.schumacher@web.de'), CURRENT_TIMESTAMP, '$anzahl', 
-			(SELECT Preis FROM mp_menu WHERE Size='s' AND Name='Pizza Margherita'), (SELECT Preis FROM mp_menu WHERE Size='s' AND Name='Pizza Margherita')*2)";
-	$sql2 = "INSERT INTO mp_ordered_dishes (MenuID, OrderID) VALUES 
-			((SELECT MenuID FROM mp_menu WHERE Size='s' AND Name='Pizza Margherita'),
-			(SELECT OrderID FROM mp_orders WHERE Time = CURRENT_TIMESTAMP))"; 
-	mysqli_query($db, $sql1);
-	mysqli_query($db, $sql2);
-}
-
+		$sql1 = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES 
+				((SELECT UserID FROM mp_users WHERE Email='$email'), CURRENT_TIMESTAMP, '$anzahl', 
+				(SELECT Preis FROM mp_menu WHERE Size='$size' AND Name='$pizza'), (SELECT Preis FROM mp_menu WHERE Name='$pizza'))";
+		$sql2 = "INSERT INTO mp_ordered_dishes (MenuID, OrderID) VALUES 
+				((SELECT MenuID FROM mp_menu WHERE Name='$pizza'),
+				(SELECT OrderID FROM mp_orders WHERE Time = CURRENT_TIMESTAMP))"; 
+		mysqli_query($db, $sql1);
+		mysqli_query($db, $sql2);
+		}
+	 
 ?>
 
 	<!-- The Modal -->
