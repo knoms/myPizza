@@ -166,9 +166,13 @@ function insertMargeritha(){
 	$menuId = "1";
 
 	$sql1 = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES 
-			((SELECT UserID FROM mp_users WHERE Email='leena.schumacher@web.de'), CURRENT_TIMESTAMP, '1', 
+			((SELECT UserID FROM mp_users WHERE Email='leena.schumacher@web.de'), CURRENT_TIMESTAMP, '$anzahl', 
 			(SELECT Preis FROM mp_menu WHERE Size='s' AND Name='Pizza Margherita'), (SELECT Preis FROM mp_menu WHERE Size='s' AND Name='Pizza Margherita')*2)";
+	$sql2 = "INSERT INTO mp_ordered_dishes (MenuID, OrderID) VALUES 
+			((SELECT MenuID FROM mp_menu WHERE Size='s' AND Name='Pizza Margherita'),
+			(SELECT OrderID FROM mp_orders WHERE Time = CURRENT_TIMESTAMP))"; 
 	mysqli_query($db, $sql1);
+	mysqli_query($db, $sql2);
 }
 
 ?>
