@@ -11,7 +11,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 		}
  }
 
- if($eingeloggt=true){
+ if($eingeloggt==true){
  	header("Location: index.php");
  }
 
@@ -44,7 +44,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 		  <a href="index.php" class="w3-bar-item w3-button">Home</a>
 		  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 		  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
-		  <a href="login.php" class="w3-bar-item w3-button w3-right">Login</a>
+		  <!--<a href="login.php" class="w3-bar-item w3-button w3-right">Login</a>-->
 		</div>
   		
   	</header>
