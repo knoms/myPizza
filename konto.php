@@ -52,11 +52,10 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <?php 
-	  if ($eingeloggt==true){ ?>
-
+	   if ($eingeloggt==true){ ?>
 	  		<a href='php/logout.php' class='w3-bar-item w3-button w3-right'>Logout</a>
+	  		<a href='konto.php' class='w3-bar-item w3-button w3-right'>Konto</a>
 	  		<a href='warenkorb.php' class='w3-bar-item w3-button w3-right'><i class='w3-large fa fa-shopping-cart'></i></a>
-	  		<!--<a href='konto.php' class='w3-bar-item w3-button w3-right'>Konto</a> -->
 	  		
 
 
@@ -74,42 +73,10 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 </header>
 
 <div class="w3-container w3-center">
-			<h1><b>MyPizza</b></h1>
 		<div class="w3-panel w3-border-top w3-border-bottom">
-  			<p>- Ihr Lieferdienst mit Qualität | Try the new taste -</p>
+  			<h2>Dein Kontobereich</h2>
 		</div>
-			
-</div> 
-
-
-	<!--<div class="w3-panel w3-card-4 w3-center w3-margin" style="width: 50%">
-	  <p>Willkommen bei MyPizza Ihrem Lieferservice</p>
-	</div><-->
-
-	<!-- Bilder Galerie -->
-	<div class=" w3-content w3-display-container">
-		<img class="mySlides" src="Images/holzofen.jpg" style="width: 100%; height: auto;" >
-		<img class="mySlides" src="Images/pizza-paprika.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/pizza-ruccola.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/teig-vorbereitung.jpg" style="width: 100%; height: auto;">
-	</div>
-
-	<script>
-	var myIndex = 0;
-	carousel();
-
-	function carousel() {
-	  var i;
-	  var x = document.getElementsByClassName("mySlides");
-	  for (i = 0; i < x.length; i++) {
-	    x[i].style.display = "none";  
-	  }
-	  myIndex++;
-	  if (myIndex > x.length) {myIndex = 1}    
-	  x[myIndex-1].style.display = "block";  
-	  setTimeout(carousel, 2000); // Change image every 2 seconds
-	}
-	</script>
+	</div> 
 
 
 
