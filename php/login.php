@@ -4,6 +4,9 @@ session_start();
 $db = mysqli_connect('localhost', 'root', '', 'myPizza');
 
 
+
+
+
 //Verbindung zur Datenbank?
 if ($db->connect_errno) {
         echo "<p>MySQL error no {$db->connect_errno} : {$db->connect_error}</p>";
@@ -34,7 +37,8 @@ if(isset($_POST['login'])) {
     else 
     {   
             //Email oder Passwort falsch
-    	   header("Location: ../login2.html");
+            header("Location: ../login.php?error=1");
+
     }
     
 }
