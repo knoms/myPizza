@@ -11,6 +11,10 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 		}
  }
 
+ if($eingeloggt=false){
+ 	header("Location: index.php");
+ }
+
 
  echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
@@ -22,7 +26,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 <head>
 
 	<meta charset="utf-8">
-	<title>MyPizza</title>
+	<title>MyPizza Konto</title>
 
 	<link href="styleSchrift.css" type="text/css" rel="stylesheet">
 
@@ -48,11 +52,10 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <?php 
 	  if ($eingeloggt==true){ ?>
-	  		<a href='php/logout.php' class='w3-bar-item w3-button w3-right'>Logout</a>
-	  		<a href='konto.php' class='w3-bar-item w3-button w3-right'>Konto</a>
+
 	  		<a href='warenkorb.php' class='w3-bar-item w3-button w3-right'><i class='w3-large fa fa-shopping-cart'></i></a>
-	  		
-	  		
+	  		<!--<a href='konto.php' class='w3-bar-item w3-button w3-right'>Konto</a> -->
+	  		<a href='php/logout.php' class='w3-bar-item w3-button w3-right'>Logout</a>
 
 
 	  		<?php
