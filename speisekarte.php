@@ -113,8 +113,8 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 	  <ul class="w3-ul w3-card-4">
 	    <li class="w3-bar">
-	    	<form method="post" action="speisekarte_test.php"> 
-			      <button type="submit" id="Pizza Margerita" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
+	    	<form method="post"> 
+			      <button type="submit" name="button" value="Pizza Margherita" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
 			      <div class="w3-bar-item">
 			        <span class="w3-large">Pizza Mageritha</span><br>
 			        <span>Mit Tomate, Mozarella und Edamer</span>
@@ -123,43 +123,53 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	    </li>
 
 	    <li class="w3-bar">
-	     <button id="salami" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
-	      <div class="w3-bar-item">
-	        <span class="w3-large">Pizza Salami</span><br>
-	        <span>Mit Tomatensoße, Edamer und Salami</span>
-	      </div>
+	    	<form method="post"> 
+			      <button type="submit" name="button" value="Pizza Salami" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
+			      <div class="w3-bar-item">
+			        <span class="w3-large">Pizza Salami</span><br>
+			        <span>Mit Tomatensoße, Edamer und Salami</span>
+			      </div>
+			</form>
 	    </li>
 
 	    <li class="w3-bar">
-	      <button id="champignon" class="w3-btn w3-light-green w3-border w3-round-large w3-right ">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
-	      <div class="w3-bar-item">
-	        <span class="w3-large">Pizza Champignon</span><br>
-	        <span>Mit Tomatensoße, Edamer und Chamignon</span>
-	      </div>
+	    	<form method="post"> 
+			      <button type="submit" name="button" value="Pizza Champignon" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
+			      <div class="w3-bar-item">
+			        <span class="w3-large">Pizza Champignon</span><br>
+			        <span>Mit Tomatensoße, Edamer und Chamignon</span>
+			      </div>
+			</form>
 	    </li>
 
 	    <li class="w3-bar">
-	      <button id="paprika" class="w3-btn w3-light-green w3-border w3-round-large w3-right ">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
-	      <div class="w3-bar-item">
-	        <span class="w3-large">Pizza Paprika</span><br>
-	        <span>Mit Tomatensoße, Edamer, Oliven, Zwiebeln und Paprika</span>
-	      </div>
+	    	<form method="post"> 
+			      <button type="submit" name="button" value="Pizza Paprika" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
+		      <div class="w3-bar-item">
+		        <span class="w3-large">Pizza Paprika</span><br>
+		        <span>Mit Tomatensoße, Edamer, Oliven, Zwiebeln und Paprika</span>
+		      </div>
+		  	</form>
 	    </li>
 
 	    <li class="w3-bar">
-	      <button id="peperoni" class="w3-btn w3-light-green w3-border w3-round-large w3-right ">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
-	      <div class="w3-bar-item">
-	        <span class="w3-large">Pizza Peperoni Speciale</span><br>
-	        <span>Mit Tomatensoße, Edamer, Oliven und Peperoniwurst</span>
-	      </div>
+	    	<form method="post"> 
+			      <button type="submit" name="button" value="Pizza Peperoni Speciale" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
+		      <div class="w3-bar-item">
+		        <span class="w3-large">Pizza Peperoni Speciale</span><br>
+		        <span>Mit Tomatensoße, Edamer, Oliven und Peperoniwurst</span>
+		      </div>
+		    </form>
 	    </li>
 
 	    <li class="w3-bar">
-	      <button id="ruccola" class="w3-btn w3-light-green w3-border w3-round-large w3-right ">Preis | <i class="w3-large fa fa-shopping-cart"></i></button>
-	      <div class="w3-bar-item">
-	        <span class="w3-large">Pizza Ruccola</span><br>
-	        <span>Mit Tomatensoße, Mozzarella und Ruccola</span>
-	      </div>
+	    	<form method="post"> 
+			      <button type="submit" name="button" value="Pizza Ruccola" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
+		      <div class="w3-bar-item">
+		        <span class="w3-large">Pizza Ruccola</span><br>
+		        <span>Mit Tomatensoße, Mozzarella und Ruccola</span>
+		      </div>
+		    </form>
 	    </li>
 
 	  </ul>
@@ -168,16 +178,16 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 <?php
 
-	 if(isset($_POST['submit'])){
+	 if(isset($_POST['button'])){
 		$db = mysqli_connect('localhost', 'root', '', 'myPizza');
 
-		$size = $_POST['name'];
+		$pizza = $_POST['button'];
 		$email = $_SESSION['email'];
 		$anzahl = "1";
 
 		$sql1 = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES 
 				((SELECT UserID FROM mp_users WHERE Email='$email'), CURRENT_TIMESTAMP, '$anzahl', 
-				(SELECT Preis FROM mp_menu WHERE Size='$size' AND Name='$pizza'), (SELECT Preis FROM mp_menu WHERE Name='$pizza'))";
+				(SELECT Preis FROM mp_menu WHERE Name='$pizza'), (SELECT Preis FROM mp_menu WHERE Name='$pizza'))";
 		$sql2 = "INSERT INTO mp_ordered_dishes (MenuID, OrderID) VALUES 
 				((SELECT MenuID FROM mp_menu WHERE Name='$pizza'),
 				(SELECT OrderID FROM mp_orders WHERE Time = CURRENT_TIMESTAMP))"; 
