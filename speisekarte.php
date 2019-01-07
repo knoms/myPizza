@@ -147,6 +147,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	
  	 	if($eingeloggt==true){
 			if(isset($_POST['button'])){
+
 				//if($eingeloggt==false)
 				//$db = mysqli_connect('localhost', 'root', '', 'myPizza');
 
@@ -166,7 +167,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 						(SELECT MenuID FROM mp_menu WHERE Name='$pizza'),
 						CURRENT_TIMESTAMP)"; */
 
-				$sql1 = mysqli_query($db,"SELECT MenuID FROM mp_menu WHERE Name LIKE $pizza");
+				$sql1 = mysqli_query($db,"SELECT MenuID FROM mp_menu WHERE Name LIKE '$pizza'");
   			
   			 	$res1 = mysqli_fetch_assoc($sql1);
 
@@ -189,7 +190,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 				
 				$cart -> insertArtikel($MenuID, "$pizza", "$Anzahl", $Preis);
 
-				mysqli_query($db, $sql3);
+				//mysqli_query($db, $sql3);
 				//mysqli_query($db, $sql1);
 				//mysqli_query($db, $sql2);
 				echo '<meta http-equiv=refresh content="0; url=warenkorb.php">';
