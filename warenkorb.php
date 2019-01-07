@@ -1,6 +1,7 @@
 <?php
  session_start();
  include ("php/dbconnect.php");
+ include_once ("php/cart.php");
 
 echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
@@ -13,6 +14,13 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 
  echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+
+
+
+$cart = new cart();
+
+
+$cart->initial_cart(); 
 
  ?>
 <!DOCTYPE html>
@@ -56,9 +64,23 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	</div>
 
 	<div class="w3-container"><p><b>Ihre Artikel:</b></p> <br>
+		<?php
+
+		$cart -> getcart();
+
+		?>
+		<br><br><br>
 		<button class="w3-button w3-light-green w3-small" onClick="history.go(-1);return true;">Zurück zur Speisekarte und weitere Pizzen bestellen</button>
+		<button type="submit" name="emptyCart" class="w3-button w3-light-green w3-small" onclick="javascript:location.reload();">Warenkorb leeren</button>
 		<button class="w3-button w3-light-green w3-small">Bestellen</button>
 	</div>
+	<?php 
+		if(isset($_POST['emptyCart'])){
+
+			$cart -> undo_cart();
+		}
+
+		?>
 
 	
 

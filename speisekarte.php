@@ -1,6 +1,7 @@
 <?php
  session_start();
  include ("php/dbconnect.php");
+ include_once ("php/cart.php");
 
 echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
@@ -12,7 +13,13 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
  }
 
 
- echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+ 	echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+
+
+	$cart = new cart();
+
+
+	$cart->initial_cart(); 
 
  ?>
 
@@ -140,21 +147,51 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	
  	 	if($eingeloggt==true){
 			if(isset($_POST['button'])){
-				if($eingeloggt==false)
-				$db = mysqli_connect('localhost', 'root', '', 'myPizza');
+				//if($eingeloggt==false)
+				//$db = mysqli_connect('localhost', 'root', '', 'myPizza');
 
 				$pizza = $_POST['button'];
 				$email = $_SESSION['email'];
 				$anzahl = "1";
 
-				$sql1 = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES 
+				/*$sql1 = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES 
 						((SELECT UserID FROM mp_users WHERE Email='$email'), CURRENT_TIMESTAMP, '$anzahl', 
-						(SELECT Preis FROM mp_menu WHERE Name='$pizza'), (SELECT Preis FROM mp_menu WHERE Name='$pizza'))";
-				$sql2 = "INSERT INTO mp_ordered_dishes (MenuID, OrderID) VALUES 
+						(SELECT Preis FROM mp_menu WHERE Name='$pizza'), (SELECT Preis FROM mp_menu WHERE Name='$pizza'))"; */
+				/*$sql2 = "INSERT INTO mp_ordered_dishes (MenuID, OrderID) VALUES 
 						((SELECT MenuID FROM mp_menu WHERE Name='$pizza'),
-						(SELECT OrderID FROM mp_orders WHERE Time = CURRENT_TIMESTAMP))"; 
-				mysqli_query($db, $sql1);
-				mysqli_query($db, $sql2);
+						(SELECT OrderID FROM mp_orders WHERE Time = CURRENT_TIMESTAMP))"; */
+
+				/*$sql3 = "INSERT INTO mp_shopping_cart (UserID, MenuID, Time) VALUES 
+						((SELECT UserID FROM mp_users WHERE Email='$email'),
+						(SELECT MenuID FROM mp_menu WHERE Name='$pizza'),
+						CURRENT_TIMESTAMP)"; */
+
+				$sql1 = mysqli_query($db,"SELECT MenuID FROM mp_menu WHERE Name LIKE $pizza");
+  			
+  			 	$res1 = mysqli_fetch_assoc($sql1);
+
+  			 	$MenuID= $res1["MenuID"];
+
+  			 	echo "Name: $Name";
+
+
+  			 	$sql2 = mysqli_query($db,"SELECT Preis FROM mp_menu WHERE Name LIKE '$pizza'");
+
+  			 	$res2 = mysqli_fetch_assoc($sql2);	
+
+  			 	$Preis= $res2["Preis"];
+
+  			 	echo "Preis: $Preis";
+  			
+  			 		
+
+
+				
+				$cart -> insertArtikel($MenuID, "$pizza", "$Anzahl", $Preis);
+
+				mysqli_query($db, $sql3);
+				//mysqli_query($db, $sql1);
+				//mysqli_query($db, $sql2);
 				echo '<meta http-equiv=refresh content="0; url=warenkorb.php">';
 			}
 		}
