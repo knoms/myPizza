@@ -108,6 +108,7 @@ $cart->initial_cart();
         	$Summe+= $innerArray[3];
 
         }
+
         	if($Summe!=0){
         	echo "Summe: $Summe €<br>"; 
         	$Gesamtsumme = $Summe+$Versand;
@@ -117,11 +118,7 @@ $cart->initial_cart();
        		}
         	
        		
-        
 
-
-
-		?>
 
 
 		
