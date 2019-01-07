@@ -64,23 +64,83 @@ $cart->initial_cart();
 	</div>
 
 	<div class="w3-container"><p><b>Ihre Artikel:</b></p> <br>
-		<?php
+		<table class="w3-table w3-border">
+		
+		<thead>
+  			<tr class="w3-light-green ">
 
-		$cart -> getcart();
+    				<th>Pizza Nr.</th>
+    				<th>Name</th>
+    				<th>Anzahl</th>
+    				<th>Preis</th>
+  			</tr>
+
+  		</thead>
+  		<?php
+  		$Array = $_SESSION['cart'];
+
+  		for($i = 0 ; $i < count($Array); $i++)
+        {
+            $innerArray = $Array[$i];
+            
+            echo "<tr>
+            <td>$innerArray[0]</td>
+            <td>$innerArray[1]</td>
+            <td>$innerArray[2]</td>
+            <td>$innerArray[3]€</td>
+            </tr>";
+        }
+
+
+
+        ?>
+
+		</table>
+
+		<br>
+
+		<?php
+			$Summe = 0;
+			$Versand=3;
+			for($i = 0 ; $i < count($Array); $i++)
+        {
+        	 $innerArray = $Array[$i];
+        	$Summe+= $innerArray[3];
+
+        }
+        	$Gesamtsumme = $Summe+$Versand;
+        	
+        	echo "Summe: $Summe €<br>"; 
+        	echo "Versand: $Versand €<br>"; 
+
+        	echo "Gesamtsumme: $Gesamtsumme €";	
+
+
+
+        	$_SESSION["Gesamt"]= "$Gesamtsumme";
+        
+
+
 
 		?>
+
+
+		
 		<br><br><br>
 		<button class="w3-button w3-light-green w3-small" onClick="history.go(-1);return true;">Zurück zur Speisekarte und weitere Pizzen bestellen</button>
-		<button type="submit" name="emptyCart" class="w3-button w3-light-green w3-small" onclick="javascript:location.reload();">Warenkorb leeren</button>
+		<button type="submit" name="empty" class="w3-button w3-light-green w3-small" >Warenkorb leeren</button>
 		<button class="w3-button w3-light-green w3-small">Bestellen</button>
-	</div>
-	<?php 
-		if(isset($_POST['emptyCart'])){
+		<?php if(isset($_POST['empty'])) {
+ 	$cart -> undo_cart();
+	header('Location: ../warenkorb.php');
+ 	}
 
-			$cart -> undo_cart();
-		}
 
-		?>
+
+
+?>
+
+
 
 	
 

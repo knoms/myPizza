@@ -130,11 +130,15 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	    </li>
 
 	    <li class="w3-bar">
-	    	<form method="post"> 
-			      <button type="submit" name="button" value="Pizza Ruccola" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button>  
-		      <div class="w3-bar-item">
+	    	<form method="post">
+			      <button type="submit" name="button" value="Pizza Ruccola" class="w3-btn w3-light-green w3-border w3-round-large w3-right">Bestellen | <i class="w3-large fa fa-shopping-cart"></i></button> 
+			   
+
+		      	<div class="w3-bar-item">
+
 		        <span class="w3-large">Pizza Ruccola</span><br>
 		        <span>Mit Tomatensoße, Mozzarella und Ruccola</span>
+
 		      </div>
 		    </form>
 	    </li>
@@ -143,10 +147,24 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	</div>
 </div>
 
+
+<script>
+function dropdown() {
+  var x = document.getElementById("Demo");
+  if (x.className.indexOf("w3-show") == -1) {  
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+
 <?php
 	
  	 	if($eingeloggt==true){
 			if(isset($_POST['button'])){
+
 				//if($eingeloggt==false)
 				//$db = mysqli_connect('localhost', 'root', '', 'myPizza');
 
@@ -166,7 +184,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 						(SELECT MenuID FROM mp_menu WHERE Name='$pizza'),
 						CURRENT_TIMESTAMP)"; */
 
-				$sql1 = mysqli_query($db,"SELECT MenuID FROM mp_menu WHERE Name LIKE $pizza");
+				$sql1 = mysqli_query($db,"SELECT MenuID FROM mp_menu WHERE Name LIKE '$pizza'");
   			
   			 	$res1 = mysqli_fetch_assoc($sql1);
 
@@ -189,7 +207,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 				
 				$cart -> insertArtikel($MenuID, "$pizza", "$Anzahl", $Preis);
 
-				mysqli_query($db, $sql3);
+				//mysqli_query($db, $sql3);
 				//mysqli_query($db, $sql1);
 				//mysqli_query($db, $sql2);
 				echo '<meta http-equiv=refresh content="0; url=warenkorb.php">';
