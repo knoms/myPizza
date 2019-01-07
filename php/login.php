@@ -30,6 +30,7 @@ if(isset($_POST['login'])) {
 
             $_SESSION["email"] = $email;
             $_SESSION["login"] = 1;
+            $_SESSION["Gesamt"]= 0;
         
     		//Anmeldung erfolgreich
             header("Location: welcome.php");
