@@ -5,8 +5,6 @@ $db = mysqli_connect('localhost', 'root', '', 'myPizza');
 
 
 
-
-
 //Verbindung zur Datenbank?
 if ($db->connect_errno) {
         echo "<p>MySQL error no {$db->connect_errno} : {$db->connect_error}</p>";
@@ -32,6 +30,17 @@ if(isset($_POST['login'])) {
             $_SESSION["login"] = 1;
             $_SESSION["Gesamt"]= 0;
         
+
+
+            if(!file_exists("UserOnline.txt")){fopen("UserOnline.txt", "a" );}
+            $counter=fopen("UserOnline.txt","r+"); $aufruf=fgets($counter,100);
+            $aufruf=$aufruf+1;
+            rewind($counter);
+            fputs($counter,$aufruf);
+            echo $aufruf;
+
+
+
     		//Anmeldung erfolgreich
             header("Location: welcome.php");
     }
