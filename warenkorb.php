@@ -123,20 +123,19 @@ $cart->initial_cart();
 
 		?>
 		<br><br><br>
-		<button class="w3-button w3-light-green w3-small" onClick="history.go(-1);return true;">Zurück zur Speisekarte und weitere Pizzen bestellen</button>
-		<button type="submit" name="empty" class="w3-button w3-light-green w3-small" >Warenkorb leeren</button>
-		<button class="w3-button w3-light-green w3-small">Bestellen</button>
-		<?php if(isset($_POST['empty'])) {
- 	$cart -> undo_cart();
-	header('Location: ../warenkorb.php');
- 	}
+						<button class="w3-button w3-light-green w3-small" onClick="history.go(-1);return true;">Zurück zur Speisekarte und weitere Pizzen bestellen</button>
+						<br>
+						<br>
+		<form method="post">
 
-
-
-
-?>
-
-
+				<button type="submit" name="empty" class="w3-button w3-light-green w3-small" >Warenkorb leeren</button>
+				<?php if(isset($_POST['empty'])) {
+				 	$cart -> undo_cart();
+					header('Location: warenkorb.php');
+				 	}
+				?>
+				<button class="w3-button w3-light-green w3-small">Bestellen</button>
+		</form>
 
 	
 
