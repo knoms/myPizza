@@ -296,7 +296,7 @@ function dropdown() {
 </script>
 -->
 
-	  <span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
+		<span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
 
 	</div>
 </footer>
