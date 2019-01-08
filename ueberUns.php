@@ -122,7 +122,7 @@ function ajaxRequest(url, callback) {
 	</div> 
 
 	<div class="w3-container w3-center">
-	  <div class="w3-card-4 center" style="width:40%">
+	  <div class="w3-card-4 center" style="width:50%">
 	    <img src="Images/myPizza.jpeg" alt="Norway" style="width:100%">
 	    <div class="w3-container w3-center">
 	      <p>We want to change the way people eat Pizza.
@@ -133,7 +133,7 @@ function ajaxRequest(url, callback) {
 
 	<div class="w3-container">
 	  <br>
-	  <div class="w3-card-4 center" style="width:40%">
+	  <div class="w3-card-4 center" style="width:50%">
 	    <img src="Images/teig-vorbereitung.jpg" alt="Norway" style="width:100%">
 	    <div class="w3-container">
 	      <h3><strong>Qualität & Frische</strong></h3>
@@ -145,7 +145,7 @@ function ajaxRequest(url, callback) {
 
 	<div class="w3-container">
 		  <br>
-		  <div class="w3-card-4 center" style="width:40%">
+		  <div class="w3-card-4 center" style="width:50%">
 		    <img src="Images/zutaten.jpg" alt="Norway" style="width:100%">
 		    <div class="w3-container">
 		      <h3><strong>Regionale Produkte</strong></h3>

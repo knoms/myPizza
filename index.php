@@ -115,7 +115,7 @@ function ajaxRequest(url, callback) {
 <div class="w3-container w3-center">
 			<h1><b>MyPizza</b></h1>
 		<div class="w3-panel w3-border-top w3-border-bottom">
-  			<p>- Ihr Lieferdienst mit Qualität | Try the new taste -</p>
+  			<p>- Ihr Lieferdienst mit Qualität | Try the new way of taste -</p>
 		</div>
 			
 </div> 
@@ -130,7 +130,6 @@ function ajaxRequest(url, callback) {
 		<img class="mySlides" src="Images/holzofen.jpg" style="width: 100%; height: auto;" >
 		<img class="mySlides" src="Images/pizza-paprika.jpg" style="width: 100%; height: auto;">
 		<img class="mySlides" src="Images/pizza-ruccola.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/teig-vorbereitung.jpg" style="width: 100%; height: auto;">
 		<img class="mySlides" src="Images/pizza-vegetarisch.jpg" style="width: 100%; height: auto;">
 		<img class="mySlides" src="Images/pizza-olive.jpg" style="width: 100%; height: auto;">
 	</div>
