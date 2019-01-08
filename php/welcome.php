@@ -61,7 +61,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	</div>
 
 	<script type="text/javascript">
-	var URL = "php/UserOnline.txt";
+	var URL = "UserOnline.txt";
 
 (function loadTxt() {
   ajaxRequest(URL, function(xhr) {
@@ -103,6 +103,7 @@ function ajaxRequest(url, callback) {
   xhr.send('');
 }
 </script>
+
 </header>
 
 
@@ -190,7 +191,7 @@ function ajaxRequest(url, callback) {
 </script>
 -->
 
-		<span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
+		  <span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
 
 </footer>
 
