@@ -1,6 +1,6 @@
 <?php
  session_start();
- include ("php/dbconnect.php");
+ include ("dbconnect.php");
  include_once ("php/cart.php");
 
 echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
@@ -59,82 +59,11 @@ $cart->initial_cart();
 
 	<div class="w3-container w3-center">
 		<div class="w3-panel w3-border-top w3-border-bottom">
-  			<h2><b>Warenkorb</b></h2>
+  			<h2><b>Versandadresse wählen</b></h2>
 		</div>
 	</div>
 
-	<div class="w3-container"><p><b>Ihre Artikel:</b></p> <br>
-		<table class="w3-table w3-border">
-		
-		<thead>
-  			<tr class="w3-light-green ">
-
-    				<th>Pizza Nr.</th>
-    				<th>Name</th>
-    				<th>Anzahl</th>
-    				<th>Preis</th>
-  			</tr>
-
-  		</thead>
-  		<?php
-  		$Array = $_SESSION['cart'];
-
-  		for($i = 0 ; $i < count($Array); $i++)
-        {
-            $innerArray = $Array[$i];
-            
-            echo "<tr>
-            <td>$innerArray[0]</td>
-            <td>$innerArray[1]</td>
-            <td>$innerArray[2]</td>
-            <td>$innerArray[3]€</td>
-            </tr>";
-        }
-
-
-
-        ?>
-
-		</table>
-
-		<br>
-
-		<?php
-			$Summe = 0;
-			$Versand=3;
-			for($i = 0 ; $i < count($Array); $i++)
-        {
-        	 $innerArray = $Array[$i];
-        	$Summe+= $innerArray[3];
-
-        }
-
-        	if($Summe!=0){
-        	echo "Summe: $Summe €<br>"; 
-        	$Gesamtsumme = $Summe+$Versand;
-        	echo "Versand: $Versand €<br>"; 
-        	echo "Gesamtsumme: $Gesamtsumme €";
-        	$_SESSION["Gesamt"]= "$Gesamtsumme";	
-       		}
-        	
-       		
-
-
-
-		?>
-		<br><br><br>
-		<button class="w3-button w3-light-green w3-small" onClick="history.go(-1);return true;">Zurück zur Speisekarte</button>
-		<button type="submit" name="empty" class="w3-button w3-light-green w3-small" >Warenkorb leeren</button>
-		<button class="w3-button w3-light-green w3-small" type="submit" name="proceed1" action="php/order1.php">Bestellen</button>
-		<?php if(isset($_POST['empty'])) {
- 	$cart -> undo_cart();
-	header('Location: ../warenkorb.php');
- 	}
-
-
-
-
-?>
+	
 
 
 
