@@ -20,7 +20,7 @@
 			$statement = mysqli_query($db, "SELECT * FROM mp_users WHERE Email = '$email'");
 			if(mysqli_num_rows($statement)==1) //Wenn Email bereits vorhanden ist
 			{	
-				header("Location: ../registrierung3.html");
+				header("Location: ../registrierung3.php");
 			}
 			else //Wenn Email noch nicht vorhanden ist 
 			{
