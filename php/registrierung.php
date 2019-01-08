@@ -69,7 +69,7 @@
 			// Ende Mail-Versand
 
 
-				header("Location: ../registrierung2.html");				
+				header("Location: ../registrierung2.php");				
 			}	
 		
 
