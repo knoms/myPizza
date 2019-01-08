@@ -76,6 +76,10 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 		<div class="w3-panel w3-border-top w3-border-bottom">
   			<h2>Deine letzten Bestellungen</h2>
 		</div>
+
+		.... Evtl. Tabelle wie bei Warenkorb ...
+
+		<button class="w3-button w3-light-green w3-small">Bestellung nochmal ausführen</button>
 	</div> 
 
 
