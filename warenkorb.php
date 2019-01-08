@@ -53,17 +53,18 @@ $cart->initial_cart();
 	  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <a href="php/logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
+	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
 	  <a href="warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 </header>
 
 	<div class="w3-container w3-center">
 		<div class="w3-panel w3-border-top w3-border-bottom">
-  			<h2><b>Warenkorb</b></h2>
+  			<h2>Warenkorb</h2>
 		</div>
 	</div>
 
-	<div class="w3-container"><p><b>Ihre Artikel:</b></p> <br>
+	<div class="w3-container">	<br>
 		<table class="w3-table w3-border">
 		
 		<thead>
