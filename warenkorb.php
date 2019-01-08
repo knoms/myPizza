@@ -123,9 +123,10 @@ $cart->initial_cart();
 
 		?>
 		<br><br><br>
-						<button class="w3-button w3-light-green w3-small" onClick="history.go(-1);return true;">Zurück zur Speisekarte und weitere Pizzen bestellen</button>
-						<br>
-						<br>
+
+		<form action="speisekarte.php">
+			<button class="w3-button w3-light-green w3-small">Zurück zur Speisekarte und weitere Pizzen bestellen</button>	
+		</form>
 		<form method="post">
 
 				<button type="submit" name="empty" class="w3-button w3-light-green w3-small" >Warenkorb leeren</button>
