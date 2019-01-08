@@ -26,7 +26,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 <head>
 
 	<meta charset="utf-8">
-	<title>MyPizza Konto</title>
+	<title>MyPizza letzte Bestellungen</title>
 
 	<link href="styleSchrift.css" type="text/css" rel="stylesheet">
 
@@ -54,7 +54,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	  <?php 
 	   if ($eingeloggt==true){ ?>
 	  		<a href='php/logout.php' class='w3-bar-item w3-button w3-right'>Logout</a>
-	  		<a href='konto.php' class='w3-bar-item w3-button w3-right'>Konto</a>
+	  		<a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
 	  		<a href='warenkorb.php' class='w3-bar-item w3-button w3-right'><i class='w3-large fa fa-shopping-cart'></i></a>
 	  		
 
@@ -74,7 +74,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 <div class="w3-container w3-center">
 		<div class="w3-panel w3-border-top w3-border-bottom">
-  			<h2>Dein Kontobereich</h2>
+  			<h2>Deine letzten Bestellungen</h2>
 		</div>
 	</div> 
 
