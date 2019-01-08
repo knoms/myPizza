@@ -71,7 +71,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
   	<div class="w3-panel w3-container w3-animate-left">
 
-  	<div class="w3-container w3-center w3-margin-bottom center">
+  	<div class="w3-container w3-center w3-margin-bottom">
 		<div class="w3-panel w3-border-top w3-border-bottom">
   			<h2>Über uns</h2>
 		</div>
