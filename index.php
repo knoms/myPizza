@@ -82,7 +82,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	</div><-->
 
 	<!-- Bilder Galerie -->
-	<div class=" w3-content w3-display-container">
+	<div class="w3-container w3-content w3-display-container">
 		<img class="mySlides" src="Images/holzofen.jpg" style="width: 100%; height: auto;" >
 		<img class="mySlides" src="Images/pizza-paprika.jpg" style="width: 100%; height: auto;">
 		<img class="mySlides" src="Images/pizza-ruccola.jpg" style="width: 100%; height: auto;">
