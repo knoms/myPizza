@@ -11,7 +11,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 		}
  }
 
- if($eingeloggt=true){
+ if($eingeloggt==true){
  	header("Location: index.php");
  }
 
