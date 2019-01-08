@@ -64,7 +64,7 @@ $cart->initial_cart();
 		</div>
 	</div>
 
-	<div class="w3-container">	<br>
+	<div class="w3-container"><br>
 		<table class="w3-table w3-border">
 		
 		<thead>
@@ -125,20 +125,18 @@ $cart->initial_cart();
 		?>
 		<br><br><br>
 
-
-
 		<form action="speisekarte.php">
-			<button class="w3-button w3-light-green w3-small">Zurück zur Speisekarte und weitere Pizzen bestellen</button>	
+			<button class="w3-button w3-dark-grey w3-small">Zurück zur Speisekarte und weitere Pizzen bestellen</button>	
 		</form>
 		<form method="post">
 
-				<button type="submit" name="empty" class="w3-button w3-light-green w3-small" >Warenkorb leeren</button>
+				<button type="submit" name="empty" class="w3-button w3-dark-grey w3-small" >Warenkorb leeren</button>
 				<?php if(isset($_POST['empty'])) {
 				 	$cart -> undo_cart();
 					header('Location: warenkorb.php');
 				 	}
 				?>
-				<button class="w3-button w3-light-green w3-small">Bestellen</button>
+				<button class="w3-button w3-dark-grey w3-small">Bestellen</button>
 		</form>
 
 	
