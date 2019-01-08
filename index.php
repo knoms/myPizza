@@ -86,7 +86,6 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 		<img class="mySlides" src="Images/holzofen.jpg" style="width: 100%; height: auto;" >
 		<img class="mySlides" src="Images/pizza-paprika.jpg" style="width: 100%; height: auto;">
 		<img class="mySlides" src="Images/pizza-ruccola.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/teig-vorbereitung.jpg" style="width: 100%; height: auto;">
 		<img class="mySlides" src="Images/pizza-vegetarisch.jpg" style="width: 100%; height: auto;">
 		<img class="mySlides" src="Images/pizza-olive.jpg" style="width: 100%; height: auto;">
 	</div>
