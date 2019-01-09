@@ -41,6 +41,50 @@ $cart->initial_cart();
 
 	<script type="text/javascript"></script>
 
+	<script type="text/javascript">
+	var URL = "php/UserOnline.txt";
+
+(function loadTxt() {
+  ajaxRequest(URL, function(xhr) {
+    document.getElementById('container').innerHTML = xhr.responseText;
+    setTimeout(loadTxt, 2000);
+  });
+})();
+
+function ajaxRequest(url, callback) {
+  var xhr;
+  if (typeof XMLHttpRequest !== 'undefined') xhr = new XMLHttpRequest();
+  else {
+    var versions = ["MSXML2.XmlHttp.5.0",
+      "MSXML2.XmlHttp.4.0",
+      "MSXML2.XmlHttp.3.0",
+      "MSXML2.XmlHttp.2.0",
+      "Microsoft.XmlHttp"
+    ]
+    for (var i = 0, len = versions.length; i < len; i++) {
+      try {
+        xhr = new ActiveXObject(versions[i]);
+        break;
+      } catch (e) {}
+    } 
+  }
+  xhr.onreadystatechange = ensureReadiness;
+  function ensureReadiness() {
+    if (xhr.readyState < 4) {
+      return;
+    }
+    if (xhr.status !== 200) {
+      return;
+    }
+    if (xhr.readyState === 4) {
+      callback(xhr);
+    }
+  }
+  xhr.open('GET', url, true);
+  xhr.send('');
+}
+</script>
+
 </head>
 
 <body>
@@ -53,17 +97,18 @@ $cart->initial_cart();
 	  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <a href="php/logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
+	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
 	  <a href="warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 </header>
 
 	<div class="w3-container w3-center">
 		<div class="w3-panel w3-border-top w3-border-bottom">
-  			<h2><b>Warenkorb</b></h2>
+  			<h2>Warenkorb</h2>
 		</div>
 	</div>
 
-	<div class="w3-container"><p><b>Ihre Artikel:</b></p> <br>
+	<div class="w3-container"><br>
 		<table class="w3-table w3-border">
 		
 		<thead>
@@ -121,21 +166,27 @@ $cart->initial_cart();
 		<br><br><br>
 
 
-
-		
+		<form action="speisekarte.php">
+			<button class="w3-button w3-dark-grey w3-small">Zurück zur Speisekarte und weitere Pizzen bestellen</button>	
+		</form>
 		<form method="post">
-				<button onclick="speisekarte.php" class="w3-button w3-light-green w3-small">Zurück zur Speisekarte</button>	
-				<button type="submit" name="empty" class="w3-button w3-light-green w3-small" >Warenkorb leeren</button>
+
+				<button type="submit" name="empty" class="w3-button w3-dark-grey w3-small" >Warenkorb leeren</button>
+
 				<?php if(isset($_POST['empty'])) {
 				 	$cart -> undo_cart();
 					header('Location: warenkorb.php');
 				 	}
 				?>
+
 				<button class="w3-button w3-light-green w3-small" type="submit" name="proceed">Weiter</button>
 				<?php if(isset($_POST['proceed'])) {
 					header('Location: versand.php');
 				 	}
 				?>
+
+				
+
 		</form>
 
 	
@@ -147,8 +198,7 @@ $cart->initial_cart();
 	  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
 	  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
 
-
-	  <span class="w3-bar-item w3-right">User online: <span class="w3-tag">0</span> <p></span>
+	  <span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
 
 </footer>
 

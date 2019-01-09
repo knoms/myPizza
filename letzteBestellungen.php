@@ -11,6 +11,10 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 		}
  }
 
+ if($eingeloggt==false){
+ 	header("Location: index.php");
+ }
+
 
  echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
@@ -22,7 +26,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 <head>
 
 	<meta charset="utf-8">
-	<title>MyPizza</title>
+	<title>MyPizza letzte Bestellungen</title>
 
 	<link href="styleSchrift.css" type="text/css" rel="stylesheet">
 
@@ -92,12 +96,12 @@ function ajaxRequest(url, callback) {
 	  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <?php 
-	  if ($eingeloggt==true){ ?>
+	   if ($eingeloggt==true){ ?>
 	  		<a href='php/logout.php' class='w3-bar-item w3-button w3-right'>Logout</a>
 	  		<a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
 	  		<a href='warenkorb.php' class='w3-bar-item w3-button w3-right'><i class='w3-large fa fa-shopping-cart'></i></a>
 	  		
-	  		
+
 
 
 	  		<?php
@@ -113,43 +117,14 @@ function ajaxRequest(url, callback) {
 </header>
 
 <div class="w3-container w3-center">
-			<h1><b>MyPizza</b></h1>
 		<div class="w3-panel w3-border-top w3-border-bottom">
-  			<p>- Ihr Lieferdienst mit Qualität | Try the new way of taste -</p>
+  			<h2>Deine letzten Bestellungen</h2>
 		</div>
-			
-</div> 
 
+		.... Evtl. Tabelle wie bei Warenkorb ...
 
-	<!--<div class="w3-panel w3-card-4 w3-center w3-margin" style="width: 50%">
-	  <p>Willkommen bei MyPizza Ihrem Lieferservice</p>
-	</div><-->
-
-	<!-- Bilder Galerie -->
-	<div class="w3-container w3-content w3-display-container">
-		<img class="mySlides" src="Images/holzofen.jpg" style="width: 100%; height: auto;" >
-		<img class="mySlides" src="Images/pizza-paprika.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/pizza-ruccola.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/pizza-vegetarisch.jpg" style="width: 100%; height: auto;">
-		<img class="mySlides" src="Images/pizza-olive.jpg" style="width: 100%; height: auto;">
-	</div>
-
-	<script>
-	var myIndex = 0;
-	carousel();
-
-	function carousel() {
-	  var i;
-	  var x = document.getElementsByClassName("mySlides");
-	  for (i = 0; i < x.length; i++) {
-	    x[i].style.display = "none";  
-	  }
-	  myIndex++;
-	  if (myIndex > x.length) {myIndex = 1}    
-	  x[myIndex-1].style.display = "block";  
-	  setTimeout(carousel, 2000); // Change image every 2 seconds
-	}
-	</script>
+		<button class="w3-button w3-light-green w3-small">Bestellung nochmal ausführen</button>
+	</div> 
 
 
 
@@ -159,8 +134,7 @@ function ajaxRequest(url, callback) {
 	<div class="w3-bar w3-light-green" style="">
 	  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
 	  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
-	  <span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
-
+		<span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
 </footer>
 
 </div>

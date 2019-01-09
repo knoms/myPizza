@@ -56,8 +56,54 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	  <a href="../speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="../ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <a href="logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
+	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
 	   <a href="../warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
+
+	<script type="text/javascript">
+	var URL = "UserOnline.txt";
+
+(function loadTxt() {
+  ajaxRequest(URL, function(xhr) {
+    document.getElementById('container').innerHTML = xhr.responseText;
+    setTimeout(loadTxt, 2000);
+  });
+})();
+
+function ajaxRequest(url, callback) {
+  var xhr;
+  if (typeof XMLHttpRequest !== 'undefined') xhr = new XMLHttpRequest();
+  else {
+    var versions = ["MSXML2.XmlHttp.5.0",
+      "MSXML2.XmlHttp.4.0",
+      "MSXML2.XmlHttp.3.0",
+      "MSXML2.XmlHttp.2.0",
+      "Microsoft.XmlHttp"
+    ]
+    for (var i = 0, len = versions.length; i < len; i++) {
+      try {
+        xhr = new ActiveXObject(versions[i]);
+        break;
+      } catch (e) {}
+    } 
+  }
+  xhr.onreadystatechange = ensureReadiness;
+  function ensureReadiness() {
+    if (xhr.readyState < 4) {
+      return;
+    }
+    if (xhr.status !== 200) {
+      return;
+    }
+    if (xhr.readyState === 4) {
+      callback(xhr);
+    }
+  }
+  xhr.open('GET', url, true);
+  xhr.send('');
+}
+</script>
+
 </header>
 
 
@@ -101,11 +147,6 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 	<!-- Inhalt der Webseite -->
 	<div class="w3-row-padding">
-	<a href="../konto.php" style="text-decoration: none;">
-	<div class="w3-panel w3-margin w3-card-4 w3-center w3-hover-light-green" style="width: 98%">
-	  <p><b>Kontobereich</b></p>
-	</div>
-	</a> 
 
 	<a href="../warenkorb.php" style="text-decoration: none;">
 	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
@@ -113,12 +154,14 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	</div>
 	</a>
 
-	<a href="#" style="text-decoration: none;">
+	<a href="../letzteBestellungen.php" style="text-decoration: none;">
 	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
 	  <p><b>Deine letzten Bestellungen</b></p>
 	</div>
-	</div>
 	</a>
+
+	</div>
+
 
 
 
@@ -148,7 +191,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 </script>
 -->
 
-	  <span class="w3-bar-item w3-right">User online: <span class="w3-tag">0</span> <p></span>
+		  <span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
 
 </footer>
 
