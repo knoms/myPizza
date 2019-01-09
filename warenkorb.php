@@ -192,8 +192,6 @@ function ajaxRequest(url, callback) {
 	  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
 	  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
 
-
-	  <span class="w3-bar-item w3-right">User online: <span class="w3-tag">0</span> <p></span>
 	  <span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
 
 </footer>
