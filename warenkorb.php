@@ -69,7 +69,7 @@ $cart->initial_cart();
 		<thead>
   			<tr class="w3-light-green ">
 
-    				<th>Pizza Nr.</th>
+    				
     				<th>Name</th>
     				<th>Anzahl</th>
     				<th>Preis</th>
@@ -84,7 +84,7 @@ $cart->initial_cart();
             $innerArray = $Array[$i];
             
             echo "<tr>
-            <td>$innerArray[0]</td>
+           
             <td>$innerArray[1]</td>
             <td>$innerArray[2]</td>
             <td>$innerArray[3]€</td>
@@ -101,7 +101,7 @@ $cart->initial_cart();
 
 		<?php
 			$Summe = 0;
-			$Versand=3;
+			
 			for($i = 0 ; $i < count($Array); $i++)
         {
         	 $innerArray = $Array[$i];
@@ -111,10 +111,6 @@ $cart->initial_cart();
 
         	if($Summe!=0){
         	echo "Summe: $Summe €<br>"; 
-        	$Gesamtsumme = $Summe+$Versand;
-        	echo "Versand: $Versand €<br>"; 
-        	echo "Gesamtsumme: $Gesamtsumme €";
-        	$_SESSION["Gesamt"]= "$Gesamtsumme";	
        		}
         	
        		
@@ -126,18 +122,20 @@ $cart->initial_cart();
 
 
 
-		<form action="speisekarte.php">
-			<button class="w3-button w3-light-green w3-small">Zurück zur Speisekarte und weitere Pizzen bestellen</button>	
-		</form>
+		
 		<form method="post">
-
+				<button onclick="speisekarte.php" class="w3-button w3-light-green w3-small">Zurück zur Speisekarte</button>	
 				<button type="submit" name="empty" class="w3-button w3-light-green w3-small" >Warenkorb leeren</button>
 				<?php if(isset($_POST['empty'])) {
 				 	$cart -> undo_cart();
 					header('Location: warenkorb.php');
 				 	}
 				?>
-				<button class="w3-button w3-light-green w3-small">Bestellen</button>
+				<button class="w3-button w3-light-green w3-small" type="submit" name="proceed">Weiter</button>
+				<?php if(isset($_POST['proceed'])) {
+					header('Location: versand.php');
+				 	}
+				?>
 		</form>
 
 	
