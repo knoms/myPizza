@@ -66,9 +66,6 @@ echo "Versand = $option";
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<script type="text/javascript"></script>
-
 	<style>
 		.mySlides {display:none;}
 	</style>
@@ -76,26 +73,27 @@ echo "Versand = $option";
 
   			function checkForm()
   				{	
+            alert("tut");
    			 	
-    			if (document.getElementById("credit").checked){
-    				var cardname = document.bezahlung.cardname.value;
-    				var cardnumber = document.bezahlung.cardnumber.value;
-    				var expmonth = document.bezahlung.expmonth.value;
-    				if(cardname ="" || cardnumber = "" || expmonth = ""){
-    					alert ("Bitte vervollständige deine Zahlungsdaten");
-    					return false;
-    				}
+      			if (document.getElementById("credit").checked==true){
+      				var cardname = document.bezahlung.cardname.value;
+      				var cardnumber = document.bezahlung.cardnumber.value;
+      				var expmonth = document.bezahlung.expmonth.value;
+      				if(cardname ="" || cardnumber = "" || expmonth = ""){
+      					alert ("Bitte vervollständige deine Zahlungsdaten");
+      					return false;
+      				}
+      			}
+      			else if (document.getElementById("cash").checked) {
+      				return true;
+      			}
+      			
+      			else {
+      				alert("Bitte wähle eine Zahlungsmethode");
+      				return false;
+      			}
     			}
-    			else if (document.getElementById("cash").checked) {
-    				return true;
-    			}
-    			
-    			else {
-    				alert("Bitte wähle eine Zahlungsmethode");
-    				return false;
-    			}
-    			}
-				</script>
+	</script>
 
 	
 </head>
@@ -119,13 +117,13 @@ echo "Versand = $option";
 		
 
 	
-		<form name="bezahlung" action="order.php" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float: left ">
+		<form onsubmit="checkForm()" name="bezahlung" action="order.php" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float: left ">
 			
 			
   				<h3>Zahlungsmethode wählen</h2>
   					
 
-    					<input type="radio" id="credit" name="Zahlungsmethode" value="credit">
+    					<input type="radio" id="credit" name="Zahlungsmethode" value="credit" required="required">
     					<label for="credit">Kreditkarte</label>
               				<i class="fa fa-cc-visa" style="color:navy;"></i>
               				<i class="fa fa-cc-amex" style="color:blue;"></i>
@@ -141,12 +139,13 @@ echo "Versand = $option";
             		
             			<br><br>
 
-    					<input type="radio" id="cash" name="Zahlungsmethode" value="cash">
+    					<input type="radio" id="cash" name="Zahlungsmethode" value="cash" required="required">
     					
     					<label for="cash">Barzahlung</label><br><br>
 
-    					<button onclick="versand.php" class="w3-button w3-light-green w3-small" >Zurück</button>
-    					<button onclick="javascript: return checkForm()" class="w3-button w3-light-green w3-small" type="submit" name="order" >Bestellen</button>
+    					<button onclick="history.go(-1);return true;" class="w3-button w3-light-green w3-small">Zurück</button>
+
+    					<button onclick="javascript: return checkForm();" class="w3-button w3-light-green w3-small" type="submit" name="order" >Bestellen</button>
     					
     					<br><br>
     					
