@@ -52,8 +52,6 @@ echo "Versand = $option";
 
 
  ?>
-
-
 <!DOCTYPE html>
 
 <html>
@@ -71,24 +69,31 @@ echo "Versand = $option";
 	<style>
 		.mySlides {display:none;}
 	</style>
+	<script language="JavaScript" type="text/javascript">
 
-	<script type="text/javascript">
-		
-		function cardnumber(inputtxt)
-{
-  var cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-  if(inputtxt.value.match(cardno))
-        {
-      return true;
-        }
-      else
-        {
-        alert("Not a valid Visa credit card number!");
-        return false;
-        }
-}
+  			function checkForm()
+  				{	
+            alert("tut");
+   			 	
+      			if (document.getElementById("credit").checked==true){
+      				var cardname = document.bezahlung.cardname.value;
+      				var cardnumber = document.bezahlung.cardnumber.value;
+      				var expmonth = document.bezahlung.expmonth.value;
+      				if(cardname ="" || cardnumber = "" || expmonth = ""){
+      					alert ("Bitte vervollständige deine Zahlungsdaten");
+      					return false;
+      				}
+      			}
+      			else if (document.getElementById("cash").checked) {
+      				return true;
+      			}
+      			
+      			else {
+      				alert("Bitte wähle eine Zahlungsmethode");
+      				return false;
+      			}
+    			}
 	</script>
-	
 
 	
 </head>
@@ -106,46 +111,52 @@ echo "Versand = $option";
 	  <a href="warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 </header>
-		<div class="w3-container w3-card-4 w3-light-green w3-padding-3 w3-margin-top"><h2>Bestellübersicht</h2></div>
-		
-		<div class="w3-container w3-card-4 w3-light-grey  w3-margin" style="width: 50%; float: left">
-			<h4>Deine Bestellung wird an folgende Adresse geliefert:</h4>
-			<?php 
-			$email = $_SESSION['email'];
-			$sql = mysqli_query($db,"SELECT * FROM mp_users WHERE Email LIKE '$email'");
-			$result = mysqli_fetch_assoc($sql);
-			$strasse = $result['Strasse'];
-			$plz = $result['PLZ'];
-			$stadt = $result['Stadt'];
-
-			echo"Strasse: $strasse <br> PLZ: $plz Stadt: $stadt<br>";
-			echo "<h4>Deine gewählte Versandoption:</h4>";
-			if($Versand==3){
-				echo "Standardlieferung (Etwa 45 Minuten)";
-
-}
-elseif($Versand==5){
-	echo "Expresslieferung (Etwa 20 Minuten)";
-
-}
 
 
-	?>
-		<br><br>
-
-		<button onclick="history.go(-1);return true;unset($_POST['tocheckout']);" class="w3-button w3-light-green w3-small">Zurück</button>
-
-		<button onclick="order.php;" class="w3-button w3-light-green w3-small" type="submit" name="order" >Bestellen</button>
-
-
-		</div>
-		
 	
 		
 
 	
-		
+		<form onsubmit="checkForm()" name="bezahlung" action="order.php" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float: left ">
+			
+			
+  				<h3>Zahlungsmethode wählen</h2>
+  					
 
+    					<input type="radio" id="credit" name="Zahlungsmethode" value="credit" required="required">
+    					<label for="credit">Kreditkarte</label>
+              				<i class="fa fa-cc-visa" style="color:navy;"></i>
+              				<i class="fa fa-cc-amex" style="color:blue;"></i>
+              				<i class="fa fa-cc-mastercard" style="color:red;"></i>
+              				<i class="fa fa-cc-discover" style="color:orange;"></i>
+            				<br><br>
+
+            			
+    					<label for="cname">Karteninhaber:</label>
+            			<input type="text" id="cname" name="cardname" placeholder="Paul Pizzamann"><br><label for="ccnum">Kartennummer:</label>
+            			<input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444"><br><label for="expmonth">Gültig bis:</label>
+            			<input type="text" id="expmonth" name="expmonth" placeholder="01/21">
+            		
+            			<br><br>
+
+    					<input type="radio" id="cash" name="Zahlungsmethode" value="cash" required="required">
+    					
+    					<label for="cash">Barzahlung</label><br><br>
+
+    					<button onclick="history.go(-1);return true;" class="w3-button w3-light-green w3-small">Zurück</button>
+
+    					<button onclick="javascript: return checkForm();" class="w3-button w3-light-green w3-small" type="submit" name="order" >Bestellen</button>
+    					
+    					<br><br>
+    					
+  					
+			
+
+
+						
+
+				
+		</form>
 	
 		<table class="w3-container w3-table w3-card-4 w3-light-grey w3-text-light-green w3-margin" style="width:40%; float: left">
 		
