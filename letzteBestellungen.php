@@ -148,7 +148,8 @@ function ajaxRequest(url, callback) {
 
 				$name=array();
 				$preis=array();
-
+				
+				// Schreiben in Tabelle
 				while ($row = mysqli_fetch_object($ergebnis)) 
 				{
 					array_push($name,$row->Name);
@@ -165,7 +166,20 @@ function ajaxRequest(url, callback) {
  		
 		</table>
 
-		<button class="w3-button w3-light-green w3-small">Bestellung nochmal ausführen</button>
+
+	<!-- Wiederbestellenbutton -->
+		<?php
+		if(isset($_POST['nochmal'])) {
+			// noch unvollständig...muss um INSERT ergänzt werden
+			$bestellen = "SELECT MAX(OrderID) FROM mp_orders WHERE UserID=(SELECT UserID FROM mp_users WHERE Email='leena.schumacher@web.de')";
+			mysqli_query($db, $bestellen);
+
+		}
+		?>
+		<form method="post">
+			<button type="submit" name="nochmal" class="w3-button w3-light-green w3-small">Letzte Bestellung nochmal ausführen</button>			
+		</form>
+
 	</div> 
 
 
