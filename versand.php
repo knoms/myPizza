@@ -25,7 +25,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 $cart->initial_cart(); 
 
 $cartsize = $cart -> get_cart_count();
-if($cartsize=0){
+if($cartsize==0){
 	header('Location: warenkorb.php');
 }
 

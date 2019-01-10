@@ -25,6 +25,11 @@ $cart = new cart();
 
 
 $cart->initial_cart(); 
+$Artikelanzahl = $cart->get_cart_count();
+
+
+
+
 
  ?>
 <!DOCTYPE html>
@@ -127,7 +132,13 @@ function ajaxRequest(url, callback) {
   		</thead>
   		<?php
   		$Array = $_SESSION['cart'];
-
+      if($Artikelanzahl==0) 
+      echo "<tr>
+      <td> Hier könnte </td>
+      <td> deine Pizza </td>
+      <td> liegen.</td>
+      </tr>";
+      else{
   		for($i = 0 ; $i < count($Array); $i++)
         {
             $innerArray = $Array[$i];
@@ -140,7 +151,7 @@ function ajaxRequest(url, callback) {
             </tr>";
         }
 
-
+}
 
         ?>
 
@@ -179,13 +190,24 @@ function ajaxRequest(url, callback) {
 
 				<?php if(isset($_POST['empty'])) {
 				 	$cart -> undo_cart();
-					header('Location: warenkorb.php');
+					//header('Location: warenkorb.php');
+          ?>
+            <script type="text/javascript">javascript:location.reload()</script>
+          <?php
+          if(isset($_SESSION['Gesamt'])){ 
+            $_SESSION['Gesamt']=0;
+          }
+          
 				 	}
 				?>
 
 				<button class="w3-button w3-light-green w3-small" type="submit" name="proceed">Weiter</button>
 				<?php if(isset($_POST['proceed'])) {
+          if($Artikelanzahl==0){
+            ?> <script type="text/javascript">alert("Ohne Pizza gehts nicht weiter");</script> <?php
+          }else{
 					header('Location: versand.php');
+        }
 				 	}
 				?>
 
