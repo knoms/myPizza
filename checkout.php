@@ -152,10 +152,6 @@ echo "Versand = $Versand";
     					
   					
 			
-
-
-						
-
 				
 		</form>
   </div>

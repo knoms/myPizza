@@ -78,8 +78,10 @@ if($cartsize=0){
 			<h2>Lieferung</h2>
 				<select class="w3-select" name="versand" required>
   				<option value="" disabled selected>Wähle bitte eine Lieferoption</option>
-				<option value="3">Normale Lieferung +3€</option>
-  				<option value="5">Express Lieferung +5€</option>
+
+				<option value="3">Normale Lieferung (Etwa 45 Minuten) +3€</option>
+  				<option value="5">Express Lieferung (Etwa 20 Minuten) +5€</option>
+
   				
 			</select>
 			<br><br><br>
