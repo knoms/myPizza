@@ -116,14 +116,20 @@ echo "Versand = $option";
 	
 		
 
-	
-		<form onsubmit="checkForm()" name="bezahlung" action="order.php" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float: left ">
+	<div class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float: left ">
+		<form onsubmit="checkForm()" name="bezahlung" action="order.php" method="post" >
 			
 			
   				<h3>Zahlungsmethode wählen</h2>
   					
 
-    					<input type="radio" id="credit" name="Zahlungsmethode" value="credit" required="required">
+                <div class="w3-panel w3-gray w3-border ">
+                  <span onclick="this.parentElement.style.display='none'"
+                  class="w3-button w3-large w3-display-topright">&times;</span>
+                  <p>Kreditkartenzahlung vorrübergehend deaktiviert. Nur Barzahlung möglich.</p>
+                </div> 
+              
+    					<input type="radio" id="credit" name="Zahlungsmethode" value="credit" required="required" disabled>
     					<label for="credit">Kreditkarte</label>
               				<i class="fa fa-cc-visa" style="color:navy;"></i>
               				<i class="fa fa-cc-amex" style="color:blue;"></i>
@@ -133,13 +139,13 @@ echo "Versand = $option";
 
             			
     					<label for="cname">Karteninhaber:</label>
-            			<input type="text" id="cname" name="cardname" placeholder="Paul Pizzamann"><br><label for="ccnum">Kartennummer:</label>
-            			<input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444"><br><label for="expmonth">Gültig bis:</label>
-            			<input type="text" id="expmonth" name="expmonth" placeholder="01/21">
+            			<input type="text" id="cname" name="cardname" placeholder="Paul Pizzamann" disabled><br><label for="ccnum">Kartennummer:</label>
+            			<input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" disabled><br><label for="expmonth">Gültig bis:</label>
+            			<input type="text" id="expmonth" name="expmonth" placeholder="01/21" disabled>
             		
             			<br><br>
 
-    					<input type="radio" id="cash" name="Zahlungsmethode" value="cash" required="required">
+    					<input type="radio" id="cash" name="Zahlungsmethode" value="cash" required="required" checked="checked">
     					
     					<label for="cash">Barzahlung</label><br><br>
 
@@ -157,6 +163,7 @@ echo "Versand = $option";
 
 				
 		</form>
+  </div>
 	
 		<table class="w3-container w3-table w3-card-4 w3-light-grey w3-text-light-green w3-margin" style="width:40%; float: left">
 		
