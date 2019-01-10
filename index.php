@@ -121,6 +121,8 @@ function ajaxRequest(url, callback) {
 </div> 
 
 
+
+
 	<!--<div class="w3-panel w3-card-4 w3-center w3-margin" style="width: 50%">
 	  <p>Willkommen bei MyPizza Ihrem Lieferservice</p>
 	</div><-->
