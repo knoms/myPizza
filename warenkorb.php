@@ -179,7 +179,14 @@ function ajaxRequest(url, callback) {
 
 				<?php if(isset($_POST['empty'])) {
 				 	$cart -> undo_cart();
-					header('Location: warenkorb.php');
+					//header('Location: warenkorb.php');
+          ?>
+            <script type="text/javascript">javascript:location.reload()</script>
+          <?php
+          if(isset($_SESSION['Gesamt'])){ 
+            $_SESSION['Gesamt']=0;
+          }
+          
 				 	}
 				?>
 
