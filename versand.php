@@ -78,8 +78,8 @@ if($cartsize=0){
 			<h2>Lieferung</h2>
 				<select class="w3-select" name="versand" required>
   				<option value="" disabled selected>Wähle bitte eine Lieferoption</option>
-				<option value="1">Normale Lieferung +3€</option>
-  				<option value="2">Express Lieferung +5€</option>
+				<option value="1">Standardlieferung (Etwa 45 Minuten) +3€</option>
+  				<option value="2">Expresslieferung (Etwa 20 Minuten) +5€</option>
   				
 			</select>
 			<br><br><br>
@@ -87,22 +87,10 @@ if($cartsize=0){
 			
 
 
-			<button onclick="warenkorb.php" class="w3-button w3-light-green w3-small">Zurück zum Warenkorb</button>
+			<button onclick="history.go(-1);return true;" class="w3-button w3-light-green w3-small">Zurück</button>
 
 			<button class="w3-button w3-light-green w3-small" type="submit" name="tocheckout">Zur Kasse</button>
-				<?php 
-
-					if(isset($_POST['tocheckout'])) {
-
-						
-							header('Location: checkout.php');
-						
-						
-						
-					 
-				 	}
-				 	
-				?>	
+				
 				<br><br>
 		</form>
 	
