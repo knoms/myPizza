@@ -121,10 +121,53 @@ function ajaxRequest(url, callback) {
   			<h2>Deine letzten Bestellungen</h2>
 		</div>
 
-		.... Evtl. Tabelle wie bei Warenkorb ...
+				<table class="w3-table w3-border">
+		
+		<thead>
+  			<tr class="w3-light-green ">
+
+    				
+    				<th>Bestellnummer</th>
+    				<th>Pizza</th>
+    				<th>Preis</th>
+  			</tr>
+
+  		</thead>
+  		
+  			<tr>
+	  		<?php
+
+		  		$db = mysqli_connect($db_server, $db_benutzer, $db_passwort, $db_name);
+		  		$email = $_SESSION['email'];
+		  		$ergebnis = mysqli_query($db, "SELECT Name, Preis FROM mp_menu WHERE MenuID =
+												(SELECT MenuID FROM mp_ordered_dishes WHERE OrderID =
+												(SELECT OrderID FROM mp_orders WHERE UserID = 
+												(SELECT UserID FROM mp_users WHERE EMail = '$email')))");
+
+
+
+				$name=array();
+				$preis=array();
+
+				while ($row = mysqli_fetch_object($ergebnis)) 
+				{
+					array_push($name,$row->Name);
+					array_push($preis,$row->Preis);?>
+					<td><?php ?></td>
+					<td><?php echo $row->Name;?></td>
+					<td><?php echo $row->Preis;?></td>
+					<?php
+				}
+
+
+	        ?>
+ 	       </tr>
+ 		
+		</table>
 
 		<button class="w3-button w3-light-green w3-small">Bestellung nochmal ausführen</button>
 	</div> 
+
 
 
 
