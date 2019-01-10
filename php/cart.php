@@ -2,10 +2,7 @@
 
 class cart{
     
-    /**
-     * 
-     * Initialisiert die Klasse Cart
-     */
+  
     public function initial_cart()
     {
         
@@ -19,19 +16,7 @@ class cart{
 
     
     
-    /**
-     * 
-     * Fügt einen Artikel in das Array ein
-     * @param unknown_type $Artikelnummer
-     * @param unknown_type $Beschreibung
-     * @param unknown_type $Verkäufer
-     * @param unknown_type $Kosten
-     * @param unknown_type $MwstSatz
-     * @param unknown_type $MwSt
-     * @param unknown_type $ZwischenSumme
-     * @param unknown_type $Anzahl
-     * @param unknown_type $gesammt
-     */
+  
     public function insertArtikel($MenuID,  $Name, $Anzahl, $Preis)
     {
         $Anzahl = "1";
@@ -42,9 +27,9 @@ class cart{
         
     }
     
-    /**
-     * 
-     * Gibt Alle Artikel des Array in einer Tabelle aus.
+    /*
+     
+     Gibt Alle Artikel des Array in einer Tabelle aus.
      */
     public function getcart()
     {
@@ -69,7 +54,7 @@ class cart{
     
     /**
      * 
-     * Löscht den Waren Korb
+     * Löscht den Warenkorb
      */
     public function undo_cart()
     {
@@ -77,11 +62,7 @@ class cart{
     }
     
     
-    /**
-     * 
-     * Gibt einen Datensatz Zurück
-     * @param int $point
-     */
+    
     public function get_cartValue_at_Point($n)
     {
         
@@ -90,21 +71,20 @@ class cart{
         
     }
     
-    /**
-     * 
-     * Entfernt ein Artikel am Point n
-     * @param int $point
-     */
+    
+     
+     //Entfernt einen Artikel am Point n
+   
+     
     public function delete_cartValue_at_Point($point)
     {
         $Array = $_SESSION['cart'];
         unset($Array[$point]);
     }
     
-    /**
-     * 
-     * Gibt die Anzahl der Artikel zurück
-     */
+   
+    // Gibt die Anzahl der Artikel zurück
+    
     public function get_cart_count()
     {
         return count($_SESSION['cart']);
