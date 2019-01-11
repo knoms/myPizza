@@ -46,7 +46,7 @@ $Artikelanzahl = $cart->get_cart_count();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+ 
 
 	<script type="text/javascript"></script>
 
@@ -201,15 +201,22 @@ function ajaxRequest(url, callback) {
 				 	}
 				?>
 
+        
+
 				<button class="w3-button w3-light-green w3-small" type="submit" name="proceed">Weiter</button>
 				<?php if(isset($_POST['proceed'])) {
           if($Artikelanzahl==0){
             ?> <script type="text/javascript">alert("Ohne Pizza gehts nicht weiter");</script> <?php
           }else{
-					header('Location: versand.php');
-        }
+					 echo '<script type="text/javascript">';
+        echo 'window.location.href="versand.php.";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '</noscript>';        }
 				 	}
 				?>
+
 
 				
 
