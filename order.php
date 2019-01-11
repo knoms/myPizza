@@ -1,19 +1,21 @@
 <?php
  session_start();
- include ("php/dbconnect.php");
- include_once ("php/cart.php");
+ include ('php/dbconnect.php');
+ include_once ('php/cart.php');
+//include('php/mailcontent.php');
+ require "phpmailer/PHPMailerAutoload.php";
 
 echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
  $eingeloggt=false;
  if (isset($_SESSION['login'])) {
- 	if($_SESSION["login"]==1){
+ 	if($_SESSION['login']==1){
  	$eingeloggt=true;
 		}
  }
 
  if($eingeloggt==false){
- 	header("Location: index.php");
+ 	header('Location: index.php');
  }
 
  //get Warenkorb 
@@ -27,6 +29,7 @@ $summe = $_SESSION['Gesamt'];
 $Vk = $_SESSION['versand'];
 $Artikelanzahl = $cart->get_cart_count();
 $Versand = $_SESSION['versand'];
+
 
 
  echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
@@ -55,16 +58,15 @@ $name = $result['Vorname'];
 echo "Name: $name<br>";
 $UserID = $result['UserID'];
 echo "UserID: $UserID<br>";
-//$newOrder = mysqli_query($db,"INSERT INTO mp_orders ('OrderID', 'UserID', 'Time', 'Artikelanzahl', 'Preis', 'Vk') VALUES ('$UserID','$date', '$Artikelanzahl', '$summe', '$Vk')");
 
 
-//
 
 //Bestellung in die DB schreiben
+
+
+
+///////IN DB schreiben/////////////////////////////////////////////////////////////////////////////////
 $writeneworder = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES ('$UserID', '$date', '$Artikelanzahl', '$summe', '$Vk')";
-//OrderID der abgelegten Bestellung auslesen
-
-
 $Array = $_SESSION['cart'];
 if(mysqli_query($db , $writeneworder)) {
 	echo "Bestellung in DB abgelegt<br>";
@@ -82,50 +84,54 @@ $OrderID = $resultOrderID['OrderID'];
 			$writenewdish = "INSERT INTO mp_ordered_dishes(MenuID, OrderID) VALUES('$MenuID','$OrderID')";
             mysqli_query($db,$writenewdish);
         }
-}
-
-
+} 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
  ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="styleSchrift.css" type="text/css" rel="stylesheet">
+	<link href='styleSchrift.css' type='text/css' rel='stylesheet'>
 
 	<title>Deine Bestellung bei MyPizza</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <style>
          body, a:hover, button:hover {cursor: url(pizza.cur), default;}
     </style>
 
 </head>
 <body>
-	<div class="w3-container w3-center">
-		<div class="w3-panel w3-border-top w3-border-bottom w3-light-green">
-  			<h2 style="color: white;">- Deine Bestellung - </h2>
+	<div class='w3-container w3-center'>
+		<div class='w3-panel w3-border-top w3-border-bottom w3-light-green'>
+  			<h2 style='color: white;'>- Deine Bestellung - </h2>
 		</div>
 	</div>
 
-	<div class="w3-container">
-		<div class="w3-container w3-card-4">
+	<div class='w3-container'>
+		<div class='w3-container w3-card-4'>
 			<br>
 
 			<b>Hallo <?php echo $name;?>, </b><br><br>
 
 			herzlichen Dank für deine Bestellung. <br>
-			Dein Auftrag ist bei uns um <?php echo "$date"; ?> eingegangen. <br>
-			<hr>
+            Einen Guten Appetit wünscht dir <br><br>
+            Dein <b>MyPizza</b> Team. <br><br>
+            
+            Kundennummer: <? echo "$UserID" ?><br>
+            Bestellungsnummer: <?php echo "$OrderID" ?><br>
+            Bestelleingang: <?php echo "$date"; ?><br>
 
 			<b>Deine Bestellung: </b><br>
+            <br>
 
-			<table class="w3-container w3-table" style="width:50%; height: 30%; float: left">
+			<table class='w3-container w3-table' style='width:50%; height: 30%; float: left'>
 		
 		<thead>
-  			<tr class="w3-light-green">
+  			<tr class='w3-light-green'>
 
     				
     				<th>Name</th>
@@ -145,7 +151,7 @@ $OrderID = $resultOrderID['OrderID'];
    
             <td>$innerArray[1]</td>
             <td>$innerArray[2]x</td>
-            <td>$innerArray[3]€</td>
+            <td>$innerArray[3]&euro;</td>
             </tr>";
         }
         ?>
@@ -171,15 +177,93 @@ $OrderID = $resultOrderID['OrderID'];
 
 		?>
 	</table>
+    <br><br><br>
+    <?php
+    ////////////////MAIL VERSAND////////////////////////////////////////////////////////////////////////////////
+            $readvorname = mysqli_query($db,"SELECT Vorname from mp_users WHERE Email LIKE '$email'");
+            
+             $vorname = mysqli_fetch_assoc($readvorname);
+            $name= $result['Vorname'];
+            $mail = new PHPMailer;
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.web.de';                            // Specify SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'mypizza.service@web.de';                 // SMTP username
+            $mail->Password = 'mypizza123';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    
 
-			<br><br>
+            $mail->From = 'mypizza.service@web.de';
+            $mail->FromName = 'MyPizza Service';
 
-			
+            $mail->addAddress("$email");               
+            $mail->addReplyTo('mypizza.service@web.de', 'Information');
 
-			Einen Guten Appetit, <br>
-			wünscht dir dein <b>MyPizza</b> Lieferdienst. <br>
-			Lass es dir schmecken! <br><br>
-		</div>
+
+            $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            $mail->isHTML(true);                                  // Set email format to HTML
+
+            
+            $body = "<b>Hallo $name, </b><br><br>
+
+            herzlichen Dank f&uumlr deine Bestellung. <br>
+            Dein Auftrag ist bei uns um $date eingegangen und deine Pizza ist schon so gut wie im Ofen. <br>
+            <br>
+            Einen Guten Appetit w&uumlnscht dir <br><br>
+            Dein <b>MyPizza</b> Team. <br><br>
+            
+
+            <b>Deine Bestellung: </b><br>
+            <table  style='width:50%; float: left'>
+        
+        <thead>
+            <tr>
+
+                    
+                    <th>Name</th>
+                    <th>Anzahl</th>
+                    <th>Preis</th>
+            </tr>
+
+        </thead>
+
+
+
+            ";
+
+            for($i = 0 ; $i < count($Array); $i++)
+        {
+            $innerArray = $Array[$i];
+            
+            $body.= "<tr>
+   
+            <td>$innerArray[1]</td>
+            <td>$innerArray[2]x</td>
+            <td>$innerArray[3]&euro;</td>
+            </tr>";
+        }      
+            $Gesamtsumme = $Summe+$Versand;   
+            $body.= "<tr><td></td><td></td><td></td></tr>
+            <tr><td>Summe:</td><td></td><td>$Summe &euro;<td></tr><tr><td>Versand:</td><td></td><td>$Versand &euro;<td></tr><hr><tr><td>Gesamtsumme:</td><td></td><td>$Gesamtsumme &euro;<td></tr>";
+
+            
+
+           
+
+            $mail->Subject = 'Deine Bestellung bei MyPizza';
+            $mail->Body    = $body;
+            $mail->AltBody = strip_tags($body);
+
+            if(!$mail->send()) {
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                echo 'Message has been sent';
+            }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		?>
 	</div>
 </body>
 </html>
