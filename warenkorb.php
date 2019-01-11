@@ -204,15 +204,22 @@ function ajaxRequest(url, callback) {
 				 	}
 				?>
 
+        
+
 				<button class="w3-button w3-light-green w3-small" type="submit" name="proceed">Weiter</button>
 				<?php if(isset($_POST['proceed'])) {
           if($Artikelanzahl==0){
             ?> <script type="text/javascript">alert("Ohne Pizza gehts nicht weiter");</script> <?php
           }else{
-					header('Location: versand.php');
-        }
+					 echo '<script type="text/javascript">';
+        echo 'window.location.href="versand.php.";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '</noscript>';        }
 				 	}
 				?>
+
 
 				
 
