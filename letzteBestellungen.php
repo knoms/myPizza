@@ -38,6 +38,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 	<style>
 		.mySlides {display:none;}
+		 body, a:hover {cursor: url(pizza.cur), progress;}
 	</style>
 
 	<script type="text/javascript">
@@ -177,7 +178,7 @@ function ajaxRequest(url, callback) {
 					</tr>
 
 					<?php
-					
+
 				}
 
 
