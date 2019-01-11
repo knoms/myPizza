@@ -128,41 +128,60 @@ function ajaxRequest(url, callback) {
 
     				
     				<th>Bestellnummer</th>
+    				<th>Bestelldatum</th>
     				<th>Pizza</th>
     				<th>Preis</th>
   			</tr>
 
   		</thead>
   		
-  			<tr>
+  			
 	  		<?php
 
 		  		$db = mysqli_connect($db_server, $db_benutzer, $db_passwort, $db_name);
 		  		$email = $_SESSION['email'];
-		  		$ergebnis = mysqli_query($db, "SELECT Name, Preis FROM mp_menu WHERE MenuID =
-												(SELECT MenuID FROM mp_ordered_dishes WHERE OrderID =
-												(SELECT OrderID FROM mp_orders WHERE UserID = 
-												(SELECT UserID FROM mp_users WHERE EMail = '$email')))");
+		  		/* 
+
+		  		DAVOR VIEW ERSTELLT:
+
+		  		CREATE VIEW AlreadyOrdered AS
+				SELECT mp_orders.UserID, mp_orders.OrderID, Time, Name, mp_menu.Preis
+				FROM mp_orders, mp_ordered_dishes, mp_menu
+				WHERE mp_orders.OrderID = mp_ordered_dishes.OrderID
+				ORDER BY UserId, Time;
+				*/
+
+		  		$ergebnis = mysqli_query($db, "SELECT OrderID, Time, Name, Preis FROM alreadyordered
+							WHERE UserID = (SELECT UserID FROM mp_users WHERE Email='$email')
+							ORDER BY OrderID;");
 
 
-
+		  		$orderid=array();
+		  		$time=array();
 				$name=array();
 				$preis=array();
 				
 				// Schreiben in Tabelle
 				while ($row = mysqli_fetch_object($ergebnis)) 
 				{
+					?><tr><?php
+					array_push($orderid,$row->OrderID);
+					array_push($time,$row->Time);
 					array_push($name,$row->Name);
 					array_push($preis,$row->Preis);?>
-					<td><?php ?></td>
+					<td><?php echo $row->OrderID;?></td>
+					<td><?php echo $row->Time;?></td>
 					<td><?php echo $row->Name;?></td>
 					<td><?php echo $row->Preis;?></td>
+					</tr>
+
 					<?php
+					
 				}
 
 
 	        ?>
- 	       </tr>
+ 	       
  		
 		</table>
 
