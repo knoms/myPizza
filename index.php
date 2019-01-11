@@ -34,6 +34,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 	<style>
 		.mySlides {display:none;}
+		 body, a:hover, button:hover {cursor: url(pizza.cur), default;}
 	</style>
 
 	<script type="text/javascript">

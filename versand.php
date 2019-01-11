@@ -50,6 +50,7 @@ if($cartsize==0){
 
 	<style>
 		.mySlides {display:none;}
+		 body, a:hover, button:hover {cursor: url(pizza.cur), default;}
 	</style>
 
 	

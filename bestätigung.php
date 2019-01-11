@@ -6,6 +6,9 @@
 	<title>Bestell Bestätigung</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		 body, a:hover, button:hover {cursor: url(pizza.cur), default;}
+	</style>
 </head>
 <body>
 
