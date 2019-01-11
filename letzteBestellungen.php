@@ -144,10 +144,11 @@ function ajaxRequest(url, callback) {
 
 		  		DAVOR VIEW ERSTELLT:
 
-		  		CREATE VIEW AlreadyOrdered AS
-				SELECT mp_orders.UserID, mp_orders.OrderID, Time, Name, mp_menu.Preis
+				CREATE VIEW AlreadyOrdered AS
+				SELECT mp_orders.UserID, mp_orders.OrderID, mp_orders.Time, mp_menu.Name, mp_menu.Preis
 				FROM mp_orders, mp_ordered_dishes, mp_menu
 				WHERE mp_orders.OrderID = mp_ordered_dishes.OrderID
+				AND mp_menu.MenuID=mp_ordered_dishes.MenuID
 				ORDER BY UserId, Time;
 				*/
 
