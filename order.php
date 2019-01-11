@@ -26,10 +26,10 @@ $email = $_SESSION['email'];
 $summe = $_SESSION['Gesamt'];
 $Vk = $_SESSION['versand'];
 $Artikelanzahl = $cart->get_cart_count();
+$Versand = $_SESSION['versand'];
 
 
  echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
-
 
 
 $Array = $_SESSION['cart'];
@@ -56,13 +56,34 @@ echo "Name: $name<br>";
 $UserID = $result['UserID'];
 echo "UserID: $UserID<br>";
 //$newOrder = mysqli_query($db,"INSERT INTO mp_orders ('OrderID', 'UserID', 'Time', 'Artikelanzahl', 'Preis', 'Vk') VALUES ('$UserID','$date', '$Artikelanzahl', '$summe', '$Vk')");
-$newOrder = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES ('$UserID', '$date', '$Artikelanzahl', '$summe', '$Vk')";
 
 
+//
 
-if(mysqli_query($db , $newOrder)) {
-	echo "schreibt";
+//Bestellung in die DB schreiben
+$writeneworder = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES ('$UserID', '$date', '$Artikelanzahl', '$summe', '$Vk')";
+//OrderID der abgelegten Bestellung auslesen
+
+
+$Array = $_SESSION['cart'];
+if(mysqli_query($db , $writeneworder)) {
+	echo "Bestellung in DB abgelegt<br>";
+	$readOrderID = mysqli_query($db,"SELECT * FROM mp_orders WHERE Time = '$date'");
+$resultOrderID = mysqli_fetch_assoc($readOrderID);
+$OrderID = $resultOrderID['OrderID'];
+ echo "OrderID: $OrderID<br>";
+	for($i = 0 ; $i < count($Array); $i++)
+        {
+            $innerArray = $Array[$i];
+            $MenuID = $innerArray[0];
+            //Gericht aus Warenkorb in die DB schreiben
+            echo "Gericht $i: $MenuID<br>";
+
+			$writenewdish = "INSERT INTO mp_ordered_dishes(MenuID, OrderID) VALUES('$MenuID','$OrderID')";
+            mysqli_query($db,$writenewdish);
+        }
 }
+
 
 
 
@@ -97,21 +118,59 @@ if(mysqli_query($db , $newOrder)) {
 
 			<b>Deine Bestellung: </b><br>
 
-			<table>
-				<tr>
+			<table class="w3-container w3-table" style="width:50%; height: 30%; float: left">
+		
+		<thead>
+  			<tr class="w3-light-green">
 
-			    				
-			    				<th>Artikelname</th>
-			    				<th>Anzahl</th>
-			    				<th>Preis</th>
-			  			</tr>
-			</table>
+    				
+    				<th>Name</th>
+    				<th>Anzahl</th>
+    				<th>Preis</th>
+  			</tr>
+
+  		</thead>
+  		<?php
+  		$Array = $_SESSION['cart'];
+
+  		for($i = 0 ; $i < count($Array); $i++)
+        {
+            $innerArray = $Array[$i];
+            
+            echo "<tr>
+   
+            <td>$innerArray[1]</td>
+            <td>$innerArray[2]x</td>
+            <td>$innerArray[3]€</td>
+            </tr>";
+        }
+        ?>
+        
+        <?php
+			$Summe = 0;
+			
+			for($i = 0 ; $i < count($Array); $i++)
+        {
+        	 $innerArray = $Array[$i];
+        	$Summe+= $innerArray[3];
+        }
+        if($Summe!=0){
+        	echo"<tr><td></td><td></td><td></td></tr>";
+        	echo "<tr><td>Summe:</td><td></td><td>$Summe €<td></tr>"; 
+        	$Gesamtsumme = $Summe+$Versand;
+        	echo "<tr><td>Versand:</td><td></td><td>$Versand €<td></tr>";
+            echo "<hr>";
+        	echo "<tr><td>Gesamtsumme:</td><td></td><td>$Gesamtsumme €<td></tr>";
+        
+       		}
+
+
+		?>
+	</table>
 
 			<br><br>
 
-			Summe:			<br>
-			Versand:		<br><hr>
-			Gesamtsumme:	<br><hr>
+			
 
 			Einen Guten Appetit, <br>
 			wünscht dir dein <b>MyPizza</b> Lieferdienst. <br>
