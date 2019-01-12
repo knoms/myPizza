@@ -115,17 +115,18 @@ $OrderID = $resultOrderID['OrderID'];
 		<div class='w3-container w3-card-4'>
 			<br>
 
-			<b>Hallo <?php echo $name;?>, </b><br><br>
+			Hallo <b><?php echo $name;?>, </b><br><br>
 
 			herzlichen Dank für deine Bestellung. <br>
             Einen Guten Appetit wünscht dir <br><br>
             Dein <b>MyPizza</b> Team. <br><br>
             
-            Kundennummer: <? echo "$UserID" ?><br>
+            <b>Bestellübersicht:</b><br>
+            Kundennummer: <?php echo "$UserID" ?><br>
             Bestellungsnummer: <?php echo "$OrderID" ?><br>
-            Bestelleingang: <?php echo "$date"; ?><br>
+            Bestelleingang: <?php echo "$date"; ?><br><br>
 
-			<b>Deine Bestellung: </b><br>
+			
             <br>
 
 			<table class='w3-container w3-table' style='width:50%; height: 30%; float: left'>
