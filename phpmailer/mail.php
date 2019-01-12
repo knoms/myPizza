@@ -13,12 +13,12 @@ $mail->SMTPDebug = 3;                               // Enable verbose debug outp
 $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'smtp.web.de ;smtp.web.de ';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'mypizza-service@web.de';                 // SMTP username
+$mail->Username = 'mypizza.service@web.de';                 // SMTP username
 $mail->Password = 'mypizza123';                           // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                                    // TCP port to connect to
 
-$mail->From = 'mypizza-service@web.de';
+$mail->From = 'mypizza.service@web.de';
 $mail->FromName = 'MyPizza Service';
 $mail->addAddress('noah@mautner.de',);     // Add a recipient
 $mail->isHTML(true);                                  // Set email format to HTML
