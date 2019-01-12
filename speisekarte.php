@@ -136,7 +136,7 @@ function ajaxRequest(url, callback) {
 	  <ul class="w3-ul w3-card-4">
 	    <li class="w3-bar">
 	    	<form method="post"> 
-			      <button type="submit" name="button" id="1" value="Pizza Margherita" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?>| <i class="w3-large fa fa-shopping-cart"></i></button>  
+			      <button type="submit" name="button" id="1" value="Pizza Margherita" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> € | <i class="w3-large fa fa-shopping-cart"></i></button>  
 			      <div class="w3-bar-item">
 			        <span class="w3-large">Pizza Mageritha</span><br>
 			        <span>Mit Tomate, Mozarella und Edamer</span>
@@ -153,7 +153,7 @@ function ajaxRequest(url, callback) {
   		?>
 	    <li class="w3-bar">
 	    	<form method="post"> 
-			      <button type="submit" name="button" value="Pizza Salami" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> | <i class="w3-large fa fa-shopping-cart"></i></button>  
+			      <button type="submit" name="button" value="Pizza Salami" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> € | <i class="w3-large fa fa-shopping-cart"></i></button>  
 			      <div class="w3-bar-item">
 			        <span class="w3-large">Pizza Salami</span><br>
 			        <span>Mit Tomatensoße, Edamer und Salami</span>
@@ -170,7 +170,7 @@ function ajaxRequest(url, callback) {
   		?>
 	    <li class="w3-bar">
 	    	<form method="post"> 
-			      <button type="submit" name="button" value="Pizza Champignon" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> | <i class="w3-large fa fa-shopping-cart"></i></button>  
+			      <button type="submit" name="button" value="Pizza Champignon" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> € | <i class="w3-large fa fa-shopping-cart"></i></button>  
 			      <div class="w3-bar-item">
 			        <span class="w3-large">Pizza Champignon</span><br>
 			        <span>Mit Tomatensoße, Edamer und Chamignon</span>
@@ -187,7 +187,7 @@ function ajaxRequest(url, callback) {
   		?>
 	    <li class="w3-bar">
 	    	<form method="post"> 
-			      <button type="submit" name="button" value="Pizza Paprika" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> | <i class="w3-large fa fa-shopping-cart"></i></button>  
+			      <button type="submit" name="button" value="Pizza Paprika" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> € | <i class="w3-large fa fa-shopping-cart"></i></button>  
 		      <div class="w3-bar-item">
 		        <span class="w3-large">Pizza Paprika</span><br>
 		        <span>Mit Tomatensoße, Edamer, Oliven, Zwiebeln und Paprika</span>
@@ -204,7 +204,7 @@ function ajaxRequest(url, callback) {
   		?>
 	    <li class="w3-bar">
 	    	<form method="post"> 
-			      <button type="submit" name="button" value="Pizza Peperoni Speciale" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> | <i class="w3-large fa fa-shopping-cart"></i></button>  
+			      <button type="submit" name="button" value="Pizza Peperoni Speciale" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> € | <i class="w3-large fa fa-shopping-cart"></i></button>  
 		      <div class="w3-bar-item">
 		        <span class="w3-large">Pizza Peperoni Speciale</span><br>
 		        <span>Mit Tomatensoße, Edamer, Oliven und Peperoniwurst</span>
@@ -221,7 +221,7 @@ function ajaxRequest(url, callback) {
   		?>
 	    <li class="w3-bar">
 	    	<form method="post">
-			      <button type="submit" name="button" value="Pizza Ruccola" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> | <i class="w3-large fa fa-shopping-cart"></i></button> 
+			      <button type="submit" name="button" value="Pizza Ruccola" class="w3-btn w3-light-green w3-border w3-round-large w3-right"><?php echo $row->Preis?> € | <i class="w3-large fa fa-shopping-cart"></i></button> 
 			   
 
 		      	<div class="w3-bar-item">
