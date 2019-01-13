@@ -17,7 +17,7 @@ class cart{
     
     
   
-    public function insertArtikel($MenuID,  $Name, $Anzahl, $Preis)
+    public function insertArtikel($MenuID, $Name, $Anzahl, $Preis)
     {
         $Anzahl = "1";
         $Artikel = array($MenuID, $Name, $Anzahl, $Preis);

@@ -29,6 +29,9 @@ if($cartsize==0){
 	header('Location: warenkorb.php');
 }
 
+echo "<br>POST:<br>";
+echo nl2br(print_r($_POST,true));
+
 
  ?>
 <!DOCTYPE html>

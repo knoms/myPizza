@@ -56,7 +56,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 	  <a href="../speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="../ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <a href="logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
-	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
+	  <a href='../letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
 	   <a href="../warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 

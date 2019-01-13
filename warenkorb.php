@@ -27,7 +27,8 @@ $cart = new cart();
 $cart->initial_cart(); 
 $Artikelanzahl = $cart->get_cart_count();
 
-
+echo "<br>POST:<br>";
+echo nl2br(print_r($_POST,true));
 
 
 
