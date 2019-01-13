@@ -212,7 +212,7 @@ function ajaxRequest(url, callback) {
             ?> <script type="text/javascript">alert("Ohne Pizza gehts nicht weiter");</script> <?php
           }else{
 					 echo '<script type="text/javascript">';
-        echo 'window.location.href="versand.php.";';
+        echo 'window.location.href="versand.php";';
         echo '</script>';
         echo '<noscript>';
         echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
