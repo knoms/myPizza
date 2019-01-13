@@ -15,7 +15,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
  	header("Location: index.php");
  }
 
-
+$email = $_SESSION['email'];
  echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
  ?>
@@ -108,9 +108,14 @@ function ajaxRequest(url, callback) {
 	  		<?php
 	  				}
 
-	  	else { ?>
+	  	else { 
+	  		?>
+
 	  		<a href='login.php' class='w3-bar-item w3-button w3-right'>Login</a>
-	  	 <?php }  ?>
+	  	
+	  	 <?php }  
+
+	  	 ?>
 	  	
 	  
 	  
@@ -121,82 +126,119 @@ function ajaxRequest(url, callback) {
 		<div class="w3-panel w3-border-top w3-border-bottom">
   			<h2>Deine letzten Bestellungen</h2>
 		</div>
-
-				<table class="w3-table w3-border">
-		
-		<thead>
-  			<tr class="w3-light-green ">
-
-    				
-    				<th>Bestellnummer</th>
-    				<th>Bestelldatum</th>
-    				<th>Pizza</th>
-    				<th>Preis</th>
-  			</tr>
-
-  		</thead>
-  		
-  			
-	  		<?php
-
-		  		$db = mysqli_connect($db_server, $db_benutzer, $db_passwort, $db_name);
-		  		$email = $_SESSION['email'];
-		  		/* 
-
-		  		DAVOR VIEW ERSTELLT:
-
-				CREATE VIEW AlreadyOrdered AS
-				SELECT mp_orders.UserID, mp_orders.OrderID, mp_orders.Time, mp_menu.Name, mp_menu.Preis
-				FROM mp_orders, mp_ordered_dishes, mp_menu
-				WHERE mp_orders.OrderID = mp_ordered_dishes.OrderID
-				AND mp_menu.MenuID=mp_ordered_dishes.MenuID
-				ORDER BY UserId, Time;
-				*/
-
-		  		$ergebnis = mysqli_query($db, "SELECT OrderID, Time, Name, Preis FROM alreadyordered
+		<br><br>
+		<div align="center">
+		<?php
+				$allebestellungen= array();
+				$letztebestellung= (mysqli_query($db, "SELECT MAX(OrderID) AS OrderID FROM alreadyordered
 							WHERE UserID = (SELECT UserID FROM mp_users WHERE Email='$email')
-							ORDER BY OrderID;");
+							ORDER BY OrderID"));
+				$erstebestellung= (mysqli_query($db, "SELECT MIN(OrderID) AS OrderID  FROM alreadyordered
+							WHERE UserID = (SELECT UserID FROM mp_users WHERE Email='$email')
+							ORDER BY OrderID;"));
+				$fetchMaxOrderID = mysqli_fetch_assoc($letztebestellung);
+				$fetchMinOrderID = mysqli_fetch_assoc($erstebestellung);
 
-
-		  		$orderid=array();
-		  		$time=array();
-				$name=array();
-				$preis=array();
+				$maxOrderID = $fetchMaxOrderID['OrderID'];
+				$minOrderID = $fetchMinOrderID['OrderID'];
 				
-				// Schreiben in Tabelle
-				while ($row = mysqli_fetch_object($ergebnis)) 
-				{
-					?><tr><?php
-					array_push($orderid,$row->OrderID);
-					array_push($time,$row->Time);
-					array_push($name,$row->Name);
-					array_push($preis,$row->Preis);?>
-					<td><?php echo $row->OrderID;?></td>
-					<td><?php echo $row->Time;?></td>
-					<td><?php echo $row->Name;?></td>
-					<td><?php echo $row->Preis;?></td>
-					</tr>
+				for($i=$maxOrderID; $i>=$minOrderID; $i--){
+					$ergebnis = mysqli_query($db, "SELECT OrderID, Time, Name, Preis FROM alreadyordered
+							WHERE UserID = (SELECT UserID FROM mp_users WHERE Email='$email') AND OrderID='$i'");
+					$bestelltepizzen = array();
+					while ($order=mysqli_fetch_assoc($ergebnis)) {
+						array_push($bestelltepizzen,$order);
+					}
+					$ergebnis1 = mysqli_query($db, "SELECT Preis, Vk, Artikelanzahl FROM mp_orders WHERE UserID = (SELECT UserID FROM mp_users WHERE Email='$email') AND OrderID ='$i'");
+					if(mysqli_num_rows($ergebnis1)==1){
+					$order1=mysqli_fetch_assoc($ergebnis1);
 
-					<?php
+					$time=$order['Time'];
+					$name=$order['Name'];
+					$preis=$order['Preis'];
+					$gesamtsumme = $order1['Preis'];
+					$versand = $order1['Vk'];
+					$anzahl = '1';
+					$artikelanzahl = $order1['Artikelanzahl'];
 
+					
+					 
+
+					
+						$aktuellebestellung = array($i,$gesamtsumme, $time ,$artikelanzahl,$versand,$bestelltepizzen);
+							
+					array_push($allebestellungen,$aktuellebestellung);
+					}
+				
 				}
 
 
-	        ?>
- 	       
- 		
-		</table>
+				//aausgabe ($b=$maxOrderID; $b>$minOrderID ; $b--)
+				//echo nl2br(print_r($allebestellungen,true));
+				foreach($allebestellungen as $diesebestellung){
+
+					$Summe = $diesebestellung[1]-$diesebestellung[4];
+
+					//echo nl2br(print_r($diesebestellung[4],true)); 
+					?>
 
 
-	<!-- Wiederbestellenbutton -->
+					<div class="w3-card w3-light-green" style="width:40%"><?php echo " Bestellnummer: $diesebestellung[0] " ?></div>
+					<table class="w3-table w3-border" style="width:40%"><tr class="w3-light-green">
+						
+						<th>Name</th><th>Anzahl</th><th>Preis</th></tr>
+
+					
+					<?php
+					
+					
+					$bestelltepizzen = $diesebestellung[5];
+					//echo nl2br(print_r($bestelltepizzen,true)); 
+					foreach($bestelltepizzen as $pizza){
+						$pizzaname = $pizza['Name'];
+						$pizzapreis = $pizza['Preis'];
+						
+						
+						echo "<tr>
+				            <td>$pizzaname</td>
+				            <td>$anzahl</td>
+				            <td>$pizzapreis</td>  
+				            </tr>";
+			    
+					}
+					echo"<tr><td></td><td></td><td></td></tr>";
+        			echo "<tr><td>Summe:</td><td></td><td>$Summe €<td></tr>"; 
+        			
+        			echo "<tr><td>Versand:</td><td></td><td>$diesebestellung[4] &euro;<td></tr>";
+           			echo "<hr>";
+        			echo "<tr><td>Gesamtsumme:</td><td></td><td>$diesebestellung[1] &euro;<td></tr>";
+					echo "</table> <br><br>";
+
+
+					
+
+				
+			}
+
+
+			
+		?>
+	</div>
+
+
+
+
+	
+				
+
+
 		<?php
 		if(isset($_POST['nochmal'])) {
 			// noch unvollständig...muss um INSERT ergänzt werden
 			$bestellen = "SELECT MAX(OrderID) FROM mp_orders WHERE UserID=(SELECT UserID FROM mp_users WHERE Email='leena.schumacher@web.de')";
 			mysqli_query($db, $bestellen);
 
-		}
-		?>
+		}  ?>
 		<form method="post">
 			<button type="submit" name="nochmal" class="w3-button w3-light-green w3-small">Letzte Bestellung nochmal ausführen</button>			
 		</form>
