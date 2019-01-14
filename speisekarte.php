@@ -40,6 +40,37 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
 
 	<style>
 		 body, a:hover, button:hover {cursor: url(pizza.cur), default;}
+		.modal {
+		  display: none; 
+		  position: fixed; 
+		  z-index: 1; 
+		  left: 0;
+		  top: 0;
+		  width: 100%; 
+		  height: 100%; 
+		  overflow: auto; 
+		  background-color: rgb(0,0,0); 
+		  background-color: rgba(0,0,0,0.4); 
+		}
+		.modal-content {
+		  background-color: #fefefe;
+		  margin: 15% auto; 
+		  padding: 20px;
+		  border: 1px solid #888;
+		  width: 80%;
+		}
+		.close {
+		  color: #aaa;
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+		.close:hover,
+		.close:focus {
+		  color: black;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
 	</style>
 
 <script type="text/javascript">
@@ -86,6 +117,7 @@ function ajaxRequest(url, callback) {
 }
 </script>
 
+
 </head>
 
 <body>
@@ -114,7 +146,18 @@ function ajaxRequest(url, callback) {
 		</div>
 	  	
   </header>
+  	<div id="myModal" class="modal">
 
+	  			<!-- Modal content -->
+	  			<div class="modal-content">
+	    			<span class="close">&times;</span>
+				<h3 class="w3-margin-left w3-text-light-green">Die gewünschte Pizza wurde Ihrem Warenkorb hinzugefügt!</h3>
+				<form class="w3-margin" action="warenkorb.php">
+					  <input class="w3-margin-bottom w3-button w3-large w3-light-green w3-text-light-grey" type="submit" value="Zum Warenkorb">
+				</form>
+			  	</div>
+
+				</div>
   	<!-- LISTE SPEISEKARTE; man muss eine ADD FKT. MIT DB ERSTELLEN -->
   	<div class="w3-panel w3-container w3-animate-left">
   	
@@ -123,7 +166,6 @@ function ajaxRequest(url, callback) {
   			<h2>Speisekarte</h2>
 		</div>
 	</div> 
-
   	<div class="w3-container">
   		<?php  
 		  		$db = mysqli_connect($db_server, $db_benutzer, $db_passwort, $db_name);
@@ -248,6 +290,32 @@ function dropdown() {
   }
 }
 </script>
+<script type="text/javascript">
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on the button, open the modal 
+	function popup() {
+	  modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	  modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	  if (event.target == modal) {
+	    modal.style.display = "none";
+	  }
+	}
+	</script>
 
 
 <?php
@@ -280,7 +348,7 @@ function dropdown() {
 
   			 	$MenuID= $res1["MenuID"];
 
-  			 	echo "Name: $Name";
+  			 	//echo "Name: $Name";
 
 
   			 	$sql2 = mysqli_query($db,"SELECT Preis FROM mp_menu WHERE Name LIKE '$pizza'");
@@ -289,20 +357,33 @@ function dropdown() {
 
   			 	$Preis= $res2["Preis"];
 
-  			 	echo "Preis: $Preis";
+  			 	//echo "Preis: $Preis";
   			
   			 		
 
 
 				
-				$cart -> insertArtikel($MenuID, "$pizza", "$Anzahl", $Preis);
-
+				$cart -> insertArtikel($MenuID, "$pizza", "$anzahl", $Preis);
+				
 				//mysqli_query($db, $sql3);
 				//mysqli_query($db, $sql1);
 				//mysqli_query($db, $sql2);
-				echo '<meta http-equiv=refresh content="0; url=warenkorb.php">';
-			}
+				?>
+				<script type="text/javascript">popup();</script>
+				<!--<script type="text/javascript">if (confirm('Die gewählte Pizza wurde dem Warenkorb hinzugefügt. Möchtest du direkt zum Warenkorb?')) {
+				 
+     			window.location.href="warenkorb.php";-->
+   
+
+				}
+
+				</script>
+				
+				
+				<?php
+			
 		}
+	}
 
 
 		elseif($eingeloggt==false)
@@ -321,25 +402,7 @@ function dropdown() {
 	  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
 	  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
 
-	  	  <!-- USER ONLINE ANZEIGE, MUSS BEI WELCOME PAGE EINGEBAUT WERDEN -->
-	 <!-- <script>
-		function showHint(str) {
-		    if (str.length == 0) { 
-		        document.getElementById("txtHint").innerHTML = "";
-		        return;
-		    } else {
-		        var xmlhttp = new XMLHttpRequest();
-		        xmlhttp.onreadystatechange = function() {
-		            if (this.readyState == 4 && this.status == 200) {
-		                document.getElementById("").innerHTML = this.responseText;
-		            }
-		        };
-		        xmlhttp.open("GET", "login.php?q=" +, true);
-		        xmlhttp.send();
-    }
-}
-</script>
--->
+	  	 
 
 		<span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
 
@@ -347,5 +410,8 @@ function dropdown() {
 </footer>
 
 </body>
+
+
+
 
 </html>
