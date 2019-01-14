@@ -226,27 +226,58 @@ function ajaxRequest(url, callback) {
 
 					
 
-					?>
-				<form action="versand.php"method="post" >
-					<button type="submit" name="nochmal" class="w3-button w3-light-green w3-small" value="<?php echo "$diesebestellung[0]" //HIER MUSS DIE OrderID irgendwie übergeben werden?>" style="width: 40%">Diese Bestellung erneut aufgeben</button>		
-					</form>
-					<br><hr>
+					
+				echo "<form  method='post' >
+						<button type='submit' name='nochmal' class='w3-button w3-light-green w3-small' value='$diesebestellung[0]' style='width: 40%'>Diese Bestellung erneut aufgeben</button>		
+						</form>
+						<br><hr>";
 
-					<?php
+					
 					if(isset($_POST['nochmal'])) {
-						//$cart -> undo_cart();
+						$cart -> undo_cart();
+						$p = $_POST['nochmal'];
+						echo "P: $p";
+						$pizzenofchosenorder = mysqli_query($db, "SELECT Name, Preis FROM alreadyordered
+							WHERE UserID = (SELECT UserID FROM mp_users WHERE Email='$email') AND OrderID='$p'");
+						$ausgewahltepizzen = array();
 
-						//$cart -> insertArtikel();//Jede Pizza in cart hinzufügen 
-						$test = $_POST['nochmal'];
-						echo "Test: $test";
+					
+					$bestelltepizzen = array();
+					while ($thispizza=mysqli_fetch_assoc($pizzenofchosenorder)) {
+						array_push($ausgewahltepizzen,$thispizza);
+					}
 
-						//dann link auf versand.php
+					
+
+
+
+						foreach($ausgewahltepizzen as $thispizza){
+							$name = $thispizza['Name'];
+							$price = $thispizza['Preis'];
+							$getMenuID = mysqli_query($db,"SELECT MenuID FROM mp_menu WHERE Name LIKE '$name'");
+							$getMenuID1 = mysqli_fetch_assoc($getMenuID);
+							$menuid = $getMenuID1['MenuID'];
+							$count = 1;
+							$cart -> insertArtikel("$menuid","$name","$count","$price");
+						}
+						
+						
+						
+
+						echo '<script type="text/javascript">';
+        echo 'window.location.href="versand.php";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '</noscript>';        }
 					
 						
 						
 						}
 			    
-					}
+					
+
+
 			
 
 
