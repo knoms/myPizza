@@ -24,6 +24,7 @@ $cart = new cart();
 
 $cart->initial_cart(); 
 
+
 $email = $_SESSION['email'];
 $summe = $_SESSION['Gesamt'];
 $Vk = $_SESSION['versand'];
@@ -91,20 +92,35 @@ $OrderID = $resultOrderID['OrderID'];
  ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link href='styleSchrift.css' type='text/css' rel='stylesheet'>
 
-	<title>Deine Bestellung bei MyPizza</title>
+    <meta charset="utf-8">
+    <title>Deine Bestellung bei MyPizza</title>
 
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'>
-	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <style>
-         body, a:hover, button:hover {cursor: url(pizza.cur), default;}
-    </style>
+    <link href="styleSchrift.css" type="text/css" rel="stylesheet">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .mySlides {display:none;}
+     body, a:hover, button:hover {cursor: url(pizza.cur), default;}
+  </style>
 </head>
 <body>
+    <!-- NAVIGATIONS BEREICH -->
+    <header class="w3-container w3-padding-32">
+        <div class="w3-bar w3-light-grey">
+          <span class="w3-bar-item w3-light-green">My Pizza</span>
+          <a href="index.php" class="w3-bar-item w3-button">Home</a>
+          <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
+          <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
+          <a href="php/logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
+        <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
+          <a href="warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
+        </div>
+    </header>
 	<div class='w3-container w3-center'>
 		<div class='w3-panel w3-border-top w3-border-bottom w3-light-green'>
   			<h2 style='color: white;'>- Deine Bestellung - </h2>
@@ -260,11 +276,19 @@ $OrderID = $resultOrderID['OrderID'];
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
             } else {
-                echo 'Message has been sent';
+                $cart -> undo_cart();
             }
-
+            $cart -> undo_cart();
+            unset($_SESSION['versand']); 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		?>
 	</div>
+    <footer class="w3-container w3-dark-gry w3-padding-32 w3-margin-top">
+    <!-- Fußleiste -->
+    <div class="w3-bar w3-light-green" style="">
+      <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
+      <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
+    </div>
+</footer>
 </body>
 </html>

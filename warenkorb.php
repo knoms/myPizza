@@ -185,10 +185,11 @@ function ajaxRequest(url, callback) {
 		<br><br><br>
 
 
-		<form action="speisekarte.php">
-			<button class="w3-button w3-dark-grey w3-small">Zurück zur Speisekarte und weitere Pizzen bestellen</button>	
-		</form>
+	
+			
+		
 		<form method="post">
+
 
 				<button type="submit" name="empty" class="w3-button w3-dark-grey w3-small" >Warenkorb leeren</button>
 
@@ -196,8 +197,10 @@ function ajaxRequest(url, callback) {
 				 	$cart -> undo_cart();
 					//header('Location: warenkorb.php');
           ?>
-            <script type="text/javascript">javascript:location.reload()</script>
+            <noscript><meta http-equiv="refresh" content="0;url='.$url.'" /></noscript>
+
           <?php
+          
           if(isset($_SESSION['Gesamt'])){ 
             $_SESSION['Gesamt']=0;
           }

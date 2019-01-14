@@ -33,6 +33,7 @@ echo "<br>POST:<br>";
 echo nl2br(print_r($_POST,true));
 
 
+
  ?>
 <!DOCTYPE html>
 
@@ -69,6 +70,7 @@ echo nl2br(print_r($_POST,true));
 	  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <a href="php/logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
+	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
 	  <a href="warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 </header>
@@ -93,7 +95,7 @@ echo nl2br(print_r($_POST,true));
 			
 
 
-			<button onclick="warenkorb.php" class="w3-button w3-light-green w3-small">Zurück zum Warenkorb</button>
+			<button onclick="history.go(-1);return true;" class="w3-button w3-light-green w3-small">Zurück</button>
 
 			<button class="w3-button w3-light-green w3-small" type="submit" name="tocheckout">Zur Kasse</button>
 				<?php 
@@ -101,13 +103,12 @@ echo nl2br(print_r($_POST,true));
 					if(isset($_POST['tocheckout'])) {
 
 						
-							header('Location: checkout.php');
+							echo '<meta http-equiv=refresh content="0; url=checkout.php">';
+
 						
-						
-						
-					 
 				 	}
-				 	
+
+
 				?>	
 				<br><br>
 		</form>

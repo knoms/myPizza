@@ -280,7 +280,7 @@ function dropdown() {
 
   			 	$MenuID= $res1["MenuID"];
 
-  			 	echo "Name: $Name";
+  			 	//echo "Name: $Name";
 
 
   			 	$sql2 = mysqli_query($db,"SELECT Preis FROM mp_menu WHERE Name LIKE '$pizza'");
@@ -289,20 +289,32 @@ function dropdown() {
 
   			 	$Preis= $res2["Preis"];
 
-  			 	echo "Preis: $Preis";
+  			 	//echo "Preis: $Preis";
   			
   			 		
 
 
 				
-				$cart -> insertArtikel($MenuID, "$pizza", "$Anzahl", $Preis);
+				$cart -> insertArtikel($MenuID, "$pizza", "$anzahl", $Preis);
 
 				//mysqli_query($db, $sql3);
 				//mysqli_query($db, $sql1);
 				//mysqli_query($db, $sql2);
-				echo '<meta http-equiv=refresh content="0; url=warenkorb.php">';
-			}
+				?>
+
+				<script type="text/javascript">if (confirm('Die gewählte Pizza wurde dem Warenkorb hinzugefügt. Möchtest du direkt zum Warenkorb?')) {
+				 
+     window.location.href="warenkorb.php";
+   
+
+				}
+
+				</script>
+				
+				<?php
+			
 		}
+	}
 
 
 		elseif($eingeloggt==false)
@@ -321,25 +333,7 @@ function dropdown() {
 	  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
 	  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
 
-	  	  <!-- USER ONLINE ANZEIGE, MUSS BEI WELCOME PAGE EINGEBAUT WERDEN -->
-	 <!-- <script>
-		function showHint(str) {
-		    if (str.length == 0) { 
-		        document.getElementById("txtHint").innerHTML = "";
-		        return;
-		    } else {
-		        var xmlhttp = new XMLHttpRequest();
-		        xmlhttp.onreadystatechange = function() {
-		            if (this.readyState == 4 && this.status == 200) {
-		                document.getElementById("").innerHTML = this.responseText;
-		            }
-		        };
-		        xmlhttp.open("GET", "login.php?q=" +, true);
-		        xmlhttp.send();
-    }
-}
-</script>
--->
+	  	 
 
 		<span class="w3-bar-item w3-right">User online: <span class="w3-tag" id="container">0</span> <p></span>
 
