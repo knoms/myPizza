@@ -265,12 +265,12 @@ function ajaxRequest(url, callback) {
 						
 						
 
-						echo '<script type="text/javascript">';
-        echo 'window.location.href="versand.php";';
-        echo '</script>';
-        echo '<noscript>';
-        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
-        echo '</noscript>';        }
+						echo "<script type='text/javascript'>";
+        echo "window.location.href='versand.php';";
+        echo "</script>";
+        echo "<noscript>";
+        echo "<meta http-equiv='refresh' content='0;url='.$url.'' />";
+        echo "</noscript>";        }
 					
 						
 						
