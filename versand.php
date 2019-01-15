@@ -131,5 +131,7 @@ if($cartsize==0){
 
 </html>
 <?php
+
 mysqli_close($db);
+
 ?>

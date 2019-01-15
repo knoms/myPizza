@@ -248,5 +248,7 @@ function ajaxRequest(url, callback) {
 
 </html>
 <?php
+
 mysqli_close($db);
+
 ?>

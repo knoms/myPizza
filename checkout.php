@@ -228,5 +228,7 @@ echo nl2br(print_r($_POST,true));
 
 </html>
 <?php
+
 mysqli_close($db);
+
 ?>

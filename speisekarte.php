@@ -408,5 +408,7 @@ function dropdown() {
 
 </html>
 <?php
+
 mysqli_close($db);
+
 ?>

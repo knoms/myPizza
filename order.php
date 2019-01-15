@@ -336,5 +336,7 @@ $OrderID = $resultOrderID['OrderID'];
 </body>
 </html>
 <?php
+
 mysqli_close($db);
+
 ?>
