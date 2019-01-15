@@ -2,7 +2,7 @@
  session_start();
  include ("php/dbconnect.php");
 
-echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
+//echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
  $eingeloggt=false;
  if (isset($_SESSION['login'])) {
@@ -12,7 +12,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
  }
 
 
- echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+ //echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
  ?>
 <!DOCTYPE html>
@@ -122,3 +122,6 @@ function ajaxRequest(url, callback) {
 </body>
 
 </html>
+<?php
+$db -> close();
+?>

@@ -3,7 +3,7 @@
  include ("php/dbconnect.php");
  include_once ("php/cart.php");
 
-echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
+//echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
  $eingeloggt=false;
  if (isset($_SESSION['login'])) {
@@ -17,7 +17,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
  }
 
 
- echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+ //echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
  $cart = new cart();
 
@@ -29,8 +29,8 @@ if($cartsize==0){
 	header('Location: warenkorb.php');
 }
 
-echo "<br>POST:<br>";
-echo nl2br(print_r($_POST,true));
+//echo "<br>POST:<br>";
+//echo nl2br(print_r($_POST,true));
 
 
 
@@ -130,3 +130,6 @@ echo nl2br(print_r($_POST,true));
 </body>
 
 </html>
+<?php
+$db -> close();
+?>

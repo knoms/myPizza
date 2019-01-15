@@ -227,3 +227,6 @@ echo nl2br(print_r($_POST,true));
 </body>
 
 </html>
+<?php
+$db -> close();
+?>

@@ -140,3 +140,6 @@ function ajaxRequest(url, callback) {
 </body>
 
 </html>
+<?php
+$db -> close();
+?>
