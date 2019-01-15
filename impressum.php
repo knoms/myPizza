@@ -177,7 +177,7 @@ function ajaxRequest(url, callback) {
 			      	72762 Reutlingen<br></p>
 			     <p><b>Kontaktaufnahme:<br></b>
 			      	Telefon: 01578 1234767<br>
-			      	E-Mail: mypizza@gmx.de</p>
+			      	E-Mail: mypizza.service@web.de</p>
 	     </div>
 	    </li>
 
