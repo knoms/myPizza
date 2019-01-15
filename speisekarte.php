@@ -3,7 +3,7 @@
  include ("php/dbconnect.php");
  include_once ("php/cart.php");
 
-echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
+ //nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
  $eingeloggt=false;
  if (isset($_SESSION['login'])) {
@@ -13,7 +13,7 @@ echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert
  }
 
 
- 	echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+ 	//echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
 
 	$cart = new cart();
@@ -159,7 +159,7 @@ function ajaxRequest(url, callback) {
 
 				</div>
   	<!-- LISTE SPEISEKARTE; man muss eine ADD FKT. MIT DB ERSTELLEN -->
-  	<div class="w3-panel w3-container w3-animate-left">
+  	<div class="w3-panel w3-container ">
   	
   	<div class="w3-container w3-center">
 		<div class="w3-panel w3-border-top w3-border-bottom">
@@ -407,3 +407,6 @@ function dropdown() {
 
 
 </html>
+<?php
+mysqli_close($db);
+?>

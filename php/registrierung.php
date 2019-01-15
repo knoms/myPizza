@@ -53,7 +53,8 @@
 			$mail->isHTML(true);                                  // Set email format to HTML
 
 			$name= $first;
-			$body =	"<p>Hallo <strong>$name</strong>, vielen Dank f&uumlr deine Registrierung bei MyPizza<p>"; // Hier kann per HTML später eine tolle Nachricht rein
+			$body =	"<p>Hallo <strong>$name</strong>, vielen Dank f&uumlr deine Registrierung bei MyPizza<p>"; 
+			$body1="Hallo $name, vielen Dank für deine Registrierung bei MyPizza";
 
 			$mail->Subject = 'Willkommen bei MyPizza';
 			$mail->Body    = $body;
@@ -75,7 +76,9 @@
 		
 
 	
-		$db->close();
+		
+mysqli_close($db);
+
 
 
 

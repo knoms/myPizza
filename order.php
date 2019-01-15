@@ -5,7 +5,7 @@
 //include('php/mailcontent.php');
  require "phpmailer/PHPMailerAutoload.php";
 
-echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
+//echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
  $eingeloggt=false;
  if (isset($_SESSION['login'])) {
@@ -33,7 +33,7 @@ $Versand = $_SESSION['versand'];
 
 
 
- echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
+ //echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
 
 $Array = $_SESSION['cart'];
@@ -264,13 +264,56 @@ $OrderID = $resultOrderID['OrderID'];
             $body.= "<tr><td></td><td></td><td></td></tr>
             <tr><td>Summe:</td><td></td><td>$Summe &euro;<td></tr><tr><td>Versand:</td><td></td><td>$Versand &euro;<td></tr><hr><tr><td>Gesamtsumme:</td><td></td><td>$Gesamtsumme &euro;<td></tr>";
 
+
+            $body1 = "<b>Hallo $name, </b><br><br>
+
+            herzlichen Dank für deine Bestellung. <br>
+            Dein Auftrag ist bei uns um $date eingegangen und deine Pizza ist schon so gut wie im Ofen. <br>
+            <br>
+            Einen Guten Appetit wünscht dir <br><br>
+            Dein <b>MyPizza</b> Team. <br><br>
+            
+
+            <b>Deine Bestellung: </b><br>
+            <table  style='width:50%; float: left'>
+        
+        <thead>
+            <tr>
+
+                    
+                    <th>Name</th>
+                    <th>Anzahl</th>
+                    <th>Preis</th>
+            </tr>
+
+        </thead>
+
+
+
+            ";
+
+            for($i = 0 ; $i < count($Array); $i++)
+        {
+            $innerArray = $Array[$i];
+            
+            $body1.= "<tr>
+   
+            <td>$innerArray[1]</td>
+            <td>$innerArray[2]x</td>
+            <td>$innerArray[3]€</td>
+            </tr>";
+        }      
+            $Gesamtsumme = $Summe+$Versand;   
+            $body1.= "<tr><td></td><td></td><td></td></tr>
+            <tr><td>Summe:</td><td></td><td>$Summe €<td></tr><tr><td>Versand:</td><td></td><td>$Versand €<td></tr><hr><tr><td>Gesamtsumme:</td><td></td><td>$Gesamtsumme €<td></tr>";
+
             
 
            
 
             $mail->Subject = 'Deine Bestellung bei MyPizza';
             $mail->Body    = $body;
-            $mail->AltBody = strip_tags($body);
+            $mail->AltBody = strip_tags($body1);
 
             if(!$mail->send()) {
                 echo 'Message could not be sent.';
@@ -292,3 +335,6 @@ $OrderID = $resultOrderID['OrderID'];
 </footer>
 </body>
 </html>
+<?php
+mysqli_close($db);
+?>
