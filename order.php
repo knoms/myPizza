@@ -49,23 +49,23 @@ $Array = $_SESSION['cart'];
         {
             $innerArray = $Array[$i];
             
-            echo "<tr>
+            /* echo "<tr>
            
             <td>$innerArray[1]</td>
             <td>$innerArray[2]</td>
             <td>$innerArray[3]€</td>
-            </tr>";
+            </tr>";*/
         }
 //
 
 $date = date('Y-m-d H:i:s');
-echo "<br>Datum: $date<br>";
+//echo "<br>Datum: $date<br>";
 $readUser = mysqli_query($db,"SELECT * FROM mp_users WHERE Email LIKE '$email'");
 $result = mysqli_fetch_assoc($readUser);
 $name = $result['Vorname'];
-echo "Name: $name<br>";
+//echo "Name: $name<br>";
 $UserID = $result['UserID'];
-echo "UserID: $UserID<br>";
+//echo "UserID: $UserID<br>";
 
 
 
@@ -77,17 +77,17 @@ echo "UserID: $UserID<br>";
 $writeneworder = "INSERT INTO mp_orders (UserID, Time, Artikelanzahl, Preis, Vk) VALUES ('$UserID', '$date', '$Artikelanzahl', '$summe', '$Vk')";
 $Array = $_SESSION['cart'];
 if(mysqli_query($db , $writeneworder)) {
-	echo "Bestellung in DB abgelegt<br>";
+	//echo "Bestellung in DB abgelegt<br>";
 	$readOrderID = mysqli_query($db,"SELECT * FROM mp_orders WHERE Time = '$date'");
 $resultOrderID = mysqli_fetch_assoc($readOrderID);
 $OrderID = $resultOrderID['OrderID'];
- echo "OrderID: $OrderID<br>";
+ //echo "OrderID: $OrderID<br>";
 	for($i = 0 ; $i < count($Array); $i++)
         {
             $innerArray = $Array[$i];
             $MenuID = $innerArray[0];
             //Gericht aus Warenkorb in die DB schreiben
-            echo "Gericht $i: $MenuID<br>";
+            //echo "Gericht $i: $MenuID<br>";
 
 			$writenewdish = "INSERT INTO mp_ordered_dishes(MenuID, OrderID) VALUES('$MenuID','$OrderID')";
             mysqli_query($db,$writenewdish);
