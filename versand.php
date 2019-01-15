@@ -9,6 +9,13 @@
  if (isset($_SESSION['login'])) {
  	if($_SESSION["login"]==1){
  	$eingeloggt=true;
+ 	$email = $_SESSION['email'];
+ 	$checkifordered = mysqli_query($db, "SELECT OrderID FROM 		alreadyordered
+							WHERE UserID = (SELECT UserID FROM mp_users WHERE Email='$email')");
+		 if(mysqli_num_rows($checkifordered)!==0){
+		 	$orderedbefore=true;#
+		 }
+		 else $orderedbefore=false;
 		}
  }
 
@@ -113,8 +120,8 @@ function ajaxRequest(url, callback) {
 	  <a href="index.php" class="w3-bar-item w3-button">Home</a>
 	  <a href="speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
-	  <a href="php/logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
-	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a>
+	  <a href='php/logout.php' class='w3-bar-item w3-button w3-right'>Logout</a><?php if($orderedbefore){ ?>
+	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a> <?php } ?>
 	  <a href="warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 </header>
