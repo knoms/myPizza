@@ -24,7 +24,7 @@
  //echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
  
- if($eingeloggt=false){
+ if($eingeloggt==false){
  	header("Location: ../login.php");
  }
 
@@ -63,7 +63,7 @@
 	  <a href="../speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="../ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <a href='logout.php' class='w3-bar-item w3-button w3-right'>Logout</a><?php if($orderedbefore){ ?>
-	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a> <?php } ?>
+	  <a href='../letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a> <?php } ?>
 	   <a href="../warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 
@@ -155,10 +155,7 @@ function ajaxRequest(url, callback) {
 	<!-- Inhalt der Webseite -->
 	<div class="w3-row-padding">
 
-	<a href="../warenkorb.php" style="text-decoration: none;">
-	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
-	  <p><b>Warenkorb</b></p>
-	</div>
+	
 	</a>
 	<?php if($orderedbefore){ ?>
 	<a href="../letzteBestellungen.php" style="text-decoration: none;">
@@ -166,7 +163,16 @@ function ajaxRequest(url, callback) {
 	  <p><b>Deine letzten Bestellungen</b></p>
 	</div>
 	</a>
-	<?php } ?>
+	<?php } else { ?>
+		<a href="../speisekarte.php" style="text-decoration: none;">
+	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
+	  <p><b>Zur Speisekarte</b></p>
+	</div>
+<?php } ?>
+<a href="../warenkorb.php" style="text-decoration: none;">
+	<div class="w3-panel w3-card-4 w3-center w3-margin w3-hover-light-green" style="width: 98%">
+	  <p><b>Warenkorb</b></p>
+	</div>
 
 	</div>
 

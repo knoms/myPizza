@@ -75,31 +75,7 @@ $Versand = $_SESSION['versand'];
     .mySlides {display:none;}
      body, a:hover, button:hover {cursor: url(pizza.cur), default;}
   </style>
-	<script language="JavaScript" type="text/javascript">
-
-  			function checkForm()
-  				{	
-            alert("tut");
-   			 	
-      			if (document.getElementById("credit").checked==true){
-      				var cardname = document.bezahlung.cardname.value;
-      				var cardnumber = document.bezahlung.cardnumber.value;
-      				var expmonth = document.bezahlung.expmonth.value;
-      				if(cardname ="" || cardnumber = "" || expmonth = ""){
-      					alert ("Bitte vervollständige deine Zahlungsdaten");
-      					return false;
-      				}
-      			}
-      			else if (document.getElementById("cash").checked) {
-      				return true;
-      			}
-      			
-      			else {
-      				alert("Bitte wähle eine Zahlungsmethode");
-      				return false;
-      			}
-    			}
-	</script>
+	
 
   <script type="text/javascript">
   var URL = "php/UserOnline.txt";
@@ -168,7 +144,7 @@ function ajaxRequest(url, callback) {
 		
 
 	<div class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float: left ">
-		<form onsubmit="checkForm()" name="bezahlung" action="order.php" method="post" >
+		<form name="bezahlung" action="order.php" method="post" >
 			
 			
   				<h3>Zahlungsmethode wählen</h2>
@@ -200,9 +176,9 @@ function ajaxRequest(url, callback) {
     					
     					<label for="cash">Barzahlung</label><br><br>
 
-    					<button onclick="history.go(-1);return true;" class="w3-button w3-light-green w3-small">Zurück</button>
+    					<button onclick="history.go(-1);return false;" type="button" class="w3-button w3-light-green w3-small">Zurück</button>
 
-    					<button onclick="javascript: return checkForm();" class="w3-button w3-light-green w3-small" type="submit" name="order" >Bestellen</button>
+    					<button  class="w3-button w3-light-green w3-small" type="submit" name="order" >Bestellen</button>
     					
     					<br><br>
     					
