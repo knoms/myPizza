@@ -334,11 +334,9 @@ function ajaxRequest(url, callback) {
             $mail->AltBody = strip_tags($body);
 
             if(!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            } else {
-                $cart -> undo_cart();
-            }
+                //echo 'Message could not be sent.';
+                //echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } 
             $cart -> undo_cart();
             unset($_SESSION['versand']); 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
