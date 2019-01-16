@@ -163,7 +163,9 @@ function ajaxRequest(url, callback) {
             $mail->FromName = 'MyPizza Service';
 
             //$mail->addAddress("$postemail"); 
-            $mail->addAddress("noah@mautner.de");              
+
+            $mail->addAddress("$enteredemail");              
+
             $mail->addReplyTo('mypizza.service@web.de', 'Information');
 
 
