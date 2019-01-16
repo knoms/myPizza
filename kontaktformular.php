@@ -146,7 +146,7 @@ function ajaxRequest(url, callback) {
 
 		if(isset($_POST['abschicken'])) {
             $enteredemail = $_POST['email'];
-            echo "entered email = $enteredemail";
+            //echo "entered email = $enteredemail";
             
             $name = $_POST['first'];
             $mail = new PHPMailer;
