@@ -251,7 +251,7 @@ function ajaxRequest(url, callback) {
 
 		?>
 	</table>
-    <br><br><br>
+    <br><br>
     <?php
     ////////////////MAIL VERSAND////////////////////////////////////////////////////////////////////////////////
             $readvorname = mysqli_query($db,"SELECT Vorname from mp_users WHERE Email LIKE '$email'");
@@ -260,18 +260,26 @@ function ajaxRequest(url, callback) {
             $name= $vorname['Vorname'];
             $mail = new PHPMailer;
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.web.de';                            // Specify SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'mypizza.service@web.de';                 // SMTP username
-            $mail->Password = 'mypizza123';                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    
-
-            $mail->From = 'mypizza.service@web.de';
-            $mail->FromName = 'MyPizza Service';
-
-            $mail->addAddress("$email");               
-            $mail->addReplyTo('mypizza.service@web.de', 'Information');
+            $mail->Host = 'smtp.gmail.com';
+            // use
+            // $mail->Host = gethostbyname('smtp.gmail.com');
+            // if your network does not support SMTP over IPv6
+            //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+            $mail->Port = 587;
+            //Set the encryption system to use - ssl (deprecated) or tls
+            $mail->SMTPSecure = 'tls';
+            //Whether to use SMTP authentication
+            $mail->SMTPAuth = true;
+            //Username to use for SMTP authentication - use full email address for gmail
+            $mail->Username = "service.mypizza@gmail.com";
+            //Password to use for SMTP authentication
+            $mail->Password = "mypizza123";
+            //Set who the message is to be sent from
+            $mail->setFrom('service.mypizza@gmail.com', 'MyPizza Service');
+            //Set an alternative reply-to address
+            $mail->addReplyTo('service.mypizza@gmail.com', 'MyPizza Service');
+            //Set who the message is to be sent to
+            $mail->addAddress('fraguns1@web.de', 'John Doe');
 
 
             $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
@@ -288,7 +296,7 @@ function ajaxRequest(url, callback) {
             
 
             <b>Deine Bestellung: </b><br>
-            <table  style='width:50%; float: left'>
+            <table  style='width:0%; float: left'>
         
         <thead>
             <tr>
@@ -305,8 +313,20 @@ function ajaxRequest(url, callback) {
 
             ";
 
-           
+           for($i = 0 ; $i < count($Array); $i++)
+        {
+            $innerArray = $Array[$i];
+            
+            $body.= "<tr>
+   
+            <td>$innerArray[1]</td>
+            <td>$innerArray[2]x</td>
+            <td>$innerArray[3]&euro;</td>
+            </tr>";
+        }      
             $Gesamtsumme = $Summe+$Versand;   
+            $body.= "<tr><td></td><td></td><td></td></tr>
+            <tr><td>Summe:</td><td></td><td>$Summe &euro;<td></tr><tr><td>Versand:</td><td></td><td>$Versand &euro;<td></tr><hr><tr><td>Gesamtsumme:</td><td></td><td>$Gesamtsumme &euro;<td></tr>";
             
 
             $mail->Subject = 'Deine Bestellung bei MyPizza';

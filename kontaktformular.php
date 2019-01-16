@@ -150,23 +150,28 @@ function ajaxRequest(url, callback) {
             
             $name = $_POST['first'];
             $mail = new PHPMailer;
-            $mail->SMTPDebug  = 1;
+            //$mail->SMTPDebug  = 1;
             $mail->isSMTP();                                      
-            $mail->Host = 'smtp.web.de';                           
-            $mail->SMTPAuth = true;                               
-            $mail->Username = 'mypizza.service@web.de';                
-            $mail->Password = 'mypizza123';                          
-            $mail->SMTPSecure = 'tls';                           
-            $mail->Port = 587;                                    
-
-            $mail->From = 'mypizza.service@web.de';
-            $mail->FromName = 'MyPizza Service';
-
-            //$mail->addAddress("$postemail"); 
-
-            $mail->addAddress("$enteredemail");              
-
-            $mail->addReplyTo('mypizza.service@web.de', 'Information');
+            $mail->Host = 'smtp.gmail.com';
+			// use
+			// $mail->Host = gethostbyname('smtp.gmail.com');
+			// if your network does not support SMTP over IPv6
+			//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+			$mail->Port = 587;
+			//Set the encryption system to use - ssl (deprecated) or tls
+			$mail->SMTPSecure = 'tls';
+			//Whether to use SMTP authentication
+			$mail->SMTPAuth = true;
+			//Username to use for SMTP authentication - use full email address for gmail
+			$mail->Username = "service.mypizza@gmail.com";
+			//Password to use for SMTP authentication
+			$mail->Password = "mypizza123";
+			//Set who the message is to be sent from
+			$mail->setFrom('service.mypizza@gmail.com', 'MyPizza Service');
+			//Set an alternative reply-to address
+			$mail->addReplyTo('service.mypizza@gmail.com', 'MyPizza Service');
+			//Set who the message is to be sent to
+			$mail->addAddress("$enteredemail");
 
 
             $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
@@ -176,7 +181,7 @@ function ajaxRequest(url, callback) {
             $message = $_POST['text'];                              // Set email format to HTML
 
             
-            $body = "Hallo $name, wir haben deine Nachricht erhalten und werden sie so schnell wie m&oumlglich beantworten.
+            $body = "Hallo $name, wir haben deine Nachricht erhalten und werden sie so schnell wie m&oumlglich beantworten.<br><br>
 
             		Dein MyPizza-Team<br><br>
 
@@ -193,7 +198,7 @@ function ajaxRequest(url, callback) {
 
             if(!$mail->send()) {
                 //echo "Message could not be sent.";
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
+                //echo 'Mailer Error: ' . $mail->ErrorInfo;
                 echo "<script>alert('Deine Nachricht konnte nicht versendet werden. Bitte versuche es später nochmal.')</script>";
             }
             else echo "<script>alert('Deine Nachricht wurde versandt. Du erhälst in Kürze eine Bestätigung per Mail.')</script>";

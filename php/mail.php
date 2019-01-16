@@ -1,60 +1,75 @@
 <?php
-require 'phpmailerautoload.php';
+/**
+ * This example shows settings to use when sending via Google's Gmail servers.
+ * This uses traditional id & password authentication - look at the gmail_xoauth.phps
+ * example to see how to use XOAUTH2.
+ * The IMAP section shows how to save this message to the 'Sent Mail' folder using IMAP commands.
+ */
+//Import PHPMailer classes into the global namespace
 
+require "PHPMailerAutoload.php";
+//Create a new PHPMailer instance
+$mail = new PHPMailer;
+//Tell PHPMailer to use SMTP
+$mail->isSMTP();
+//Enable SMTP debugging
+// 0 = off (for production use)
+// 1 = client messages
+// 2 = client and server messages
+$mail->SMTPDebug = 2;
+//Set the hostname of the mail server
+$mail->Host = 'smtp.gmail.com';
+// use
+// $mail->Host = gethostbyname('smtp.gmail.com');
+// if your network does not support SMTP over IPv6
+//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+$mail->Port = 587;
+//Set the encryption system to use - ssl (deprecated) or tls
+$mail->SMTPSecure = 'tls';
+//Whether to use SMTP authentication
+$mail->SMTPAuth = true;
+//Username to use for SMTP authentication - use full email address for gmail
+$mail->Username = "service.mypizza@gmail.com";
+//Password to use for SMTP authentication
+$mail->Password = "mypizza123";
+//Set who the message is to be sent from
+$mail->setFrom('service.mypizza@gmail.com', 'MyPizza Service');
+//Set an alternative reply-to address
+$mail->addReplyTo('service.mypizza@gmail.com', 'MyPizza Service');
+//Set who the message is to be sent to
+$mail->addAddress('fraguns1@web.de', 'John Doe');
+//Set the subject line
+$mail->Subject = 'PHPMailer GMail SMTP test';
+//Read an HTML message body from an external file, convert referenced images to embedded,
+//convert HTML into a basic plain-text alternative body
+//$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+//Replace the plain text body with one created manually
+$mail->Body="Das ist eine NAchricht";
+$mail->AltBody = 'This is a plain-text message body';
 
-
-//function sendMail($email,$name){
-
-	if(!$mail = new PHPMailer){
-	echo "Importfehler";
-
-$mail->SMTPDebug = 3;                               // Enable verbose debug output
-
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.web.de ;smtp.web.de ';  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'mypizza.service@web.de';                 // SMTP username
-$mail->Password = 'mypizza123';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
-
-$mail->From = 'mypizza.service@web.de';
-$mail->FromName = 'MyPizza Service';
-$mail->addAddress('noah@mautner.de',);     // Add a recipient
-$mail->isHTML(true);                                  // Set email format to HTML
-
-
-//Nachricht
-$mail->Subject = 'Deine Registrierung bei MyPizza';
-$mail->Body    = "<p><strong>Hallo $name </strong>, vielen Dank für deine Registrierung bei MyPizza</p>";
-$mail->AltBody = strip_tags($body);
-
-if(!$mail->send()) {
-   					 	echo 'Message could not be sent.';
-    					echo 'Mailer Error: ' . $mail->ErrorInfo;
-					} else {
-    					echo 'Message has been sent';
-					}
-
-
+//send the message, check for errors
+if (!$mail->send()) {
+    echo "Mailer Error: " . $mail->ErrorInfo;
+} else {
+    echo "Message sent!";
+    //Section 2: IMAP
+    //Uncomment these to save your message in the 'Sent Mail' folder.
+    #if (save_mail($mail)) {
+    #    echo "Message saved!";
+    #}
 }
-
-
-
-
-
-
-
-
-//$mail->addAddress('ellen@example.com');               // Name is optional
-//$mail->addReplyTo('info@example.com', 'Information');
-//$mail->addCC('cc@example.com');
-//$mail->addBCC('bcc@example.com');
-
-//$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-
-?>
-
+//Section 2: IMAP
+//IMAP commands requires the PHP IMAP Extension, found at: https://php.net/manual/en/imap.setup.php
+//Function to call which uses the PHP imap_*() functions to save messages: https://php.net/manual/en/book.imap.php
+//You can use imap_getmailboxes($imapStream, '/imap/ssl') to get a list of available folders or labels, this can
+//be useful if you are trying to get this working on a non-Gmail IMAP server.
+function save_mail($mail)
+{
+    //You can change 'Sent Mail' to any other folder or tag
+    $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
+    //Tell your server to open an IMAP connection using the same username and password as you used for SMTP
+    $imapStream = imap_open($path, $mail->Username, $mail->Password);
+    $result = imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+    imap_close($imapStream);
+    return $result;
+}
