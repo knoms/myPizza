@@ -34,27 +34,35 @@
 
 			$mail = new PHPMailer;
 			$mail->isSMTP();                                      // Set mailer to use SMTP
-			$mail->Host = 'smtp.web.de';  							// Specify SMTP servers
-			$mail->SMTPAuth = true;                               // Enable SMTP authentication
-			$mail->Username = 'mypizza.service@web.de';                 // SMTP username
-			$mail->Password = 'mypizza123';                           // SMTP password
-			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-			$mail->Port = 587;                                    
-
-			$mail->From = 'mypizza.service@web.de';
-			$mail->FromName = 'MyPizza Service';
-
-			$mail->addAddress("$email");               
-			$mail->addReplyTo('mypizza.service@web.de', 'Information');
+			$mail->Host = 'smtp.gmail.com';
+			// use
+			// $mail->Host = gethostbyname('smtp.gmail.com');
+			// if your network does not support SMTP over IPv6
+			//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+			$mail->Port = 587;
+			//Set the encryption system to use - ssl (deprecated) or tls
+			$mail->SMTPSecure = 'tls';
+			//Whether to use SMTP authentication
+			$mail->SMTPAuth = true;
+			//Username to use for SMTP authentication - use full email address for gmail
+			$mail->Username = "service.mypizza@gmail.com";
+			//Password to use for SMTP authentication
+			$mail->Password = "mypizza123";
+			//Set who the message is to be sent from
+			$mail->setFrom('service.mypizza@gmail.com', 'MyPizza Service');
+			//Set an alternative reply-to address
+			$mail->addReplyTo('service.mypizza@gmail.com', 'MyPizza Service');
+			//Set who the message is to be sent to
+			$mail->addAddress("$email");
 
 
 			$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
 			//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 			$mail->isHTML(true);                                  // Set email format to HTML
 
-			$name= $first;
-			$body =	"<p>Hallo <strong>$name</strong>, vielen Dank f&uumlr deine Registrierung bei MyPizza<p>"; 
-			$body1="Hallo $name, vielen Dank für deine Registrierung bei MyPizza";
+			
+			$body =	"<p>Hallo <strong>$first</strong>, vielen Dank f&uumlr deine Registrierung bei MyPizza<p>"; 
+			
 
 			$mail->Subject = 'Willkommen bei MyPizza';
 			$mail->Body    = $body;
