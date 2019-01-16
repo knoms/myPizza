@@ -1,6 +1,7 @@
 <?php
  session_start();
  include ("php/dbconnect.php");
+ require "phpmailer/PHPMailerAutoload.php";
 
 //echo nl2br(print_r($_SESSION,true)); // Nur zu Debugzwecken, kann auskommentiert werden
 
@@ -114,7 +115,7 @@ function ajaxRequest(url, callback) {
 		</div>
 	</header>
 	
-	<form action="/action_page.php" class="w3-container w3-animate-left w3-card-4 w3-light-grey w3-text-light-green w3-margin">
+	<form method="post" class="w3-container w3-animate-left w3-card-4 w3-light-grey w3-text-light-green w3-margin">
 		<h2>Kontaktformular</h2>
 	 
 		<div class="w3-row w3-section">
@@ -136,12 +137,67 @@ function ajaxRequest(url, callback) {
 		<div class="w3-row w3-section">
   			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
     		<div class="w3-rest">
-      			<input class="w3-input w3-border" name="text" type="text" placeholder="Wie können wir Ihnen weiter helfen?" required>
+      			<input style="height: 15%" class="w3-input w3-border" name="text" type="text" placeholder="Wie können wir Ihnen weiter helfen?" required>
     		</div>
 		</div>
-		<button class="w3-button w3 medium w3-section w3-light-green w3-ripple w3-padding">Abschicken</button>
-	</form>
+		<button class="w3-button w3 medium w3-section w3-light-green w3-ripple w3-padding" name="abschicken" type="submit" required>Abschicken</button>
+	</form><?php
+////////////////MAIL VERSAND////////////////////////////////////////////////////////////////////////////////
 
+		if(isset($_POST['abschicken'])) {
+            $postemail = $_POST['email'];
+            
+            $name = $_POST['first'];
+            $mail = new PHPMailer;
+            $mail->isSMTP();                                      
+            $mail->Host = 'smtp.web.de';                           
+            $mail->SMTPAuth = true;                               
+            $mail->Username = 'mypizza.service@web.de';                
+            $mail->Password = 'mypizza123';                          
+            $mail->SMTPSecure = 'tls';                           
+            $mail->Port = 587;                                    
+
+            $mail->From = 'mypizza.service@web.de';
+            $mail->FromName = 'MyPizza Service';
+
+            //$mail->addAddress("$postemail"); 
+            $mail->addAddress('noah@mautner.de');              
+            $mail->addReplyTo('mypizza.service@web.de', 'Information');
+
+
+            $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            $mail->isHTML(true);    
+
+            $message = $_POST['text'];                              // Set email format to HTML
+
+            
+            $body = "Hallo $name, wir haben deine Nachricht erhalten und werden sie so schnell wie möglich beantworten.
+
+            		Dein MyPizza-Team<br><br>
+
+            		Deine Nachricht: $message";
+        
+      
+            
+
+           
+
+            $mail->Subject = 'Deine Nachricht an MyPizza';
+            $mail->Body    = $body;
+            $mail->AltBody = strip_tags($body);
+
+            if(!$mail->send()) {
+                //echo "Message could not be sent.";
+                //echo 'Mailer Error: ' . $mail->ErrorInfo;
+                echo "<script>alert('Deine Nachricht konnte nicht versendet werden. Bitte versuche es später nochmal.')</script>";
+            }
+            else echo "<script>alert('Deine Nachricht wurde versandt. Du erhälst in Kürze eine Bestätigung per Mail.')</script>";
+            
+        }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            ?>
 	<footer class="w3-container w3-padding-32 w3-margin-top">
 		<!-- Fußleiste -->
 		<div class="w3-bar w3-light-green" style="">

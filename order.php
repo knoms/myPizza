@@ -207,7 +207,7 @@ $OrderID = $resultOrderID['OrderID'];
             $readvorname = mysqli_query($db,"SELECT Vorname from mp_users WHERE Email LIKE '$email'");
             
              $vorname = mysqli_fetch_assoc($readvorname);
-            $name= $result['Vorname'];
+            $name= $vorname['Vorname'];
             $mail = new PHPMailer;
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.web.de';                            // Specify SMTP servers
@@ -231,93 +231,6 @@ $OrderID = $resultOrderID['OrderID'];
             
             $body = "<b>Hallo $name, </b><br><br>
 
-            herzlichen Dank f&uumlr deine Bestellung. <br>
-            Dein Auftrag ist bei uns um $date eingegangen und deine Pizza ist schon so gut wie im Ofen. <br>
-            <br>
-            Einen Guten Appetit w&uumlnscht dir <br><br>
-            Dein <b>MyPizza</b> Team. <br><br>
-            
-
-            <b>Deine Bestellung: </b><br>
-            <table  style='width:50%; float: left'>
-        
-        <thead>
-            <tr>
-
-                    
-                    <th>Name</th>
-                    <th>Anzahl</th>
-                    <th>Preis</th>
-            </tr>
-
-        </thead>
-
-
-
-            ";
-
-            for($i = 0 ; $i < count($Array); $i++)
-        {
-            $innerArray = $Array[$i];
-            
-            $body.= "<tr>
-   
-            <td>$innerArray[1]</td>
-            <td>$innerArray[2]x</td>
-            <td>$innerArray[3]&euro;</td>
-            </tr>";
-        }      
-            $Gesamtsumme = $Summe+$Versand;   
-            $body.= "<tr><td></td><td></td><td></td></tr>
-            <tr><td>Summe:</td><td></td><td>$Summe &euro;<td></tr><tr><td>Versand:</td><td></td><td>$Versand &euro;<td></tr><hr><tr><td>Gesamtsumme:</td><td></td><td>$Gesamtsumme &euro;<td></tr>";
-
-
-            $body1 = "<b>Hallo $name, </b><br><br>
-
-            herzlichen Dank für deine Bestellung. <br>
-            Dein Auftrag ist bei uns um $date eingegangen und deine Pizza ist schon so gut wie im Ofen. <br>
-            <br>
-            Einen Guten Appetit wünscht dir <br><br>
-            Dein <b>MyPizza</b> Team. <br><br>
-            
-
-            <b>Deine Bestellung: </b><br>
-            <table  style='width:50%; float: left'>
-        
-        <thead>
-            <tr>
-
-                    
-                    <th>Name</th>
-                    <th>Anzahl</th>
-                    <th>Preis</th>
-            </tr>
-
-        </thead>
-
-
-
-            ";
-
-            for($i = 0 ; $i < count($Array); $i++)
-        {
-            $innerArray = $Array[$i];
-            
-            $body1.= "<tr>
-   
-            <td>$innerArray[1]</td>
-            <td>$innerArray[2]x</td>
-            <td>$innerArray[3]€</td>
-            </tr>";
-        }      
-            $Gesamtsumme = $Summe+$Versand;   
-            $body1.= "<tr><td></td><td></td><td></td></tr>
-            <tr><td>Summe:</td><td></td><td>$Summe €<td></tr><tr><td>Versand:</td><td></td><td>$Versand €<td></tr><hr><tr><td>Gesamtsumme:</td><td></td><td>$Gesamtsumme €<td></tr>";
-
-            
-
-           
-
             $mail->Subject = 'Deine Bestellung bei MyPizza';
             $mail->Body    = $body;
             $mail->AltBody = strip_tags($body1);
@@ -329,7 +242,7 @@ $OrderID = $resultOrderID['OrderID'];
                 $cart -> undo_cart();
             }
             $cart -> undo_cart();
-            unset($_SESSION['versand']); 
+            unset($_SESSION['versand'])"; 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		?>
 	</div>
