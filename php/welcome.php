@@ -182,8 +182,8 @@ function ajaxRequest(url, callback) {
 <footer class="w3-container w3-padding-32 w3-margin-top">
 	<!-- Fußleiste -->
 	<div class="w3-bar w3-light-green">
-	  <a href="impressum.php" class="w3-bar-item w3-button">Impressum</a>
-	  <a href="kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
+	  <a href="../impressum.php" class="w3-bar-item w3-button">Impressum</a>
+	  <a href="../kontaktformular.php" class="w3-bar-item w3-button">Kontaktformular</a>
 
 	  <!-- USER ONLINE ANZEIGE, MUSS BEI WELCOME PAGE EINGEBAUT WERDEN -->
 	 <!-- <script>
