@@ -279,7 +279,7 @@ function ajaxRequest(url, callback) {
             //Set an alternative reply-to address
             $mail->addReplyTo('service.mypizza@gmail.com', 'MyPizza Service');
             //Set who the message is to be sent to
-            $mail->addAddress('fraguns1@web.de', 'John Doe');
+            $mail->addAddress("$email");
 
 
             $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
