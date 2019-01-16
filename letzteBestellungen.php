@@ -201,7 +201,7 @@ function ajaxRequest(url, callback) {
 					?>
 
 					
-					<div class="w3-card w3-light-green w3-padding-16" style="width:40%; "><?php echo " <b>Bestellnummer: $diesebestellung[0]</b> " ?></div>
+					<div class="w3-card w3-light-green w3-padding-16" style="width:40%; "><?php echo " <b>Bestellnummer: $diesebestellung[0]</b></div> " ?>
 					<table class="w3-table w3-border" style="width:40%"><tr class="w3-light-green">
 						
 						<th>Name</th><th>Anzahl</th><th>Preis</th></tr>

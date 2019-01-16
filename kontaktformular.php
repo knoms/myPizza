@@ -161,7 +161,7 @@ function ajaxRequest(url, callback) {
             $mail->FromName = 'MyPizza Service';
 
             //$mail->addAddress("$postemail"); 
-            $mail->addAddress('noah@mautner.de');              
+            $mail->addAddress("$postemail");              
             $mail->addReplyTo('mypizza.service@web.de', 'Information');
 
 
@@ -172,7 +172,7 @@ function ajaxRequest(url, callback) {
             $message = $_POST['text'];                              // Set email format to HTML
 
             
-            $body = "Hallo $name, wir haben deine Nachricht erhalten und werden sie so schnell wie möglich beantworten.
+            $body = "Hallo $name, wir haben deine Nachricht erhalten und werden sie so schnell wie m&oumlglich beantworten.
 
             		Dein MyPizza-Team<br><br>
 
@@ -189,7 +189,7 @@ function ajaxRequest(url, callback) {
 
             if(!$mail->send()) {
                 //echo "Message could not be sent.";
-                //echo 'Mailer Error: ' . $mail->ErrorInfo;
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
                 echo "<script>alert('Deine Nachricht konnte nicht versendet werden. Bitte versuche es später nochmal.')</script>";
             }
             else echo "<script>alert('Deine Nachricht wurde versandt. Du erhälst in Kürze eine Bestätigung per Mail.')</script>";
