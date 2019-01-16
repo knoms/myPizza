@@ -146,7 +146,7 @@ function ajaxRequest(url, callback) {
 			
 
 
-			<button onclick="history.go(-1);return true;" class="w3-button w3-light-green w3-small">Zurück</button>
+			<button onclick="history.go(-1)" type="button" class="w3-button w3-light-green w3-small">Zurück</button>
 
 			<button class="w3-button w3-light-green w3-small" type="submit" name="tocheckout">Zur Kasse</button>
 				<?php 

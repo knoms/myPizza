@@ -276,10 +276,38 @@ function ajaxRequest(url, callback) {
 
             
             $body = "<b>Hallo $name, </b><br><br>
+            herzlichen Dank f&uumlr deine Bestellung. <br>
+            Dein Auftrag ist bei uns um $date eingegangen und deine Pizza ist schon so gut wie im Ofen. <br>
+            <br>
+            Einen Guten Appetit w&uumlnscht dir <br><br>
+            Dein <b>MyPizza</b> Team. <br><br>
+            
+
+            <b>Deine Bestellung: </b><br>
+            <table  style='width:50%; float: left'>
+        
+        <thead>
+            <tr>
+
+                    
+                    <th>Name</th>
+                    <th>Anzahl</th>
+                    <th>Preis</th>
+            </tr>
+
+        </thead>
+
+
+
+            ";
+
+           
+            $Gesamtsumme = $Summe+$Versand;   
+            
 
             $mail->Subject = 'Deine Bestellung bei MyPizza';
             $mail->Body    = $body;
-            $mail->AltBody = strip_tags($body1);
+            $mail->AltBody = strip_tags($body);
 
             if(!$mail->send()) {
                 echo 'Message could not be sent.';
@@ -288,7 +316,7 @@ function ajaxRequest(url, callback) {
                 $cart -> undo_cart();
             }
             $cart -> undo_cart();
-            unset($_SESSION['versand'])"; 
+            unset($_SESSION['versand']); 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		?>
 	</div>
