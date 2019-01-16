@@ -24,7 +24,7 @@
  //echo "Login = $eingeloggt"; 	// Nur zu Debugzwecken, kann auskommentiert werden
 
  
- if($eingeloggt=false){
+ if($eingeloggt==false){
  	header("Location: ../login.php");
  }
 
@@ -63,7 +63,7 @@
 	  <a href="../speisekarte.php" class="w3-bar-item w3-button">Speisekarte</a>
 	  <a href="../ueberUns.php" class="w3-bar-item w3-button">Über uns</a>
 	  <a href='logout.php' class='w3-bar-item w3-button w3-right'>Logout</a><?php if($orderedbefore){ ?>
-	  <a href='letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a> <?php } ?>
+	  <a href='../letzteBestellungen.php' class='w3-bar-item w3-button w3-right'>Letzte Bestellungen</a> <?php } ?>
 	   <a href="../warenkorb.php" class="w3-bar-item w3-button w3-right"><i class="../w3-large fa fa-shopping-cart"></i></a>
 	</div>
 
