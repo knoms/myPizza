@@ -203,10 +203,10 @@ function ajaxRequest(url, callback) {
 				<?php if(isset($_POST['empty'])) {
 				 	$cart -> undo_cart();
 					//header('Location: warenkorb.php');
-          ?>
-            <noscript><meta http-equiv="refresh" content="0;url='.$url.'" /></noscript>
+          
+            echo"<script>location.href=location.href;</script>";
 
-          <?php
+          
           
           if(isset($_SESSION['Gesamt'])){ 
             $_SESSION['Gesamt']=0;
@@ -220,7 +220,7 @@ function ajaxRequest(url, callback) {
 				<button class="w3-button w3-light-green w3-small" type="submit" name="proceed">Weiter</button>
 				<?php if(isset($_POST['proceed'])) {
           if($Artikelanzahl==0){
-            ?> <script type="text/javascript">alert("Ohne Pizza gehts nicht weiter");</script> <?php
+            ?> <script type="text/javascript">alert("Ohne Pizza geht es nicht weiter");</script> <?php
           }else{
 					 echo '<script type="text/javascript">';
         echo 'window.location.href="versand.php";';
